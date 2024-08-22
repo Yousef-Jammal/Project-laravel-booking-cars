@@ -68,7 +68,6 @@
 </div>
 </div>
 <div class="details-btn">
-<a href="#"> <img src="{{ asset('img/git-compare.svg') }}" alt="Icon"> Compare</a>
 <a href="#"><i class="feather-heart"></i> Wishlist</a>
 </div>
 </div>
