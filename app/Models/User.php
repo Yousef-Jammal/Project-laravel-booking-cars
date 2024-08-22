@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -41,4 +42,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rentals()
+    {
+        return $this->belongsToMany(Car::class, 'rentals')->withPivot('rent_start', 'rent_end, status_id');
+    }
+
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

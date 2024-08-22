@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->unique('user_id');
+            $table->float('rating')->default(0);
+            $table->integer('num_of_ratings')->default(0);
+            $table->string('description');
+            $table->string('location');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
