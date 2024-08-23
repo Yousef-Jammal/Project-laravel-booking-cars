@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('car_id');
             $table->string('name');
-            $table->string('path');
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }
