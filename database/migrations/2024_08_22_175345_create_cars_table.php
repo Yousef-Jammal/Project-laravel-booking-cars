@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('body');
             $table->string('ac');
-            $table->string('door');
+            $table->integer('door');
             $table->integer('mileage');
             $table->string('fuel_type');
             $table->string('make');
