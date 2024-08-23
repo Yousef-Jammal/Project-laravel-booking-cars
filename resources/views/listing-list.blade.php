@@ -22,11 +22,7 @@
     <div class="container">
         <div class="sorting-div">
             <div class="row d-flex align-items-center">
-                <div class="col-xl-4 col-lg-3 col-sm-12 col-12">
-                    <div class="count-search">
-                        <p>Showing <span>{{ $cars->firstItem() }}-{{ $cars->lastItem() }}</span> of {{ $cars->total() }} Results</p>
-                    </div>
-                </div>
+
                 <div class="col-xl-8 col-lg-9 col-sm-12 col-12">
                     <div class="product-filter-group">
                         <div class="sortbyset">
@@ -88,23 +84,25 @@
                         <div class="card">
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
-                                    <a href="{{ route('car.details', $car->id) }}">
-                                        <img src="{{ asset('storage/images/' . $car->images->first()->name) }}" class="img-fluid" alt="car-image">
+                                    <a href="">
+                                        @foreach($car->images as $image)
+                                        <img src="car_images/{{ $image->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
+                                        @endforeach
                                     </a>
                                 </div>
                                 <div class="bloglist-content w-100">
                                     <div class="card-body">
                                         <div class="blog-list-head d-flex">
                                             <div class="blog-list-title">
-                                                <h3><a href="{{ route('car.details', $car->id) }}">{{ $car->make }} {{ $car->model }}</a></h3>
-                                                <h6>Category : <span>{{ $car->brand->name }}</span></h6>
+                                                <h3><a href="">{{ $car->make }} {{ $car->model }}</a></h3>
+                                                <h6>Category : <span>{{ $car->brand }}</span></h6>
                                             </div>
                                             <div class="blog-list-rate">
                                                 <div class="list-rating">
                                                     @for ($i = 0; $i < $car->rating; $i++)
-                                                    <i class="fas fa-star filled"></i>
-                                                    @endfor
-                                                    <span>({{ $car->rating }})</span>
+                                                        <i class="fas fa-star filled"></i>
+                                                        @endfor
+                                                        <span>({{ $car->rating }})</span>
                                                 </div>
                                                 <h6>${{ $car->price_per_day }} <span>/ Day</span></h6>
                                             </div>
@@ -141,16 +139,16 @@
                                             <div class="blog-list-title">
                                                 <div class="title-bottom">
                                                     <div class="car-list-icon">
-                                                        <img src="{{ asset('img/icons/car-parts-01.svg') }}" alt="car icon">
+                                                        <img src="user_images/{{ $car->user->image }}" alt="car icon">
                                                     </div>
                                                     <div class="address-info">
-                                                        <h5><a href="#">{{ $car->brand->name }}</a></h5>
-                                                        <h6><i class="feather-map-pin me-2"></i>{{ $car->location }}</h6>
+                                                        <h5><a href="#">{{ $car->user->name }}</a></h5>
+                                                        <h6><i class="feather-map-pin me-2"></i>{{ $car->user->company->location }}</h6>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="listing-button">
-                                                <a href="{{ route('car.details', $car->id) }}" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
+                                                <a href="" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -162,9 +160,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="blog-pagination">
-                    {{ $cars->links() }}
-                </div>
+
 
             </div>
         </div>
@@ -172,4 +168,3 @@
 </section>
 
 @endsection
-hi 
