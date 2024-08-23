@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,13 @@ use App\Http\Controllers\CarController;
 |
 */
 
-Route::get('/', function () {
-    return view('listing-list');
-});
+// Route::get('/', function () {
+//     return view('admin.views.dashboard.index');
+// });
 
 Route::get('/carlist', [CarController::class, 'index']);
+Route::get('/search', [SearchController::class, 'searchCars']);
+Route::get('/filter', [SearchController::class, 'filterCars']);
 
 
 // aseel routes start
