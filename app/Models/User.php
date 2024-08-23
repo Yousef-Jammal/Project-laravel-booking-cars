@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'phone'
     ];
 
     /**
@@ -48,6 +49,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Car::class, 'rentals')->withPivot('rent_start', 'rent_end, status_id');
     }
 
+    public function reviews()
+    {
+        return $this->belongsToMany(Car::class, 'reviews')->withPivot('rating', 'date', 'content');
+    }
+    
     public function cars()
     {
         return $this->hasMany(Car::class);
