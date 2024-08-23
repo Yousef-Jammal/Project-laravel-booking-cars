@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('availability');
-            $table->string('brand');
+            $table->unsignedBigInteger('brand_id');
             $table->string('model');
             $table->string('body');
             $table->string('ac');
@@ -33,6 +33,7 @@ return new class extends Migration
             $table->integer('num_of_ratings')->default(0);
             $table->float('price_per_day');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

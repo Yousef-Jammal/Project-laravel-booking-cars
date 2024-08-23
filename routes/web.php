@@ -14,9 +14,9 @@ use App\Http\Controllers\CarController;
 |
 */
 
-Route::get('/', function () {
-    return view('listing-list');
-});
+// Route::get('/', function () {
+//     return view('admin.views.dashboard.index');
+// });
 
 Route::get('/carlist', [CarController::class, 'index']);
 
