@@ -107,8 +107,8 @@
                                 <td>#{{ $rental->id }}</td>
                                 <td>{{ $rental->user->name }}</td>
                                 <td>{{ $rental->car->brand->name }} {{ $rental->car->model }}</td>
-                                <td>{{ $rental->rent_start->format('Y-m-d') }}</td>
-                                <td>{{ $rental->rent_end->format('Y-m-d') }}</td>
+                                <td>{{ $rental->rent_start }}</td>
+                                <td>{{ $rental->rent_end }}</td>
                             </tr>
                         @endforeach
                         </tbody>
