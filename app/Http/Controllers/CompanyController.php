@@ -8,7 +8,7 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\Status;
 use App\Models\Brand;
-
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -23,10 +23,11 @@ class CompanyController extends Controller
     public function showCars($id)
     {
         $company = Company::findOrFail($id);
+        $brands = Brand::all();
 
         $cars = Car::where('user_id', $company->user_id)->get();
 
-        return view('companies.cars', compact('company', 'cars'));
+        return view('listing-list', compact('brands', 'cars'));
     }
 
 
@@ -161,18 +162,21 @@ class CompanyController extends Controller
 
     public function rentalControlCenter()
     {
-        $userId = Auth::id();
+        // $userId = Auth::id();
+        $userId = 1;
 
         // Get the rentals for the cars owned by the authenticated user, including the image
         $rentals = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })->with(['car.images', 'user', 'status'])->get();
 
+        // $rentals = Rental::where('user_id', $userId)->with(['car.images', 'user', 'status'])->get();
+
         // Calculate total price for each rental
-        foreach ($rentals as $rental) {
-            $days = $rental->rent_start->diffInDays($rental->rent_end) + 1;
-            $rental->total_price = $days * $rental->car->price_per_day;
-        }
+        // foreach ($rentals as $rental) {
+        //     $days = $rental->rent_start->diffInDays($rental->rent_end) + 1;
+        //     $rental->total_price = $days * $rental->car->price_per_day;
+        // }
 
         $statuses = Status::all(); // Get all available statuses
         $company = Company::where('user_id', $userId)->first();
@@ -200,11 +204,35 @@ class CompanyController extends Controller
 
     public function carControlCenter()
     {
-        $userId = auth()->user()->id;
+        // $userId = auth()->user()->id;
+        $userId = 1;
         $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
+        $times_rented = [];
+        $total_profit = [];
+        foreach ($cars as $car) {
+            $time_rented = Rental::where(
+                'car_id',
+                $car->id
+            )->count();
+            $times_rented["$car->id"] = $time_rented;
+            $money = 0;
+            $rentals = Rental::where(
+                'car_id',
+                $car->id
+            )->get();
+            foreach ($rentals as $rental) {
+                $start = Carbon::parse($rental->rent_start)->startOfDay();
+                $end = Carbon::parse($rental->rent_end)->endOfDay();
+                $days = $end->diffInDays($start);
+                $money += $days * $car->price_per_day;
+            }
+            $total_profit["$car->id"] = $money;
+        }
+
         $company = Company::where('user_id', $userId)->first();
 
-        return view('companies.car_control_center', compact('company', 'cars'));
+
+        return view('companies.car_control_center', compact('company', 'cars', 'times_rented', 'total_profit'));
     }
 
     public function createCar()

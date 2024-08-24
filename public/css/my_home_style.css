@@ -1,0 +1,51 @@
+.my-form-home label{
+
+    padding: 10px 23px;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    color: #2f2f2f;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    background-color: white;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-justify-content: center;
+    width: 130px;
+    height: 57px;
+    font-weight: 400;
+    font-size: 16px;
+    transition: all .5s;
+}
+.my-form-home label:hover{
+    background-color: #127384;
+    color: #fff;
+    transition: all .5s;
+}
+.my-form-home label input{
+    display: none;
+}
+.my-form-home label span{
+    margin: 0 10px 0 0;
+    padding: 10px;
+    line-height: 0;
+    background: #fcfcfc;
+    border: 1px solid #f2f7f6;
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.my-active-input-radio-home{
+    background-color: #127384 !important;
+    color: #fff !important;
+    transition: all .5s !important;
+}

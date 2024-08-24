@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function rentals()
     {
-        return $this->belongsToMany(Car::class, 'rentals')->withPivot('rent_start', 'rent_end, status_id');
+        return $this->belongsToMany(Rental::class, 'rentals')->withPivot('rent_start', 'rent_end', 'status_id');
     }
 
     public function reviews()
