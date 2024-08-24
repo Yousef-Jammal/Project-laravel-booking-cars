@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +16,3 @@ use App\Http\Controllers\CarController;
 Route::get('/', function () {
     return view('listing-list');
 });
-
-Route::get('/carlist', [CarController::class, 'index']);
-
-
-// aseel routes start
-
-// aseel routes end
