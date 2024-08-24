@@ -90,4 +90,3 @@ Route::patch('/company/rental-control-center/{rentalId}', [CompanyController::cl
 
 
 // aseel routes end
->>>>>>> c05c6e6d8c0e63ec827a415833c380411edf38c4
