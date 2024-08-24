@@ -18,6 +18,49 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+<div class="sortby-sec">
+    <div class="container">
+        <div class="sorting-div">
+            <div class="row d-flex align-items-center">
+
+                <div class="col-xl-8 col-lg-9 col-sm-12 col-12">
+                    <div class="product-filter-group">
+                        <div class="sortbyset">
+                            <span class="sortbytitle">Show : </span>
+                            <div class="sorting-select select-one">
+                                <select class="form-control select">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+                            </div>
+                            <div class="sorting-select select-two">
+                                <select class="form-control select">
+                                    <option>Low to High</option>
+                                    <option>High to Low</option>
+                                </select>
+                            </div>
+                            <div class="sorting-select select-three">
+                                <select class="form-control select">
+                                    <option>Popular</option>
+                                    @foreach ($cars as $car)
+                                    <option>{{ $car->model }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+=======
+>>>>>>> ef664311d4d947823f8869f92c0c4ff6907f971f
 <section class="section car-listing">
     <div class="container">
         <div class="row">
@@ -194,8 +237,13 @@
                                     <div class="card-body">
                                         <div class="blog-list-head d-flex">
                                             <div class="blog-list-title">
+<<<<<<< HEAD
+                                                <h3><a href="">{{ $car->make }} {{ $car->model }}</a></h3>
+                                                <h6>Category : <span>{{ $car->brand }}</span></h6>
+=======
                                                 <h3><a href="">{{ $car->brand->name }}</a></h3>
                                                 <h6>Model : <span>{{ $car->model }}</span></h6>
+>>>>>>> ef664311d4d947823f8869f92c0c4ff6907f971f
                                             </div>
                                             <div class="blog-list-rate">
                                                 <div class="list-rating">
@@ -266,6 +314,8 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
 
 </section>
 <script>
@@ -278,4 +328,5 @@
 
 
 
+>>>>>>> ef664311d4d947823f8869f92c0c4ff6907f971f
 @endsection
