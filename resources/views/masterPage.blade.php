@@ -10,6 +10,8 @@
 
 <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
 
+<link rel="stylesheet" href="{{asset('css/my_home_style.css')}}">
+
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
 
 <link rel="stylesheet" href="{{ asset('plugins/fontawesome/css/fontawesome.min.css')}}">
@@ -27,6 +29,9 @@
 <link rel="stylesheet" href="{{ asset('css/fajer.css')}}">
 
 <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+<link rel="stylesheet" href="{{ asset('css/Aseelstyle.css')}}">
+
 </head>
 <body>
 <div class="main-wrapper">
@@ -326,6 +331,11 @@
     </div>
 
 
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('js/my_home_js.js') }}"></script>
+
+
+
     <script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script><script src="{{ asset('js/jquery-3.7.1.min.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
 
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
@@ -344,7 +354,11 @@
 
     <script src="{{ asset('js/owl.carousel.min.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
 
+
+
+
     <script src="{{ asset('js/script.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
-    <script src="./cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="92c909a9da2673a89e5fe5b0-|49" defer></script></body>
-    <!-- Mirrored from dreamsrent.dreamstechnologies.com/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Feb 2024 09:06:35 GMT -->
-    </html>
+    <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="92c909a9da2673a89e5fe5b0-|49" defer></script>
+    @yield('script')
+</body>
+</html>

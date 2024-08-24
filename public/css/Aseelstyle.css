@@ -68,49 +68,147 @@
     object-fit:cover;
 }
 
-.status-dropdown {
-    display: inline-block;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    background-color: grey;
+
+
+.actionbtnaseel{
+width: 100%; 
+margin-left:10px;
+}
+
+.actionbtnaseelLeft{
+    width: 100%; 
+    /* margin-left:10px; */
+    }
+
+.delbtnaseel{
+    background-color: #ec7581;
+}
+
+.showbtnaseel{
+background-color: #a6eaf7;
+}
+
+.editbtnaseel{
+    background-color: #FFA633;
+}
+
+/* Step Indicator */
+.progress-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.step-indicator {
     text-align: center;
+    width: 100%;
+    position: relative;
 }
 
-.status-dropdown option {
-    background-color: white;
-    color: black;
-}
-
-.status-option.pending {
-    background-color: grey;
+.step-indicator .step-number {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: #ccc;
+    border-radius: 50%;
+    line-height: 30px;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.status-option.accepted {
-    background-color: lightgreen;
-    color: white;
+.step-indicator.active .step-number {
+    background-color: #FFA633;
 }
 
-.status-option.cancelled {
-    background-color: rgb(242, 143, 143);
-    color: white;
+.step-indicator .step-title {
+    margin-top: 10px;
+    font-weight: 600;
 }
 
-.status-option.confirmed {
-    background-color: lightgreen;
-    color: white;
+.step-indicator::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: calc(50% + 15px);
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    z-index: -1;
 }
 
-/* Remove default styling for select dropdown to let the options show their background colors */
-.status-dropdown {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 5px 10px;
-    border: none;
+.step-indicator:last-child::after {
+    display: none;
+}
+
+/* Form Step */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Buttons */
+.next-step, .prev-step {
+    margin-top: 20px;
+}
+
+.step1aseelbtn{
+     /* margin-left:300px; */
+    width: 50%;
+    margin-top:12px; 
+}
+
+.aseelrow{
+    justify-content: center;
+}
+
+.titleCreateAseel{
+    margin-bottom: 20px;
+}
+
+.carCreateAseel{
+    margin-bottom: 30px;
+}
+
+.aseel-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aseel-card-header h3 {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.aseel-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.aseel-form-control {
     border-radius: 4px;
-    color: white;
-    text-align: center;
+    padding: 0.75rem;
+}
+
+.aseel-btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.aseel-btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.aseel-img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 0.5rem;
 }
