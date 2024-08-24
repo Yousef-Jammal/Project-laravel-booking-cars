@@ -31,10 +31,16 @@ class Car extends Model
     ];
     public $timestamps = false;
 
+    // public function rentals()
+    // {
+    //     return $this->belongsToMany(User::class, 'rentals')->withPivot('rent_start', 'rent_end, status_id');
+    // }
+    // car can have multiple rentals but each rental is associated with one specific car, the correct relationship should be a hasMany
     public function rentals()
     {
-        return $this->belongsToMany(User::class, 'rentals')->withPivot('rent_start', 'rent_end, status_id');
+        return $this->hasMany(Rental::class);
     }
+
 
     // Relationship for actor ratings
     public function reviews()

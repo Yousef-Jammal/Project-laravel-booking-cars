@@ -26,6 +26,9 @@
 <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
 
 <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+<link rel="stylesheet" href="{{ asset('css/Aseelstyle.css')}}">
+
 </head>
 <body>
 <div class="main-wrapper">
@@ -344,6 +347,8 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
 
     <script src="{{ asset('js/script.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
+    <script src="{{ asset('js/aseelscript.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
+
     <script src="./cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="92c909a9da2673a89e5fe5b0-|49" defer></script></body>
     <!-- Mirrored from dreamsrent.dreamstechnologies.com/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Feb 2024 09:06:35 GMT -->
     </html>
