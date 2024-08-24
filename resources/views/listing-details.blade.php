@@ -24,12 +24,12 @@
 <div class="container">
 <div class="row align-items-center text-center">
 <div class="col-md-12 col-12">
-<h2 class="breadcrumb-title">Chevrolet Camaro</h2>
-<nav aria-label="breadcrumb" class="page-breadcrumb">
+    <h2 class="breadcrumb-title">{{ $car->make }} {{ $car->model }}</h2>
+    <nav aria-label="breadcrumb" class="page-breadcrumb">
 <ol class="breadcrumb">
 <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
 <li class="breadcrumb-item"><a href="javascript:void(0);">Listings</a></li>
-<li class="breadcrumb-item active" aria-current="page">Chevrolet Camaro</li>
+<li class="breadcrumb-item active" aria-current="page">{{ $car->make }} {{ $car->model }}</li>
 </ol>
 </nav>
 </div>
@@ -44,24 +44,24 @@
 <div class="detail-headings">
 <div class="star-rated">
 <div class="list-rating">
-<span class="year">2023</span>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span class="d-inline-block average-list-rating"> 5.0 </span>
+    <span class="year">{{ $car->year }}</span>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <i class="fas fa-star filled"></i>
+    <span class="d-inline-block average-list-rating"> {{ $car->rating }} </span>
 </div>
 <div class="camaro-info">
-<h3>Chevrolet Camaro</h3>
-<div class="camaro-location">
+    <h3>{{ $car->make }} {{ $car->model }}</h3>
+    <div class="camaro-location">
 <div class="camaro-location-inner">
 <i class="feather-map-pin me-2"></i>
-<span class="me-2"> <b>Location :</b> Miami St, Destin, FL 32550, USA </span>
+<span class="me-2"> <b>Location :</b> {{ $car->location }} </span>
 </div>
 <div class="camaro-locations-inner">
 <i class="feather-eye me-2"></i>
-<span><b>Views :</b> 250 </span>
+<span><b>Views :</b> {{ $car->views }} </span>
 </div>
 </div>
 </div>
@@ -104,13 +104,7 @@
 <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
 </div>
 </div>
-<div class="review-sec extra-service">
-<div class="review-header">
-<h4>Extra Service</h4>
-</div>
-<span>Baby Seat - $10</span>
-</div>
-
+{{-- SECTION Specifications --}}
 <div class="review-sec specification-card ">
 <div class="review-header">
 <h4>Specifications</h4>
@@ -124,7 +118,7 @@
 </div>
 <div class="featues-info">
 <span>Body </span>
-<h6> Sedan</h6>
+<h6>{{ $car->body }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -133,7 +127,7 @@
 </div>
 <div class="featues-info">
 <span>Make </span>
-<h6> Nisssan</h6>
+<h6>{{ $car->make }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -142,16 +136,17 @@
 </div>
 <div class="featues-info">
 <span>Transmission </span>
-<h6> Automatic</h6>
+<h6>{{ $car->transmission }}</h6>
 </div>
 </div>
+{{-- SECTION ALFEATURE --}}
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
 <div class="feature-img">
 <img src="{{ asset('img/specification/specification-icon-4.svg') }}" alt="Icon">
 </div>
 <div class="featues-info">
 <span>Fuel Type </span>
-<h6> Diesel</h6>
+<h6>{{ $car->fuel_type }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -160,7 +155,7 @@
 </div>
 <div class="featues-info">
 <span>Mileage </span>
-<h6>16 Km</h6>
+<h6>{{ $car->mileage }} Km</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -169,7 +164,7 @@
 </div>
 <div class="featues-info">
 <span>Drivetrian </span>
-<h6>Front Wheel</h6>
+<h6>{{ $car->drivetrian }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -178,7 +173,7 @@
 </div>
 <div class="featues-info">
 <span>Year</span>
-<h6> 2018</h6>
+<h6>{{ $car->year }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -187,7 +182,7 @@
 </div>
 <div class="featues-info">
 <span>AC </span>
-<h6> Air Condition</h6>
+<h6>{{ $car->ac }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -196,7 +191,7 @@
 </div>
 <div class="featues-info">
 <span>VIN </span>
-<h6> 45456444</h6>
+<h6>{{ $car->vin }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -205,7 +200,7 @@
 </div>
 <div class="featues-info">
 <span>Door </span>
-<h6> 4 Doors</h6>
+<h6>{{ $car->door }} Doors</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -214,7 +209,7 @@
 </div>
 <div class="featues-info">
 <span>Brake </span>
-<h6> ABS</h6>
+<h6>{{ $car->brake }}</h6>
 </div>
 </div>
 <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
@@ -223,7 +218,7 @@
 </div>
 <div class="featues-info">
 <span>Engine (Hp) </span>
-<h6> 3,000</h6>
+<h6>{{ $car->engine_hp }}</h6>
 </div>
 </div>
 </div>
@@ -231,217 +226,114 @@
 </div>
 </div>
 <div class="review-sec listing-feature">
-<div class="review-header">
-<h4>Car Features</h4>
-</div>
-<div class="listing-description">
-<div class="row">
-<div class="col-md-4">
-<ul>
-<li><span><i class="fa-solid fa-check-double"></i></span>Multi-zone A/C</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Heated front seats</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Andriod Auto</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Navigation system</li>
-</ul>
-</div>
-<div class="col-md-4">
-<ul>
-<li><span><i class="fa-solid fa-check-double"></i></span>Premium sound system</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Bluetooth</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Keyles Start</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Memory seat</li>
-</ul>
-</div>
-<div class="col-md-4">
-<ul>
-<li><span><i class="fa-solid fa-check-double"></i></span>6 Cylinders</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Adaptive Cruise Control</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>Intermittent wipers</li>
-<li><span><i class="fa-solid fa-check-double"></i></span>4 power windows</li>
-</ul>
-</div>
-</div>
-</div>
+    <div class="review-header">
+        <h4>Car Features</h4>
+    </div>
+    <div class="listing-description">
+        <div class="row">
+            @foreach ($car->features->chunk(ceil($car->features->count() / 3)) as $chunk)
+                <div class="col-md-4">
+                    <ul>
+                        @foreach ($chunk as $feature)
+                            <li><span><i class="fa-solid fa-check-double"></i></span>{{ $feature->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
 
-<div class="review-sec extra-service mb-0">
-<div class="review-header">
-<h4>Description of Listing</h4>
-</div>
-<div class="description-list">
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-</p>
-<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It was popularised in the 1960s with the
-release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-PageMaker including versions of Lorem Ipsum.
-</p>
-<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</p>
-<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
-desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It was popularised in the 1960s with the
-release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-PageMaker including versions of Lorem Ipsum.
-</p>
-</div>
-</div>
-<div class="review-sec extra-service mb-0">
-<div class="review-header">
-<h4>Video</h4>
-</div>
-<div class="short-video">
-<iframe src="https://www.youtube.com/embed/ExJZAegsOis" width="100" height="350"></iframe>
-</div>
-</div>
+{{-- SECTION REVIEWES --}}
 <div class="review-sec listing-review">
-<div class="review-header">
-<h4>Reviews<span class="me-2">(2)</span></h4>
-<div class="reviewbox-list-rating">
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span> (5 out of 5)</span>
-</p>
-</div>
-</div>
-<div class="review-card">
-<div class="review-header-group">
-<div class="review-widget-header">
-<span class="review-widget-img">
-<img src="{{ asset('img/profiles/avatar-01.jpg') }}" class="img-fluid" alt="User">
-</span>
-<div class="review-design">
-<h6>Johnson</h6>
-<p>02 Jan 2023</p>
-</div>
-</div>
-<div class="reviewbox-list-rating">
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span> (5.0)</span>
-</p>
-</div>
-</div>
-<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It was popularised in the 1960s </p>
-<ul class="review-list-rating">
-<li>
-quality
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Price
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Comfort
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Driving
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-</ul>
-</div>
-<div class="review-card">
-<div class="review-header-group">
-<div class="review-widget-header">
-<span class="review-widget-img">
-<img src="{{ asset('img/profiles/avatar-02.jpg') }}" class="img-fluid" alt="User">
-</span>
-<div class="review-design">
-<h6>Casandra</h6>
-<p>02 Jan 2023</p>
-</div>
-</div>
-<div class="reviewbox-list-rating">
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span> (5.0)</span>
-</p>
-</div>
-</div>
-<p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It was popularised in the 1960s </p>
-<ul class="review-list-rating">
-<li>
-quality
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Price
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Comfort
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-<li>
-Driving
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-</p>
-</li>
-</ul>
-</div>
+    <div class="review-header">
+        <h4>Reviews<span class="me-2">({{ $car->reviews->count() }})</span></h4>
+        <div class="reviewbox-list-rating">
+            <p>
+                @for($i = 0; $i < round($car->reviews->avg('pivot.rating')); $i++)
+                    <i class="fas fa-star filled"></i>
+                @endfor
+                @for($i = 0; $i < (5 - round($car->reviews->avg('pivot.rating'))); $i++)
+                    <i class="fas fa-star"></i>
+                @endfor
+                <span> ({{ number_format($car->reviews->avg('pivot.rating'), 1) }} out of 5)</span>
+            </p>
+        </div>
+    </div>
+
+    @foreach($car->reviews as $review)
+        <div class="review-card">
+            <div class="review-header-group">
+                <div class="review-widget-header">
+                    <span class="review-widget-img">
+                        <img src="{{ asset('img/profiles/' . $review->pivot->user_image) }}" class="img-fluid" alt="User">
+                    </span>
+                    <div class="review-design">
+                        <h6>{{ $review->name }}</h6>
+                        <p>{{ \Carbon\Carbon::parse($review->pivot->date)->format('d M Y') }}</p>
+                    </div>
+                </div>
+                <div class="reviewbox-list-rating">
+                    <p>
+                        @for($i = 0; $i < $review->pivot->rating; $i++)
+                            <i class="fas fa-star filled"></i>
+                        @endfor
+                        @for($i = 0; $i < (5 - $review->pivot->rating); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                        <span> ({{ number_format($review->pivot->rating, 1) }})</span>
+                    </p>
+                </div>
+            </div>
+            <p>{{ $review->pivot->content }}</p>
+            <ul class="review-list-rating">
+                <li>
+                    Quality
+                    <p>
+                        @for($i = 0; $i < $review->pivot->quality_rating; $i++)
+                            <i class="fas fa-star filled"></i>
+                        @endfor
+                        @for($i = 0; $i < (5 - $review->pivot->quality_rating); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                    </p>
+                </li>
+                <li>
+                    Price
+                    <p>
+                        @for($i = 0; $i < $review->pivot->price_rating; $i++)
+                            <i class="fas fa-star filled"></i>
+                        @endfor
+                        @for($i = 0; $i < (5 - $review->pivot->price_rating); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                    </p>
+                </li>
+                <li>
+                    Comfort
+                    <p>
+                        @for($i = 0; $i < $review->pivot->comfort_rating; $i++)
+                            <i class="fas fa-star filled"></i>
+                        @endfor
+                        @for($i = 0; $i < (5 - $review->pivot->comfort_rating); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                    </p>
+                </li>
+                <li>
+                    Driving
+                    <p>
+                        @for($i = 0; $i < $review->pivot->driving_rating; $i++)
+                            <i class="fas fa-star filled"></i>
+                        @endfor
+                        @for($i = 0; $i < (5 - $review->pivot->driving_rating); $i++)
+                            <i class="fas fa-star"></i>
+                        @endfor
+                    </p>
+                </li>
+            </ul>
+        </div>
+    @endforeach
 </div>
 <div class="review-sec leave-reply-form mb-0">
 <div class="review-header">
@@ -526,836 +418,211 @@ Driving
 </div>
 </div>
 </div>
+{{-- SECTION AVILABILITY --}}
 <div class="col-lg-4 theiaStickySidebar">
 <div class="review-sec mt-0">
 <div class="review-header">
 <h4>Check Availability</h4>
 </div>
 <div class>
-<form class>
-<ul>
-<li class="column-group-main">
-<div class="input-block">
-<label>Pickup Location</label>
-<div class="group-img">
-<input type="text" class="form-control" placeholder="45, 4th Avanue  Mark Street USA">
+    <form action="{{ route('check.availability') }}" method="POST">
+        @csrf
+        <input type="hidden" name="car_id" value="{{ $car->id }}">
+        <ul>
+            <li class="column-group-main">
+                <div class="input-block">
+                    <label>Pickup Location</label>
+                    <div class="group-img">
+                        <input type="text" name="pickup_location" class="form-control" placeholder="" required>
+                    </div>
+                </div>
+            </li>
+            <li class="column-group-main">
+                <div class="input-block">
+                    <label>Dropoff Location</label>
+                    <div class="group-img">
+                        <input type="text" name="dropoff_location" class="form-control" placeholder="" required>
+                    </div>
+                </div>
+            </li>
+            <li class="column-group-main">
+                <div class="input-block m-0">
+                    <label>Pickup Date</label>
+                </div>
+                <div class="input-block-wrapp sidebar-form">
+                    <div class="input-block me-2">
+                        <div class="group-img">
+                            <input type="date" name="pickup_date_d" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="input-block">
+                        <div class="group-img">
+                            <input type="time" name="pickup_date_h" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="column-group-main">
+                <div class="input-block m-0">
+                    <label>Return Date</label>
+                </div>
+                <div class="input-block-wrapp sidebar-form">
+                    <div class="input-block me-2">
+                        <div class="group-img">
+                            <input type="date" name="return_date_d" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="input-block">
+                        <div class="group-img">
+                            <input type="time" name="return_date_h" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="column-group-last">
+                <div class="input-block mb-0">
+                    <div class="search-btn">
+                        <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Availability</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+    <!-- نافذة منبثقة لعرض تفاصيل التوفر -->
+    <div id="availability-popup" style="display:none ; margin-left: 350px;width: 40vw;">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Availability Details</h4>
+                <button type="button" class="close" onclick="closePopup()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span id="car-status"></span>
+                </div>
+                <div class="details-row d-flex justify-content-between align-items-start fajerpop">
+                    <div>
+                        <h5>Pickup</h5>
+                        <p id="pickup-location"></p>
+                        <span id="pickup-datetime"></span>
+                    </div>
+                    <div>
+                        <h5>Drop Off</h5>
+                        <p id="dropoff-location"></p>
+                        <span id="dropoff-datetime"></span>
+                    </div>
+                    <div>
+                        <h5>Booking Amount</h5>
+                        <h6><span id="price-per-day"></span> /day</h6>
+                    </div>
+                </div>
+                <div class="details-row mt-3">
+                    <div class="pricing-details">
+                        <ul>
+                            <li>Booking Price <span id="booking-price"></span></li>
+                            <li>Extra Service <span id="extra-service"></span></li>
+                            <li>Tax <span id="tax"></span></li>
+                        </ul>
+                    </div>
+                    <div class="grand-total">
+                        <h5>Grand Total</h5>
+                        <span id="grand-total"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="goToDetails()">Go to Details</button>
+                <button class="btn btn-secondary" onclick="closePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @if(isset($availabilityResult))
+<div class="modal fade show" id="availability-details" tabindex="-1" aria-labelledby="availabilityDetailsLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="availabilityDetailsLabel">Availability Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Pickup Location: {{ $availabilityResult['pickup_location'] }}</p>
+                <p>Dropoff Location: {{ $availabilityResult['dropoff_location'] }}</p>
+                <p>Pickup Date: {{ $availabilityResult['pickup_date'] }}</p>
+                <p>Return Date: {{ $availabilityResult['return_date'] }}</p>
+                <p>Booking Amount: ${{ $availabilityResult['price_per_day'] }} /day</p>
+                <p>Grand Total: ${{ $availabilityResult['total_price'] }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{{ url('/booking') }}" class="btn btn-primary">Go to Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 </div>
 </div>
-</li>
-<li class="column-group-main">
-<div class="input-block">
-<label>Dropoff Location</label>
-<div class="group-img">
-<input type="text" class="form-control" placeholder="78, 10th street Laplace USA">
-</div>
-</div>
-</li>
-<li class="column-group-main">
-<div class="input-block m-0">
-<label>Pickup Date</label>
-</div>
-<div class="input-block-wrapp sidebar-form">
-<div class="input-block me-2">
-<div class="group-img">
-<input type="text" class="form-control datetimepicker" placeholder="04/11/2023">
-</div>
-</div>
-<div class="input-block">
-<div class="group-img">
-<input type="text" class="form-control timepicker" placeholder="11:00 AM">
-</div>
-</div>
-</div>
-</li>
-<li class="column-group-main">
-<div class="input-block m-0">
-<label>Return Date</label>
-</div>
-<div class="input-block-wrapp sidebar-form">
-<div class="input-block me-2">
-<div class="group-img">
-<input type="text" class="form-control datetimepicker" placeholder="04/11/2023">
-</div>
-</div>
-<div class="input-block">
-<div class="group-img">
-<input type="text" class="form-control timepicker" placeholder="11:00 AM">
-</div>
-</div>
-</div>
-</li>
-<li class="column-group-last">
-<div class="input-block mb-0">
-<div class="search-btn">
-<button class="btn btn-primary check-available w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit"> Check Availability</button>
-</div>
-</div>
-</li>
-</ul>
-</form>
-</div>
-</div>
+{{-- SECTION OWNER --}}
 <div class="review-sec extra-service mt-0">
-<div class="review-header">
-<h4>Listing Owner Details</h4>
+    <div class="review-header">
+        <h4>Listing Owner Details</h4>
+    </div>
+    <div class="owner-detail">
+        <div class="owner-img">
+            <a href="#"><img src="{{ asset('storage/profile_images/' . ($car->user->image ?? 'default.png'))}}" alt="{{ $car->user->name }}"></a>
+        </div>
+        <div class="reviewbox-list-rating">
+            <h5><a>{{ $car->user->name }}</a></h5>
+            <p>
+                @for($i = 0; $i < 5; $i++)
+                    <i class="fas fa-star filled"></i>
+                @endfor
+                <span> ({{ number_format($car->user->company->rating ?? 0, 1) }})</span>
+            </p>
+        </div>
+    </div>
+    <ul class="booking-list">
+        <li>
+            No of Listings
+            <span>{{ $car->user->cars->count() }}</span>
+        </li>
+        <!-- احذف أو علّق هذا الجزء إذا لم يكن لديك عدد الحجوزات مخزن في مكان آخر -->
+        {{-- <li>
+            No of Bookings
+            <span>{{ $car->user->rentals->count() ?? 0 }}</span>
+        </li> --}}
+      
+    </ul>
+    <div class="message-btn">
+        {{-- <a href="{{ route('company.cars', ['id' => $car->user->id]) }}" class="btn btn-order">views ownerpage</a> --}}
+    </div>
+
 </div>
-<div class="owner-detail">
-<div class="owner-img">
-<a href="#"><img src="{{ asset('img/profiles/avatar-07.jpg') }}" alt="User"></a>
-</div>
-<div class="reviewbox-list-rating">
-<h5><a>Brooklyn Cars</a></h5>
-<p>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span> (5.0)</span>
-</p>
-</div>
-</div>
-<ul class="booking-list">
-<li>
-No of Listings
-<span>05</span>
-</li>
-<li>
-No of Bookings
-<span>225</span>
-</li>
-<li>
-Verification
-<h6>Verified</h6>
-</li>
-</ul>
-<div class="message-btn">
-<a href="#" class="btn btn-order">Message to owner</a>
-</div>
-</div>
-<div class="review-sec share-car mt-0">
-<div class="review-header">
-<h4>Share this car</h4>
-</div>
-<ul class="nav-social">
-<li>
-<a href="javascript:void(0)"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
-</li>
-<li>
-<a href="javascript:void(0)"><i class="fab fa-instagram fi-icon"></i></a>
-</li>
-<li>
-<a href="javascript:void(0)"><i class="fab fa-behance fi-icon"></i></a>
-</li>
-<li>
-<a href="javascript:void(0)"><i class="fa-brands fa-pinterest-p fi-icon"></i></a>
-</li>
-<li>
-<a href="javascript:void(0)"><i class="fab fa-twitter fi-icon"></i> </a>
-</li>
-<li>
-<a href="javascript:void(0)"><i class="fab fa-linkedin fi-icon"></i></a>
-</li>
-</ul>
-</div>
+
+
+{{-- SECTION LOCATION --}}
 <div class="review-sec share-car mt-0 mb-0">
-<div class="review-header">
-<h4>View Location</h4>
-</div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509170.989457427!2d-123.80081967108484!3d37.192957227641294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C%20USA!5e0!3m2!1sen!2sin!4v1669181581381!5m2!1sen!2sin" class="iframe-video"></iframe>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-<div class="details-car-grid">
-<div class="details-slider-heading">
-<h3>You May be Interested in</h3>
-</div>
-<div class="car-details-slider owl-carousel">
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-02.jpg') }}" class="img-fluid" alt="KIA">
-</a>
-<div class="fav-item">
-<span class="featured-text">KIA</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-02.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Kia Soul 2016</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Auto"></span>
-<p>Auto</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="22 KM"></span>
-<p>22 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Petrol"></span>
-<p>Petrol</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2016"></span>
-<p>2016</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>5 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span class="me-2"><i class="feather-map-pin"></i></span> Belgium
-</div>
-<div class="listing-price">
-<h6>$80 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-07.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Chevrolet</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-07.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Chevrolet Pick Truck 3.5L</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Manual"></span>
-<p>Manual</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="10 KM"></span>
-<p>10 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Petrol"></span>
-<p>Petrol</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Power"></span>
-<p>Power</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2012"></span>
-<p>2012</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>5 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Spain
-</div>
-<div class="listing-price">
-<h6>$77 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-03.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Audi</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-03.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Audi A3 2019 new</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Manual"></span>
-<p>Manual</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="10 KM"></span>
-<p>10 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Petrol"></span>
-<p>Petrol</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Power"></span>
-<p>Power</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2019"></span>
-<p>2019</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>4 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Newyork, USA
-</div>
-<div class="listing-price">
-<h6>$45 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-04.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Ferrai</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-04.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Ferrari 458 MM Speciale</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Manual"></span>
-<p>Manual</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="14 KM"></span>
-<p>14 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Basic"></span>
-<p>Basic</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2022"></span>
-<p>2022</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>5 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Newyork, USA
-</div>
-<div class="listing-price">
-<h6>$160 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-05.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Chevrolet</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-05.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">2018 Chevrolet Camaro</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Manual"></span>
-<p>Manual</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="18 KM"></span>
-<p>18 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Power"></span>
-<p>Power</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2018"></span>
-<p>2018</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>4 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Germany
-</div>
-<div class="listing-price">
-<h6>$36 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-06.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Acura</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-06.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Acura Sport Version</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Auto"></span>
-<p>Auto</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="12 KM"></span>
-<p>12 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Power"></span>
-<p>Power</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2013"></span>
-<p>2013</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>5 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Newyork, USA
-</div>
-<div class="listing-price">
-<h6>$30 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-02.jpg') }}" class="img-fluid" alt="KIA">
-</a>
-<div class="fav-item">
-<span class="featured-text">KIA</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-02.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">Kia Soul 2016</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Auto"></span>
-<p>Auto</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="22 KM"></span>
-<p>22 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Petrol"></span>
-<p>Petrol</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2016"></span>
-<p>2016</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>5 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Belgium
-</div>
-<div class="listing-price">
-<h6>$80 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="listing-item pb-0">
-<div class="listing-img">
-<a href="listing-details.html">
-<img src="{{ asset('img/cars/car-05.jpg') }}" class="img-fluid" alt="Audi">
-</a>
-<div class="fav-item">
-<span class="featured-text">Chevrolet</span>
-<a href="javascript:void(0)" class="fav-icon">
-<i class="feather-heart"></i>
-</a>
-</div>
-</div>
-<div class="listing-content">
-<div class="listing-features">
-<div class="author-img">
-<img src="{{ asset('img/profiles/avatar-05.jpg') }}" alt="author">
-</div>
-<h3 class="listing-title">
-<a href="javascript:void(0)">2018 Chevrolet Camaro</a>
-</h3>
-<div class="list-rating">
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<i class="fas fa-star filled"></i>
-<span>(5.0)</span>
-</div>
-</div>
-<div class="listing-details-group">
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="Manual"></span>
-<p>Manual</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-02.svg') }}" alt="18 KM"></span>
-<p>18 KM</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-03.svg') }}" alt="Diesel"></span>
-<p>Diesel</p>
-</li>
-</ul>
-<ul>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-04.svg') }}" alt="Power"></span>
-<p>Power</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-05.svg') }}" alt="2018"></span>
-<p>2018</p>
-</li>
-<li>
-<span><img src="{{ asset('img/icons/car-parts-06.svg') }}" alt="Persons"></span>
-<p>4 Persons</p>
-</li>
-</ul>
-</div>
-<div class="listing-location-details">
-<div class="listing-price">
-<span><i class="feather-map-pin"></i></span> Germany
-</div>
-<div class="listing-price">
-<h6>$36 <span>/ Day</span></h6>
-</div>
-</div>
-<div class="listing-button">
-<a href="listing-details.html" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<div class="modal custom-modal fade check-availability-modal" id="pages_edit" role="dialog">
-<div class="modal-dialog modal-dialog-centered modal-md">
-<div class="modal-content">
-<div class="modal-header">
-<div class="form-header text-start mb-0">
-<h4 class="mb-0 text-dark fw-bold">Availability Details</h4>
-</div>
-<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-<span class="align-center" aria-hidden="true">&times;</span>
-</button>
-</div>
-<div class="modal-body">
-<div class="row">
-<div class="col-lg-12 col-md-12">
-<div class="available-for-ride">
-<p><i class="fa-regular fa-circle-check"></i>Chevrolet Camaro is available for a ride</p>
-</div>
-</div>
-<div class="col-lg-12 col-md-12">
-<div class="row booking-info">
-<div class="col-md-4 pickup-address">
-<h5>Pickup</h5>
-<p>45, 4th Avanue Mark Street USA</p>
-<span>Date & time : 11 Jan 2023</span>
-</div>
-<div class="col-md-4 drop-address">
-<h5>Drop Off</h5>
-<p>78, 10th street Laplace USA</p>
-<span>Date & time : 11 Jan 2023</span>
-</div>
-<div class="col-md-4 booking-amount">
-<h5>Booking Amount</h5>
-<h6><span>$300 </span> /day</h6>
-</div>
-</div>
-</div>
-<div class="col-lg-12 col-md-12">
-<div class="booking-info seat-select">
-<h6>Extra Service</h6>
-<label class="custom_check">
-<input type="checkbox" name="rememberme" class="rememberme">
-<span class="checkmark"></span>
-Baby Seat - <span class="ms-2">$10</span>
-</label>
-</div>
-</div>
-<div class="col-md-12">
-<div class="booking-info pay-amount">
-<h6>Deposit Option</h6>
-<div class="radio radio-btn">
-<label>
-<input type="radio" name="radio"> Pay Deposit
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="radio"> Full Amount
-</label>
-</div>
-</div>
-</div>
-<div class="col-md-6"></div>
-<div class="col-md-6">
-<div class="booking-info service-tax">
-<ul>
-<li>Booking Price <span>$300</span></li>
-<li>Extra Service <span>$10</span></li>
-<li>Tax <span>$5</span></li>
-</ul>
-</div>
-<div class="grand-total">
-<h5>Grand Total</h5>
-<span>$315</span>
-</div>
-</div>
-</div>
-</div>
-<div class="modal-footer">
-<a href="booking.html" class="btn btn-back">Go to Details<i class="fa-solid fa-arrow-right"></i></a>
-</div>
-</div>
-</div>
+    <div class="review-header">
+        <h4>View Location</h4>
+    </div>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3383.2481681583024!2d35.85549831527885!3d31.953947780065396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca1b4d3d4db8d%3A0x2a8d4af4c6a6c1c7!2s7th%20Circle%2C%20Amman!5e0!3m2!1sen!2sjo!4v1692878376458!5m2!1sen!2sjo"
+        class="iframe-video"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <a href="https://www.google.com/maps/place/7th+Circle,+Amman,+Jordan/@31.9539478,35.8554983,15z" target="_blank" class="btn btn-primary mt-2">View larger map</a>
 </div>
 
+
+</div>
+</div>
 
 
 
@@ -1379,5 +646,72 @@ Baby Seat - <span class="ms-2">$10</span>
 
 <script src="{{ asset('js/script.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
 <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="1fd1520c2fe94050b14d329a-|49" defer></script></body>
+<script>
+    $(document).ready(function() {
+        $('#availability-details').modal('show');
+    });
+    function checkAvailability() {
+    // جلب بيانات النموذج
+    var pickupLocation = document.querySelector('[name="pickup_location"]').value;
+    var dropoffLocation = document.querySelector('[name="dropoff_location"]').value;
+    var pickupDate = document.querySelector('[name="pickup_date_d"]').value + ' ' + document.querySelector('[name="pickup_date_h"]').value;
+    var returnDate = document.querySelector('[name="return_date_d"]').value + ' ' + document.querySelector('[name="return_date_h"]').value;
 
+    // التحقق من أن جميع الحقول مملوءة
+    if (!pickupLocation || !dropoffLocation || !document.querySelector('[name="pickup_date_d"]').value || !document.querySelector('[name="pickup_date_h"]').value || !document.querySelector('[name="return_date_d"]').value || !document.querySelector('[name="return_date_h"]').value) {
+        alert("Please fill out all fields before checking availability.");
+        return;
+    }
+
+    // افترض السعر اليومي للسيارة والرسوم الإضافية
+    var pricePerDay = @json($car->price_per_day);
+    var extraService = 10; // رسوم إضافية مفترضة
+    var tax = 5; // ضريبة مفترضة
+
+    // حساب عدد الأيام بين تاريخ الاستلام والإرجاع
+    var pickupDateObj = new Date(document.querySelector('[name="pickup_date_d"]').value);
+    var returnDateObj = new Date(document.querySelector('[name="return_date_d"]').value);
+
+    var timeDifference = returnDateObj.getTime() - pickupDateObj.getTime();
+    var days = Math.ceil(timeDifference / (1000 * 3600 * 24)); // تحويل الوقت إلى أيام
+
+    // التحقق من أن عدد الأيام صحيح (على الأقل يوم واحد)
+    if (days < 1) {
+        days = 1; // لتجنب أخطاء التواريخ
+    }
+
+    // حساب إجمالي السعر
+    var bookingPrice = pricePerDay * days;
+    var grandTotal = bookingPrice + extraService + tax;
+
+    // تحديث محتويات النافذة المنبثقة
+    document.getElementById('pickup-location').innerText = pickupLocation;
+    document.getElementById('pickup-datetime').innerText = pickupDate;
+    document.getElementById('dropoff-location').innerText = dropoffLocation;
+    document.getElementById('dropoff-datetime').innerText = returnDate;
+    document.getElementById('price-per-day').innerText = '$' + pricePerDay;
+    document.getElementById('booking-price').innerText = '$' + bookingPrice;
+    document.getElementById('extra-service').innerText = '$' + extraService;
+    document.getElementById('tax').innerText = '$' + tax;
+    document.getElementById('grand-total').innerText = '$' + grandTotal;
+
+    // هنا يمكن أن يتم التحقق من توفر السيارة عبر طلب إلى الخادم
+    var isAvailable = true; // يمكنك تغيير هذه القيمة بناءً على التحقق الفعلي
+
+    document.getElementById('car-status').innerText = isAvailable ? 'Chevrolet Camaro is available for a ride' : 'Not Available';
+
+    // أظهر النافذة المنبثقة
+    document.getElementById('availability-popup').style.display = 'block';
+}
+
+
+    function closePopup() {
+        document.getElementById('availability-popup').style.display = 'none';
+    }
+
+    function goToDetails() {
+        // انتقل إلى صفحة التفاصيل
+        window.location.href = "{{ route('booking') }}";
+    }
+</script>
 @endsection
