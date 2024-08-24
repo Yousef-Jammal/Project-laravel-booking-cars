@@ -99,3 +99,40 @@ Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name(
 
 
 // aseel routes end
+
+
+//
+// fajer route
+//
+
+Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
+Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
+
+Route::post('/reviews/store', [CarDetailsController::class, 'storeReview'])->name('reviews.store');
+
+Route::get('/car/{id}/reviews', [CarDetailsController::class, 'showReviews'])->name('car.reviews');
+
+Route::get('/listing-details/{id}', [CarDetailsController::class, 'show'])->name('cardetails.show');
+
+Route::get('/car/{id}/features', [CarDetailsController::class, 'showFeatures'])->name('car.features');
+
+Route::get('/listing-details', function () {
+    return view('listing-details');
+});
+
+Route::get('/', function () {
+    return view('listing-list');
+});
+// Route::get('/', function () {
+//     return view('admin.views.dashboard.index');
+// });
+Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
+
+Route::get('/carlist', [CarController::class, 'index']);
+Route::get('/search', [SearchController::class, 'searchCars']);
+Route::get('/filter', [SearchController::class, 'filterCars']);
+Route::get('/booking', function () {
+    return view('booking');
+})->name('booking');
+
+// fajer end//
