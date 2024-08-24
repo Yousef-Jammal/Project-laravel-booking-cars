@@ -57,7 +57,7 @@
                     <div style="height: 250px; object-fit: cover; " class="listing-img">
                         <a href="{{ route('car.details', $car->id) }}">
                             @if($car->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="img-fluid" alt="{{ $car->brand }}">
+                            <img src='{{url("/car_images/".$car->images->first()->name)}}' class="img-fluid" alt="{{ $car->images->first()->name }}">
                             @else
                             <img src="{{ asset('img/cars/car-01.jpg') }}" class="img-fluid" alt="Default Image">
                             @endif

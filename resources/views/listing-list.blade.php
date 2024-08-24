@@ -187,9 +187,7 @@
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
                                     <a href="">
-                                        @foreach($car->images as $image)
-                                        <img src="car_images/{{ $image->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
-                                        @endforeach
+                                        <img src="car_images/{{ $car->images->first()->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
                                     </a>
                                 </div>
                                 <div class="bloglist-content w-100">
