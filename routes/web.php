@@ -54,14 +54,16 @@ Route::middleware(['auth', 'company'])->group(function () {
     Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
 });
 
-// FOR ASEEL USES
-Route::get('/index', function () {
-    return view('index');
-});
+// // FOR ASEEL USES
+// Route::get('/index', function () {
+//     return view('index');
+// });
 
-use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\LoginController;
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
 // aseel routes end
