@@ -64,7 +64,8 @@
         <div class="row no-gutters">
             <div class="imgcontainercardaseel col-md-4">
                 @if($rental->car->images->isNotEmpty())
-                <img src="{{ asset('storage/' . $rental->car->images->first()->name) }}" class="cardimgaseel card-img" alt="{{ $rental->car->brand }}">
+                {{-- {{url("/car_images/".$car->images->first()->name)}} --}}
+                <img src='{{ url("/car_images/". $rental->car->images->first()->name) }}' class="cardimgaseel card-img">
                 @else
                 <img src="{{ asset('storage/default.png') }}" class="cardimgaseel card-img" alt="{{ $rental->car->brand }}">
                 @endif

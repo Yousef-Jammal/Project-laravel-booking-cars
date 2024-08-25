@@ -45,6 +45,177 @@
     <form action="{{ route('company.updateCar', $car->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+    
+        <!-- Step 1: Car Basic Details -->
+        <div class="aseel-card">
+            <div class="aseel-card-header">
+                <h3>Step 1: Car Basic Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="brand_id">Brand</label>
+                            <select name="brand_id" class="aseel-form-control" id="brand_id" required>
+                                @foreach($brands as $brand)
+                                    <option value="{{ $brand->id }}" {{ $brand->id == $car->brand_id ? 'selected' : '' }}>{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="model">Model</label>
+                            <input type="text" name="model" class="aseel-form-control" id="model" value="{{ $car->model }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="body">Body</label>
+                            <input type="text" name="body" class="aseel-form-control" id="body" value="{{ $car->body }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="ac">AC</label>
+                            <select name="ac" class="aseel-form-control" id="ac" required>
+                                <option value="Yes" {{ $car->ac == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                <option value="No" {{ $car->ac == 'No' ? 'selected' : '' }}>No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="door">Door</label>
+                            <input type="number" name="door" class="aseel-form-control" id="door" value="{{ $car->door }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="mileage">Mileage</label>
+                            <input type="number" name="mileage" class="aseel-form-control" id="mileage" value="{{ $car->mileage }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Step 2: Car Features -->
+        <div class="aseel-card">
+            <div class="aseel-card-header">
+                <h3>Step 2: Car Features</h3>
+            </div>
+            <div class="card-body">
+                <div class="aseel-form-group">
+                    <label for="features">Features</label>
+                    @foreach($car->features as $feature)
+                        <input type="text" class="aseel-form-control mb-2" name="features[]" value="{{ $feature->name }}" required>
+                    @endforeach
+                    <input type="text" class="aseel-form-control mb-2" name="features[]" placeholder="Add new feature">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Step 3: Additional Information -->
+        <div class="aseel-card">
+            <div class="aseel-card-header">
+                <h3>Step 3: Additional Information</h3>
+            </div>
+            <div class="card-body">
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="fuel_type">Fuel Type</label>
+                            <input type="text" name="fuel_type" class="aseel-form-control" id="fuel_type" value="{{ $car->fuel_type }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="make">Make</label>
+                            <input type="text" name="make" class="aseel-form-control" id="make" value="{{ $car->make }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="transmission">Transmission</label>
+                            <input type="text" name="transmission" class="aseel-form-control" id="transmission" value="{{ $car->transmission }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="drivetrian">Drivetrain</label>
+                            <input type="text" name="drivetrian" class="aseel-form-control" id="drivetrian" value="{{ $car->drivetrian }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="vin">VIN</label>
+                            <input type="text" name="vin" class="aseel-form-control" id="vin" value="{{ $car->vin }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="brake">Brake</label>
+                            <input type="text" name="brake" class="aseel-form-control" id="brake" value="{{ $car->brake }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="year">Year</label>
+                            <input type="number" name="year" class="aseel-form-control" id="year" value="{{ $car->year }}" required>
+                        </div>
+                    </div>
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="engine_hp">Engine HP</label>
+                            <input type="number" name="engine_hp" class="aseel-form-control" id="engine_hp" value="{{ $car->engine_hp }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="aseel-row">
+                    <div class="aseel-col">
+                        <div class="aseel-form-group">
+                            <label for="price_per_day">Price Per Day</label>
+                            <input type="number" name="price_per_day" class="aseel-form-control" id="price_per_day" value="{{ $car->price_per_day }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Step 4: Car Images -->
+        <div class="aseel-card">
+            <div class="aseel-card-header">
+                <h3>Step 4: Car Images</h3>
+            </div>
+            <div class="card-body">
+                <div class="aseel-form-group">
+                    <label for="image">Car Image</label>
+                    <input type="file" name="image" class="aseel-form-control" id="image">
+                    @if($car->images->isNotEmpty())
+                        <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="aseel-img-fluid mt-2" alt="Car Image">
+                    @endif
+                </div>
+            </div>
+        </div>
+    
+        <button type="submit" class="aseel-btn-primary">Update Car</button>
+    </form>
+    
+    
+    {{--  <form action="{{ route('company.updateCar', $car->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
         <!-- Step 1: Car Basic Details -->
         <div class="aseel-card mb-4">
@@ -155,6 +326,6 @@
         </div>
 
         <button type="submit" class="aseel-btn-primary">Update Car</button>
-    </form>
+    </form>  --}}
 </div>
 @endsection

@@ -15,6 +15,7 @@ use App\Http\Controllers\CarDetailsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 
@@ -63,33 +64,33 @@ Route::get('/booking', function () {
 use App\Http\Controllers\CompanyController;
 
 // Route::middleware(['auth', 'company'])->group(function () {
-Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
+    Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
-Route::get('/company/dashboard', [CompanyController::class, 'dashboard'])
-    // Apply the middleware
-    ->name('company.dashboard');
+// Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
-Route::get('/company/user-info', [CompanyController::class, 'showUserInfo'])->name('company.user-info');
-Route::post('/company/user-info', [CompanyController::class, 'updateUserInfo'])->name('company.user-info.update');
-Route::get('/company/rental-control-center', [CompanyController::class, 'rentalControlCenter'])->name('company.rental-control-center');
-Route::patch('/company/rental-control-center/{rentalId}', [CompanyController::class, 'updateRentalStatus'])->name('company.update-rental-status');
+Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
+
+    Route::get('/company/user-info', [CompanyController::class, 'showUserInfo'])->name('company.user-info');
+    Route::post('/company/user-info', [CompanyController::class, 'updateUserInfo'])->name('company.user-info.update');
+    Route::get('/company/rental-control-center', [CompanyController::class, 'rentalControlCenter'])->name('company.rental-control-center');
+    Route::patch('/company/rental-control-center/{rentalId}', [CompanyController::class, 'updateRentalStatus'])->name('company.update-rental-status');
 
 Route::get('/company/carControlCenter', [CompanyController::class, 'carControlCenter'])->name('company.carControlCenter');
-Route::get('/company/carControlCenter/create', [CompanyController::class, 'createCar'])->name('company.createCar');
+    Route::get('/company/carControlCenter/create', [CompanyController::class, 'createCar'])->name('company.createCar');
 
-Route::get('/company/cars/{id}/edit', [CompanyController::class, 'editCar'])->name('company.editCar');
-Route::put('/company/cars/{id}', [CompanyController::class, 'updateCar'])->name('company.updateCar');
+    Route::get('/company/cars/{id}/edit', [CompanyController::class, 'editCar'])->name('company.editCar');
+    Route::put('/company/cars/{id}', [CompanyController::class, 'updateCar'])->name('company.updateCar');
 
-Route::get('/listing-details/{id}', [CompanyController::class, 'showCar'])->name('listing-details');
-Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
+    Route::get('/company-listing-details/{id}', [CompanyController::class, 'showCar'])->name('company.listing-details');
+    Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
 
-Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
+    Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
 // });
 
 // // FOR ASEEL USES
-// Route::get('/index', function () {
-//     return view('index');
-// });
+Route::get('/index', function () {
+    return view('index');
+});
 
 // use App\Http\Controllers\LoginController;
 

@@ -40,25 +40,24 @@ class CompanyController extends Controller
         return view('listing-details', compact('car', 'image'));
     }
 
-
     public function dashboard()
     {
         // Get the currently authenticated user's ID
-        $userId = Auth::id();
-
-
+        // $userId = Auth::id();
+        $userId = 1;
         $dealsWeek = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
             ->whereBetween('rent_start', [now()->startOfWeek(), now()->endOfWeek()])
             ->count();
 
+        // Alias the rentals table as `r`
         $revenueThisMonth = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
             ->whereMonth('rent_start', now()->month)
-            ->join('cars', 'rentals.car_id', '=', 'cars.id')
-            ->sum('cars.price_per_day');
+            ->join('cars as c', 'rentals.car_id', '=', 'c.id') // Aliasing the cars table
+            ->sum('c.price_per_day');
 
         $customersThisYear = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
@@ -75,14 +74,6 @@ class CompanyController extends Controller
             ->take(5)
             ->get();
 
-        $topCars = Car::where('user_id', $userId)
-            ->withCount(['rentals' => function ($query) {
-                $query->whereMonth('rent_start', now()->month);
-            }])
-            ->orderBy('rentals_count', 'desc')
-            ->take(5)
-            ->get();
-
         $totalCarsAvailable = Car::where('user_id', $userId)
             ->where('availability', 'Available')
             ->count();
@@ -91,7 +82,7 @@ class CompanyController extends Controller
 
         $cars = Car::where('user_id', $company->user_id)->get();
 
-        return view('companies.dashboard', compact('totalCarsAvailable', 'company', 'cars', 'dealsWeek', 'revenueThisMonth', 'customersThisYear', 'recentRentals', 'topCars'));
+        return view('companies.dashboard', compact('totalCarsAvailable', 'company', 'cars', 'dealsWeek', 'revenueThisMonth', 'customersThisYear', 'recentRentals'));
     }
 
     public function showUserInfo()
@@ -306,17 +297,6 @@ class CompanyController extends Controller
     }
 
 
-    // public function editCar($id)
-    // {
-    //     $userId = Auth::id();
-
-    //     $car = Car::findOrFail($id);
-    //     $brands = Brand::all();
-    //     $company = Company::where('user_id', $userId)->first();
-
-    //     return view('companies.edit_car', compact('company', 'brands', 'car'));
-    // }
-
     public function showCar($id)
     {
         $userId = auth()->user()->id;
@@ -328,37 +308,6 @@ class CompanyController extends Controller
     }
 
 
-    // public function updateCar(Request $request, $id)
-    // {
-    //     $car = Car::findOrFail($id);
-
-    //     $request->validate([
-    //         'brand_id' => 'required|exists:brands,id',
-    //         'model' => 'required|string|max:255',
-    //         'price_per_day' => 'required|numeric',
-    //         'image' => 'image',
-    //     ]);
-
-
-    //     $car->update($request->only('brand_id', 'model', 'price_per_day'));
-
-    //     if ($request->hasFile('image')) {
-    //         // Delete the old image
-    //         if ($car->images->isNotEmpty()) {
-    //             Storage::delete('public/' . $car->images->first()->name);
-    //             $car->images()->delete();
-    //         }
-
-    //         // Store the new image
-    //         $image = $request->file('image');
-    //         $imageName = 'cars/' . $image->getClientOriginalName();
-    //         $image->storeAs('public', $imageName);
-
-    //         $car->images()->create(['name' => $imageName]);
-    //     }
-
-    //     return redirect()->route('company.carControlCenter')->with('success', 'Car updated successfully.');
-    // }
 
     public function editCar($id)
     {
@@ -375,7 +324,7 @@ class CompanyController extends Controller
     {
         $car = Car::findOrFail($id);
 
-        $request->validate([
+        $s = $request->validate([
             'brand_id' => 'required|exists:brands,id',
             'model' => 'required|string|max:255',
             'body' => 'required|string|max:255',
@@ -385,7 +334,7 @@ class CompanyController extends Controller
             'fuel_type' => 'required|string|max:255',
             'make' => 'required|string|max:255',
             'transmission' => 'required|string|max:255',
-            'drivetrain' => 'required|string|max:255',
+            'drivetrian' => 'required|string|max:255',
             'vin' => 'required|string|max:255',
             'brake' => 'required|string|max:255',
             'year' => 'required|integer|min:1886|max:' . date('Y'),
@@ -395,7 +344,6 @@ class CompanyController extends Controller
             'features.*' => 'required|string|max:255',
             'image' => 'image',
         ]);
-
         $car->update($request->only([
             'brand_id',
             'model',
@@ -406,7 +354,7 @@ class CompanyController extends Controller
             'fuel_type',
             'make',
             'transmission',
-            'drivetrain',
+            'drivetrian',
             'vin',
             'brake',
             'year',
@@ -438,6 +386,7 @@ class CompanyController extends Controller
 
         return redirect()->route('company.carControlCenter')->with('success', 'Car updated successfully.');
     }
+
 
     public function deleteCar($id)
     {

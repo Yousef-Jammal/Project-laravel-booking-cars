@@ -164,7 +164,7 @@
                     </a>
 
                     <!-- Show Button -->
-                    <a href="{{ route('listing-details', $car->id) }}" class="showbtnaseel actionbtnaseel btn btn-info">
+                    <a href="{{ route('company.listing-details', $car->id) }}" class="showbtnaseel actionbtnaseel btn btn-info">
                         <span><i class="feather-eye me-2"></i></span>Show
                     </a>
 
