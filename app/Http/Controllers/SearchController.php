@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Brand;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -64,8 +65,24 @@ class SearchController extends Controller
         // $cars = $cars
         // dd($cars->first()->model);
 
-        $startDate = '2024-07-25';
-        $endDate = '2024-07-29';
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+
+
+
+
+
+        if (
+            $startDate === null or $endDate === null
+        ) {
+            $startDate = '1990-01-01';
+            $endDate = '1990-01-01';
+        } else {
+            $startDate = Carbon::createFromFormat('d-m-Y', $startDate)->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('d-m-Y', $endDate)->format('Y-m-d');
+        }
+        // dd($startDate, $endDate);
+        
 
         $cars = Car::whereNotExists(function ($query) use ($startDate, $endDate) {
             $query->select(DB::raw(1))

@@ -6,13 +6,6 @@
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
                 <h2 class="breadcrumb-title">Car Listings</h2>
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Listings</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Car Listings</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div>
@@ -66,61 +59,55 @@
                         </div>
                     </div>
 
-                    
-<div class="accordion" id="accordionMain2">
-<div class="card-header-new" id="headingTwo">
-<h6 class="filter-title">
-<a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-Date
-<span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
-</a>
-</h6>
-</div>
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
-<div class="card-body-chat">
-<div id="checkBoxes2">
-<div class="selectBox-cont">
-<li class="column-group-main">
-    <div class="input-block">
-        <label>Pickup Date</label>
-    </div>
-    <div class="input-block-wrapp">
-        <!-- Pickup Date Input -->
-        <div class="input-block date-widget">
-            <div class="group-img">
-                <input type="text" class="form-control datetimepicker" name="pickup_date" placeholder="MM/DD/YYYY">
-                <span><i class="feather-calendar"></i></span>
-            </div>
-        </div>
-    </div>
-</li>
 
-<li class="column-group-main">
-    <div class="input-block">
-        <label>Return Date</label>
-    </div>
-    <div class="input-block-wrapp">
-        <!-- Return Date Input -->
-        <div class="input-block date-widget">
-            <div class="group-img">
-                <input type="text" class="form-control datetimepicker" name="return_date" placeholder="MM/DD/YYYY">
-                <span><i class="feather-calendar"></i></span>
-            </div>
-        </div>
-    </div>
-</li>
+                    <div class="accordion" id="accordionMain2">
+                        <div class="card-header-new" id="headingTwo">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    Date
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                            <div class="card-body-chat">
+                                <div id="checkBoxes6">
+                                    <div class="selectBox-cont">
+                                        <div class="input-block">
+                                            <label>Pickup Date</label>
+                                        </div>
+                                        <div class="input-block-wrapp">
+                                            <!-- Pickup Date Input -->
+                                            <div class="input-block date-widget">
+                                                <div class="group-img">
+                                                    <input type="text" class="form-control datetimepicker" name="startDate" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
 
-<div class="view-content">
-<div class="viewall-One">
+                                        <div class="input-block">
+                                            <label>Return Date</label>
+                                        </div>
+                                        <div class="input-block-wrapp">
+                                            <!-- Return Date Input -->
+                                            <div class="input-block date-widget">
+                                                <div class="group-img">
+                                                    <input type="text" class="form-control datetimepicker" name="endDate" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
 
-</div>
-</div>
+                                        <div class="view-content">
+                                            <div class="viewall-One">
 
-</div>
-</div>
-</div>
-</div>
-</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -243,9 +230,7 @@ Date
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
                                     <a href="">
-                                        @foreach($car->images as $image)
-                                        <img src="car_images/{{ $image->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
-                                        @endforeach
+                                        <img src="car_images/{{ $car->images->first()->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
                                     </a>
                                 </div>
                                 <div class="bloglist-content w-100">
