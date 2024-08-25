@@ -43,8 +43,8 @@ class CompanyController extends Controller
     public function dashboard()
     {
         // Get the currently authenticated user's ID
-        $userId = Auth::id();
-
+        // $userId = Auth::id();
+        $userId = 1;
         $dealsWeek = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
@@ -74,15 +74,6 @@ class CompanyController extends Controller
             ->take(5)
             ->get();
 
-        $topCars = Car::where('user_id', $userId)
-            ->withCount(['rentals' => function ($query) {
-                $query->whereMonth('rent_start', now()->month);
-            }])
-            ->orderBy('rentals_count', 'desc')
-            ->take(5)
-            ->get();
-
-
         $totalCarsAvailable = Car::where('user_id', $userId)
             ->where('availability', 'Available')
             ->count();
@@ -91,62 +82,8 @@ class CompanyController extends Controller
 
         $cars = Car::where('user_id', $company->user_id)->get();
 
-        return view('companies.dashboard', compact('totalCarsAvailable', 'company', 'cars', 'dealsWeek', 'revenueThisMonth', 'customersThisYear', 'recentRentals', 'topCars'));
+        return view('companies.dashboard', compact('totalCarsAvailable', 'company', 'cars', 'dealsWeek', 'revenueThisMonth', 'customersThisYear', 'recentRentals'));
     }
-
-
-    // public function dashboard()
-    // {
-    //     // Get the currently authenticated user's ID
-    //     $userId = Auth::id();
-
-
-    //     $dealsWeek = Rental::whereHas('car', function ($query) use ($userId) {
-    //         $query->where('user_id', $userId);
-    //     })
-    //         ->whereBetween('rent_start', [now()->startOfWeek(), now()->endOfWeek()])
-    //         ->count();
-
-    //     $revenueThisMonth = Rental::whereHas('car', function ($query) use ($userId) {
-    //         $query->where('user_id', $userId);
-    //     })
-    //         ->whereMonth('rent_start', now()->month)
-    //         ->join('cars', 'rentals.car_id', '=', 'cars.id')
-    //         ->sum('cars.price_per_day');
-
-    //     $customersThisYear = Rental::whereHas('car', function ($query) use ($userId) {
-    //         $query->where('user_id', $userId);
-    //     })
-    //         ->whereYear('rent_start', now()->year)
-    //         ->distinct('user_id')
-    //         ->count('user_id');
-
-    //     $recentRentals = Rental::whereHas('car', function ($query) use ($userId) {
-    //         $query->where('user_id', $userId);
-    //     })
-    //         ->whereBetween('rent_start', [now()->startOfWeek(), now()->endOfWeek()])
-    //         ->orderBy('rent_start', 'desc')
-    //         ->take(5)
-    //         ->get();
-
-    //     $topCars = Car::where('user_id', $userId)
-    //         ->withCount(['rentals' => function ($query) {
-    //             $query->whereMonth('rent_start', now()->month);
-    //         }])
-    //         ->orderBy('rentals_count', 'desc')
-    //         ->take(5)
-    //         ->get();
-
-    //     $totalCarsAvailable = Car::where('user_id', $userId)
-    //         ->where('availability', 'Available')
-    //         ->count();
-
-    //     $company = Company::findOrFail($userId);
-
-    //     $cars = Car::where('user_id', $company->user_id)->get();
-
-    //     return view('companies.dashboard', compact('totalCarsAvailable', 'company', 'cars', 'dealsWeek', 'revenueThisMonth', 'customersThisYear', 'recentRentals', 'topCars'));
-    // }
 
     public function showUserInfo()
     {
