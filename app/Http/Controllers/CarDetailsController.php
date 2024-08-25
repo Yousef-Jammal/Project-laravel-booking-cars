@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+
 
 
 class CarDetailsController extends Controller
@@ -14,6 +16,7 @@ class CarDetailsController extends Controller
 
         // استرجاع بيانات السيارة بناءً على المعرف (id)
         $car = Car::findOrFail($id);
+
 
         // تمرير البيانات إلى العرض
         return view('listing-details', compact('car'));
@@ -27,7 +30,6 @@ class CarDetailsController extends Controller
         // تمرير البيانات إلى العرض
         return view('listing-details', compact('car'));
     }
-
     public function showReviews($id)
     {
         // جلب السيارة مع المراجعات المرتبطة بها
@@ -36,6 +38,7 @@ class CarDetailsController extends Controller
         // تمرير البيانات إلى العرض
         return view('listing-details', compact('car'));
     }
+
     public function showOwnerDetails($id)
     {
         // استرجاع بيانات السيارة مع مالكها
@@ -78,5 +81,40 @@ class CarDetailsController extends Controller
             'car' => $car,
         ]);
     }
+    public function submitReview(Request $request, $car_id)
+{
+    // تحقق من صحة البيانات
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'content' => 'required|string',
+        'rating' => 'required|numeric|min:1|max:5',
+    ]);
 
-    }
+    // إنشاء تعليق جديد
+    $review = Review::create([
+        'car_id' => $car_id,
+        'user_id' => auth()->id(), // إذا كان المستخدم مسجلاً
+        'name' => $request->name,
+        'email' => $request->email,
+        'content' => $request->content,
+        'rating' => $request->rating,
+    ]);
+
+    // تخزين اسم المستخدم والبريد الإلكتروني في الجلسة
+    Session::put('user_name', $request->name);
+    Session::put('user_email', $request->email);
+
+    // إرجاع HTML للتعليق الجديد وعدد التعليقات الحالي
+    $newReviewHtml = view('partials.review', ['review' => $review])->render();
+
+    return response()->json([
+        'success' => true,
+        'newReviewHtml' => $newReviewHtml,
+        'reviewCount' => $review->car->reviews->count(),
+    ]);
+}
+
+}
+
+
