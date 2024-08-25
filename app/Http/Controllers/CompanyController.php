@@ -299,7 +299,8 @@ class CompanyController extends Controller
 
     public function showCar($id)
     {
-        $userId = auth()->user()->id;
+        // $userId = auth()->user()->id;
+        $userId = 1;
 
         $car = Car::findOrFail($id);
         $company = Company::where('user_id', $userId)->first();

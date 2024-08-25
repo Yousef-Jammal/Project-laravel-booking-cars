@@ -50,7 +50,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Deals | This Week</h5>
                     <h3>{{ $dealsWeek }}</h3>
-                    <p class="text-success">12% increase</p>
                 </div>
             </div>
         </div>
@@ -61,7 +60,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Revenue | This Month</h5>
                     <h3>${{ number_format($revenueThisMonth, 2) }}</h3>
-                    <p class="text-success">8% increase</p>
                 </div>
             </div>
         </div>
@@ -72,7 +70,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Customers | This Year</h5>
                     <h3>{{ $customersThisYear }}</h3>
-                    <p class="text-danger">12% decrease</p>
                 </div>
             </div>
         </div>
@@ -82,7 +79,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Total Cars Available</h5>
                     <h3>{{ $totalCarsAvailable }}</h3>
-                    <p class="text-info">Available for rent</p>
                 </div>
             </div>
         </div>
