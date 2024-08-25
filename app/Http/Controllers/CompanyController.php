@@ -98,7 +98,6 @@ class CompanyController extends Controller
         return view('companies.user-info', compact('user', 'company'));
     }
 
-    // Handle the form submission to update user information
     public function updateUserInfo(Request $request)
     {
         // dd($request->all());
@@ -412,9 +411,58 @@ class CompanyController extends Controller
         return redirect()->route('companies.carControlCenter')->with('success', 'Car deleted successfully.');
     }
 
+    public function availabilityCenter()
+    {
+        // $userId = auth()->user()->id;
+        $userId = 1;
+        $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
+        $times_rented = [];
+        $total_profit = [];
+        foreach ($cars as $car) {
+            $time_rented = Rental::where(
+                'car_id',
+                $car->id
+            )->count();
+            $times_rented["$car->id"] = $time_rented;
+            $money = 0;
+            $rentals = Rental::where(
+                'car_id',
+                $car->id
+            )->get();
+            foreach ($rentals as $rental) {
+                $start = Carbon::parse($rental->rent_start)->startOfDay();
+                $end = Carbon::parse($rental->rent_end)->endOfDay();
+                $days = $end->diffInDays($start);
+                $money += $days * $car->price_per_day;
+            }
+            $total_profit["$car->id"] = $money;
+        }
 
-    // public function getTotalPriceAttribute()
-    // {
-    //     return $this->rent_duration * $this->car->price_per_day;
-    // }
+        $company = Company::where('user_id', $userId)->first();
+
+
+        return view('companies.availability_center', compact('company', 'cars', 'times_rented', 'total_profit'));
+    }
+
+    public function updateAvailabilityStatus(Request $request, $carId)
+    {
+        $car = Car::findOrFail($carId);
+
+        // $userId = Auth::id();
+        // if ($car->user_id !== $userId) {
+        //     return redirect()->back()->with('error', 'Unauthorized access.');
+        // }
+
+        $car->availability = $request->input('availability');
+        $car->save();
+
+        return redirect()->back()->with('success', 'Availability status updated successfully.');
+    }
+
+    public function aseellogout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
 }

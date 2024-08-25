@@ -18,9 +18,9 @@
     </div>
     </div>
 <div class="container">
-    <div class="dashboard-nav">
-        <ul class="nav">
-            <li class="nav-item">
+<div class="dashboard-nav">
+            <ul class="nav">
+                            <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/dashboard') ? 'active' : '' }}" href="{{ route('company.dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item">
@@ -30,16 +30,16 @@
                 <a class="nav-link {{ request()->is('company/carControlCenter') ? 'active' : '' }}" href="{{ route('company.carControlCenter') }}">Cars Control Center</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My cart</a>
+                <a class="nav-link {{ request()->is('company/availability_center') ? 'active' : '' }}" href="{{ route('company.availabilityCenter') }}">Availability Control Center</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/user-info') ? 'active' : '' }}" href="{{ route('company.user-info') }}">Edit Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log-out</a>
-            </li>
-        </ul>
-    </div>
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}">Log-out</a>
+                </li> --}}
+            </ul>
+        </div>
 </div>
 
 <div class="container mt-5">
