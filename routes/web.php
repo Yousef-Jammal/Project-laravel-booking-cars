@@ -104,7 +104,7 @@ Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name(
 //
 // fajer route
 //
-
+Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 
