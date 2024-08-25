@@ -194,18 +194,90 @@
                     </div>
                 
                     <!-- Step 2: Car Features -->
-                    <div id="step-2" class="form-step">
-                        <h5>Step 2: Car Features</h5>
-                        <div class="form-group">
-                            <label for="features">Features</label>
-                            <input type="text" class="form-control" name="features[]" id="features" placeholder="Enter a feature">
-                        </div>
-                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                        <button type="button" class="btn btn-primary next-step">Next</button>
-                    </div>
-                
+<div id="step-2" class="form-step">
+    <div class="card">
+        <div class="card-header">
+            <h5>Step 2: Car Features</h5>
+        </div>
+        <div class="card-body">
+            <div id="feature-input-container">
+                <!-- Feature Input 1 -->
+                <div class="form-group feature-input">
+                    <label for="feature1">Feature 1</label>
+                    <input type="text" class="form-control" name="features[]" id="feature1" placeholder="Enter a feature">
+                </div>
+
+                <!-- Feature Input 2 -->
+                <div class="form-group feature-input">
+                    <label for="feature2">Feature 2</label>
+                    <input type="text" class="form-control" name="features[]" id="feature2" placeholder="Enter a feature">
+                </div>
+
+                <!-- Feature Input 3 -->
+                <div class="form-group feature-input">
+                    <label for="feature3">Feature 3</label>
+                    <input type="text" class="form-control" name="features[]" id="feature3" placeholder="Enter a feature">
+                </div>
+            </div>
+
+            <!-- Button to Add More Features -->
+            <button type="button" class="btn btn-secondary" id="add-feature-button">
+                <i class="fas fa-plus"></i> Add More Features
+            </button>
+
+            <button type="button" class="btn btn-secondary prev-step mt-3">Previous</button>
+            <button type="button" class="btn btn-primary next-step mt-3">Next</button>
+        </div>
+    </div>
+</div>
+
+               
+
+ <!-- Step 3: Car Images -->
+    <div id="step-3" class="form-step">
+    <div class="card">
+        <div class="card-header">
+
+        <h5>Step 3: Car Images</h5>
+        </div>
+        <div class="card-body">
+
+        <div id="image-input-container">
+            <!-- Image Input 1 -->
+            <div class="form-group image-input">
+                <label for="image1">Upload Image 1</label>
+                <input type="file" class="form-control" name="images[]" id="image1" onchange="previewFile(this)">
+                <div id="preview1" class="preview mt-2"></div>
+            </div>
+
+            <!-- Image Input 2 -->
+            <div class="form-group image-input">
+                <label for="image2">Upload Image 2</label>
+                <input type="file" class="form-control" name="images[]" id="image2" onchange="previewFile(this)">
+                <div id="preview2" class="preview mt-2"></div>
+            </div>
+
+            <!-- Image Input 3 -->
+            <div class="form-group image-input">
+                <label for="image3">Upload Image 3</label>
+                <input type="file" class="form-control" name="images[]" id="image3" onchange="previewFile(this)">
+                <div id="preview3" class="preview mt-2"></div>
+            </div>
+        </div>
+
+        <!-- Button to Add More Images -->
+        <button type="button" class="btn btn-secondary" id="add-image-button">
+            <i class="fas fa-plus"></i> Add More Images
+        </button>
+
+        <button type="submit" class="btn btn-success mt-3">Submit</button>
+    
+        </div>
+    </div>
+    </div>
+
                     <!-- Step 3: Car Images -->
-                    <div id="step-3" class="form-step">
+                    {{-- <div id="step-3" class="form-step">
                         <h5>Step 3: Car Images</h5>
                         <div class="form-group">
                             <label for="images">Upload Images</label>
@@ -213,7 +285,7 @@
                         </div>
                         <button type="button" class="btn btn-secondary prev-step">Previous</button>
                         <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
+                    </div> --}}
                 </form>
                 
             </div>
@@ -254,6 +326,91 @@
         });
     });
     
+</script>
+
+
+<script>
+    let imageCount = 3;
+
+    function previewFile(input) {
+        const previewId = input.id.replace('image', 'preview');
+        const preview = document.getElementById(previewId);
+        const file = input.files[0];
+
+        // Clear previous preview
+        preview.innerHTML = '';
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const img = document.createElement('img');
+                img.src = reader.result;
+                img.style.maxWidth = '100px';
+                img.style.marginTop = '10px';
+                preview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    }
+
+    document.getElementById('add-image-button').addEventListener('click', function() {
+        imageCount++;
+        const container = document.getElementById('image-input-container');
+
+        const newInputDiv = document.createElement('div');
+        newInputDiv.classList.add('form-group', 'image-input');
+
+        const newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'image' + imageCount);
+        newLabel.textContent = 'Upload Image ' + imageCount;
+
+        const newInput = document.createElement('input');
+        newInput.type = 'file';
+        newInput.classList.add('form-control');
+        newInput.name = 'images[]';
+        newInput.id = 'image' + imageCount;
+        newInput.setAttribute('onchange', 'previewFile(this)');
+
+        const newPreviewDiv = document.createElement('div');
+        newPreviewDiv.id = 'preview' + imageCount;
+        newPreviewDiv.classList.add('preview', 'mt-2');
+
+        newInputDiv.appendChild(newLabel);
+        newInputDiv.appendChild(newInput);
+        newInputDiv.appendChild(newPreviewDiv);
+
+        container.appendChild(newInputDiv);
+    });
+</script>
+
+<script>
+    let featureCount = 3;
+
+    document.getElementById('add-feature-button').addEventListener('click', function() {
+        featureCount++;
+        const container = document.getElementById('feature-input-container');
+
+        const newInputDiv = document.createElement('div');
+        newInputDiv.classList.add('form-group', 'feature-input');
+
+        const newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'feature' + featureCount);
+        newLabel.textContent = 'Feature ' + featureCount;
+
+        const newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.classList.add('form-control');
+        newInput.name = 'features[]';
+        newInput.id = 'feature' + featureCount;
+        newInput.placeholder = 'Enter a feature';
+
+        newInputDiv.appendChild(newLabel);
+        newInputDiv.appendChild(newInput);
+
+        container.appendChild(newInputDiv);
+    });
 </script>
 
 @endsection
