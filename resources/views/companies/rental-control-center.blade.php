@@ -1,7 +1,6 @@
 @extends('masterPage')
 
 @section('content')
-
 <div class="breadcrumb-bar">
     <div class="container">
         <div class="row align-items-center text-center">
@@ -44,12 +43,12 @@
 
 <div class="container mt-5">
     <h2>Rental Control Center</h2>
-    @if(session('success'))
+        @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
     @endif
-    @if(session('error'))
+        @if (session('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
     </div>
@@ -59,7 +58,7 @@
 
 
 
-    @foreach($rentals as $rental)
+        @foreach ($rentals as $rental)
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="imgcontainercardaseel col-md-4">
@@ -105,7 +104,7 @@
                     @method('PATCH')
                     <div class="statusfeildaseel form-group d-flex">
                         <select name="status_id" class="form-control status-dropdown {{ strtolower($rental->status->name) }}">
-                            @foreach($statuses as $status)
+                            @foreach ($statuses as $status)
                             <option value="{{ $status->id }}" class="status-option {{ strtolower($status->name) }}"
                                 {{ $rental->status_id == $status->id ? 'selected' : '' }}>
                                 {{ strtoupper($status->name) }}

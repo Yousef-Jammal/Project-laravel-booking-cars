@@ -424,12 +424,13 @@ class CompanyController extends Controller
             'engine_hp',
             'price_per_day'
         ]));
-
         // Update features
         $car->features()->delete(); // Delete old features
-        foreach ($request->features as $feature) {
+    foreach (array_filter($request->features) as $feature) {  // Filter out empty features
+        if (!empty($feature)) {  // Explicitly check that the feature is not empty
             $car->features()->create(['name' => $feature]);
         }
+    }
 
         // Update image if a new one is uploaded
         if ($request->hasFile('image')) {
