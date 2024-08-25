@@ -45,12 +45,26 @@
 <div class="star-rated">
 <div class="list-rating">
     <span class="year">{{ $car->year }}</span>
-    <i class="fas fa-star filled"></i>
-    <i class="fas fa-star filled"></i>
-    <i class="fas fa-star filled"></i>
-    <i class="fas fa-star filled"></i>
-    <i class="fas fa-star filled"></i>
-    <span class="d-inline-block average-list-rating"> {{ $car->rating }} </span>
+    @php
+    $wholeStars = floor($car->rating); // Number of filled stars
+    $fraction = $car->rating - $wholeStars; // Fractional part of the rating
+    $halfStar = ($car->rating - $wholeStars >= 0.5); // Whether to show a half star
+    $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0); // Number of empty stars
+    @endphp
+
+    @for ($i = 0; $i < $wholeStars; $i++)
+        <i class="fas fa-star filled"></i>
+        @endfor
+
+        @if($halfStar)
+        <i class="fas fa-star-half-alt filled"></i>
+        @endif
+
+        @for ($i = 0; $i < $emptyStars; $i++)
+            <i class="far fa-star"></i>
+            @endfor
+
+            <span>({{ number_format($car->rating, 1) }})</span> <!-- Display the exact rating -->
 </div>
 <div class="camaro-info">
     <h3>{{ $car->make }} {{ $car->model }}</h3>
@@ -247,7 +261,21 @@
 {{-- SECTION REVIEWES --}}
 <div class="review-sec listing-review">
     <div class="review-header">
-        <h4>Reviews<span class="me-2">({{ $car->reviews->count() }})</span></h4>
+        {{-- <h4>Reviews<span class="me-2">({{ $car->reviews->co }})</span></h4> --}}
+        <div class="review-sec listing-review">
+            <div class="review-header">
+                <h4>Reviews<span class="me-2">
+                    @if($car->reviews->isNotEmpty())
+                        {{ $car->reviews->first()->content }}
+                    @else
+                        No reviews available.
+                    @endif
+                </span></h4>
+            </div>
+        </div>
+
+        {{-- إذا كنتِ تريدين عرض التقييم بالنجوم هنا --}}
+        {{--
         <div class="reviewbox-list-rating">
             <p>
                 @for($i = 0; $i < round($car->reviews->avg('pivot.rating')); $i++)
@@ -259,7 +287,9 @@
                 <span> ({{ number_format($car->reviews->avg('pivot.rating'), 1) }} out of 5)</span>
             </p>
         </div>
+        --}}
     </div>
+
 
     @foreach($car->reviews as $review)
         <div class="review-card">
@@ -274,15 +304,12 @@
                     </div>
                 </div>
                 <div class="reviewbox-list-rating">
-                    <p>
-                        @for($i = 0; $i < $review->pivot->rating; $i++)
-                            <i class="fas fa-star filled"></i>
-                        @endfor
-                        @for($i = 0; $i < (5 - $review->pivot->rating); $i++)
-                            <i class="fas fa-star"></i>
-                        @endfor
-                        <span> ({{ number_format($review->pivot->rating, 1) }})</span>
-                    </p>
+                    @php
+                    $wholeStars = floor($review->pivot->rating); // عدد النجوم الممتلئة بالكامل
+                    $fraction = $review->pivot->rating - $wholeStars; // الجزء الكسري من التقييم
+                    $halfStar = ($review->pivot->rating - $wholeStars >= 0.5); // تحديد إذا كان يجب عرض نصف نجمة
+                    $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0); // عدد النجوم الفارغة
+                @endphp
                 </div>
             </div>
             <p>{{ $review->pivot->content }}</p>
@@ -386,31 +413,34 @@ Driving
 <ul>
 <li class="review-box feedbackbox mb-0">
 <div class="review-details">
-<form class="#">
-<div class="row">
-<div class="col-lg-6">
-<div class="input-block">
-<label>Full Name <span class="text-danger">*</span></label>
-<input type="text" class="form-control">
-</div>
-</div>
-<div class="col-lg-6">
-<div class="input-block">
-<label>Email Address <span class="text-danger">*</span></label>
-<input type="email" class="form-control">
-</div>
-</div>
-<div class="col-lg-12">
-<div class="input-block">
-<label>Comments </label>
-<textarea rows="4" class="form-control"></textarea>
-</div>
-</div>
-</div>
-<div class="submit-btn">
-<button class="btn btn-primary submit-review" type="submit"> Submit Review</button>
-</div>
-</form>
+    <form id="review-form" action="{{ route('reviews.submit', ['id' => $car->id]) }}" method="POST">
+        @csrf
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-block">
+                    <label>Full Name <span class="text-danger">*</span></label>
+                    <input type="text" name="name" class="form-control" value="{{ session('user_name') }}" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-block">
+                    <label>Email Address <span class="text-danger">*</span></label>
+                    <input type="email" name="email" class="form-control" value="{{ session('user_email') }}" required>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="input-block">
+                    <label>Comments </label>
+                    <textarea rows="4" name="content" class="form-control" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="submit-btn">
+            <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
+        </div>
+    </form>
+
+
 </div>
 </li>
 </ul>
@@ -596,7 +626,7 @@ Driving
             No of Bookings
             <span>{{ $car->user->rentals->count() ?? 0 }}</span>
         </li> --}}
-      
+
     </ul>
     <div class="message-btn">
         {{-- <a href="{{ route('company.cars', ['id' => $car->user->id]) }}" class="btn btn-order">views ownerpage</a> --}}
@@ -713,5 +743,34 @@ Driving
         // انتقل إلى صفحة التفاصيل
         window.location.href = "{{ route('booking') }}";
     }
+</script>
+<script>
+ $(document).on('submit', '#review-form', function(e) {
+    e.preventDefault();
+
+    var form = $(this);
+    var actionUrl = form.attr('action');
+    var formData = form.serialize();
+
+    $.ajax({
+        url: actionUrl,
+        method: 'POST',
+        data: formData,
+        success: function(response) {
+            if (response.success) {
+                // تحديث قائمة التعليقات
+                $('.review-sec.listing-review').append(response.newReviewHtml);
+                // تحديث عداد التعليقات
+                $('.review-header h4 span').text(`(${response.reviewCount})`);
+                // مسح النص من الحقل بعد الإرسال
+                form.find('textarea').val('');
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText); // عرض رسالة الخطأ في حالة الفشل
+        }
+    });
+});
+
 </script>
 @endsection

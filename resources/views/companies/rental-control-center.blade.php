@@ -41,11 +41,33 @@
         </div>
     </div>
 
-    <div class="container mt-5">
-        <h2>Rental Control Center</h2>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+<div class="container mt-5">
+    <h2>Rental Control Center</h2>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+
+
+
+
+    @foreach($rentals as $rental)
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="imgcontainercardaseel col-md-4">
+                @if($rental->car->images->isNotEmpty())
+                {{-- {{url("/car_images/".$car->images->first()->name)}} --}}
+                <img src='{{ url("/car_images/". $rental->car->images->first()->name) }}' class="cardimgaseel card-img">
+                @else
+                <img src="{{ asset('storage/default.png') }}" class="cardimgaseel card-img" alt="{{ $rental->car->brand }}">
+                @endif
             </div>
         @endif
         @if (session('error'))

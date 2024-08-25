@@ -3,19 +3,19 @@
 @section('content')
 <div class="breadcrumb-bar">
     <div class="container">
-    <div class="row align-items-center text-center">
-    <div class="col-md-12 col-12">
-    <h2 class="breadcrumb-title">{{ $company->user->name }} Cars </h2>
-    <nav aria-label="breadcrumb" class="page-breadcrumb">
-    <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>    
-    <li class="breadcrumb-item active" aria-current="page">{{ $company->user->name }} Dashboard </li>
-    </ol>
-    </nav>
+        <div class="row align-items-center text-center">
+            <div class="col-md-12 col-12">
+                <h2 class="breadcrumb-title">{{ $company->user->name }} Cars </h2>
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $company->user->name }} Dashboard </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
+</div>
 <div class="container">
     <div class="dashboard-nav">
         <ul class="nav">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="container topCard">
-    
+
     <div class="row">
         <!-- Deals this week Card -->
         <div class="col-xl-3 col-lg-6 col-12">
@@ -110,7 +110,7 @@
                                 <td>{{ $rental->rent_start }}</td>
                                 <td>{{ $rental->rent_end }}</td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -118,29 +118,7 @@
         </div>
 
         <!-- Top Cars | This Month -->
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Top Cars | This Month</h5>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Car</th>
-                                <th>Rentals</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($topCars as $car)
-                                <tr>
-                                    <td>{{ $car->brand->name }} {{ $car->model }}</td>
-                                    <td>{{ $car->rentals_count }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 @endsection

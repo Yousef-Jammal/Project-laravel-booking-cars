@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('date');
             $table->string('content');
             $table->float('rating');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }
 
