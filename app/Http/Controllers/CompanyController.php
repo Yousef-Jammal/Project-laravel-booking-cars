@@ -254,13 +254,14 @@ class CompanyController extends Controller
             'engine_hp' => 'required|integer|min:0',
             'price_per_day' => 'required|numeric|min:0',
             'features' => 'required|array|min:1',
-            'features.*' => 'required|string|max:255',
+            'features.*' => 'nullable|string|max:255',
             'images' => 'required|array|min:1',
             'images.*' => 'required|image',
         ]);
 
         // Create a new car record
         $car = new Car();
+
         $car->brand_id = $validatedData['brand_id'];
         $car->model = $validatedData['model'];
         $car->body = $validatedData['body'];
@@ -278,6 +279,7 @@ class CompanyController extends Controller
         $car->price_per_day = $validatedData['price_per_day'];
         $car->user_id = auth()->id();
         $car->availability = "Availabile";
+
         $car->save();
 
         // Save features
@@ -286,12 +288,18 @@ class CompanyController extends Controller
         }
 
         // Save images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('cars', 'public');
-                $car->images()->create(['name' => $path]);
-            }
+        foreach ($request->file('images') as $image) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('car_images'), $imageName);
+            $car->images()->create(['name' => $imageName]);
         }
+        // Save images
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $image) {
+        //         $path = $image->store('cars', 'public');
+        //         $car->images()->create(['name' => $path]);
+        //     }
+        // }
 
         return redirect()->route('company.carControlCenter')->with('success', 'Car created successfully.');
     }
@@ -342,7 +350,7 @@ class CompanyController extends Controller
             'engine_hp' => 'required|integer|min:0',
             'price_per_day' => 'required|numeric',
             'features' => 'required|array',
-            'features.*' => 'required|string|max:255',
+            'features.*' => 'nullable|string|max:255',
             'image' => 'image',
         ]);
         $car->update($request->only([
