@@ -425,7 +425,7 @@ class CompanyController extends Controller
             'price_per_day'
         ]));
         // Update features
-        $car->features()->delete(); // Delete old features
+    $car->features()->delete(); // Delete old features
     foreach (array_filter($request->features) as $feature) {  // Filter out empty features
         if (!empty($feature)) {  // Explicitly check that the feature is not empty
             $car->features()->create(['name' => $feature]);
