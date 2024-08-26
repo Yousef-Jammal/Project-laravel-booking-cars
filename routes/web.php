@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CarDetailsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +55,21 @@ Route::prefix('admin')->group(function(){
 
     Route::put('updateCompany/{id}', [AdminController::class, 'updateCompany'])->name('admin_update_company');
 
+});
 
+
+Route::prefix('log_sign')->group(function () {
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::prefix('home')->group(function () {
 
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
     Route::view('/viewCars', 'listing-list')->name('allCars');
 
@@ -137,9 +148,9 @@ Route::get('/index', function () {
 
 use App\Http\Controllers\LoginController;
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // aseel routes end
