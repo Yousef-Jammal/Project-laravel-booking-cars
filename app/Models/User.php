@@ -53,7 +53,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Car::class, 'reviews')->withPivot('rating', 'date', 'content');
     }
-
+    
     public function cars()
     {
         return $this->hasMany(Car::class);

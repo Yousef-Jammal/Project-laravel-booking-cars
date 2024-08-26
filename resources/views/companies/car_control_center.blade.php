@@ -17,9 +17,9 @@
     </div>
 </div>
 <div class="container">
-    <div class="dashboard-nav">
-        <ul class="nav">
-            <li class="nav-item">
+<div class="dashboard-nav">
+            <ul class="nav">
+                            <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/dashboard') ? 'active' : '' }}" href="{{ route('company.dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item">
@@ -29,17 +29,16 @@
                 <a class="nav-link {{ request()->is('company/carControlCenter') ? 'active' : '' }}" href="{{ route('company.carControlCenter') }}">Cars Control Center</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My cart</a>
+                <a class="nav-link {{ request()->is('company/availability_center') ? 'active' : '' }}" href="{{ route('company.availabilityCenter') }}">Availability Control Center</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/user-info') ? 'active' : '' }}" href="{{ route('company.user-info') }}">Edit Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log-out</a>
-            </li>
-        </ul>
-    </div>
-</div>
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}">Log-out</a>
+                </li> --}}
+            </ul>
+        </div>
 <div class="container mt-5">
     <h2>Car Control Center</h2>
     <a href="{{ route('company.createCar') }}" class="btn btn-primary mb-3">Add New Car</a>
@@ -57,7 +56,7 @@
                     <div style="height: 250px; object-fit: cover; " class="listing-img">
                         <a href="{{ route('car.details', $car->id) }}">
                             @if($car->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="img-fluid" alt="{{ $car->brand }}">
+                            <img src='{{url("/car_images/".$car->images->first()->name)}}' class="img-fluid" alt="{{ $car->images->first()->name }}">
                             @else
                             <img src="{{ asset('img/cars/car-01.jpg') }}" class="img-fluid" alt="Default Image">
                             @endif
@@ -164,7 +163,7 @@
                     </a>
 
                     <!-- Show Button -->
-                    <a href="{{ route('listing-details', $car->id) }}" class="showbtnaseel actionbtnaseel btn btn-info">
+                    <a href="{{ route('company.listing-details', $car->id) }}" class="showbtnaseel actionbtnaseel btn btn-info">
                         <span><i class="feather-eye me-2"></i></span>Show
                     </a>
 
@@ -214,5 +213,6 @@
 </div>
 @endforeach
 </div> --}}
+</div>
 </div>
 @endsection

@@ -1,0 +1,78 @@
+#availability-popup {
+    position: fixed;
+    top: 50%;
+    left: 10px; /* يتحرك الصندوق لليسار */
+    transform: translateY(-50%); /* الحفاظ على المركز العمودي */
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 350px; /* زيادة العرض */
+    font-family: 'Arial', sans-serif; /* تغيير الخط */
+    border: 1px solid #ddd; /* إضافة بوردر للصندوق */
+    margin-top: 50px; /* إضافة مسافة */
+}
+
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    border: 1px solid #ccc; /* إضافة بوردر للصندوق الداخلي */
+    background-color: #f9f9f9; /* تغيير لون الخلفية للصندوق الداخلي */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #eee; /* تغيير لون خلفية الهيدر */
+    font-weight: bold; /* زيادة سمك الخط */
+    font-size: 18px; /* تكبير حجم الخط */
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #ddd;
+    background-color: #eee; /* تغيير لون خلفية الفوتر */
+    font-weight: bold; /* زيادة سمك الخط */
+}
+
+.modal-footer button {
+    margin-left: 10px;
+    padding: 10px 20px; /* زيادة حجم الزر */
+    border-radius: 5px; /* إضافة زوايا مدورة للأزرار */
+    background-color: #ffaa00; /* لون خلفية الزر */
+    color: white; /* لون النص للزر */
+    font-size: 16px; /* تكبير حجم الخط للزر */
+}
+
+.details-row div,
+.booking-amount {
+    border: 1px solid #ddd; /* إضافة بوردر للديفات الداخلية */
+    margin-bottom: 15px; /* إضافة مسافة بين الديفات */
+    padding: 15px; /* إضافة حشوة داخلية للديفات */
+    width: 100%; /* زيادة عرض الديفات الداخلية */
+    background-color: #fff; /* تغيير لون الخلفية للديفات */
+    border-radius: 5px; /* إضافة زوايا مدورة للديفات */
+}
+
+.alert-success {
+    background-color: #d4edda; /* تغيير لون الخلفية للتنبيه */
+    color: #155724; /* تغيير لون النص للتنبيه */
+    padding: 10px;
+    border-radius: 5px; /* إضافة زوايا مدورة للتنبيه */
+    font-weight: bold; /* زيادة سمك الخط للتنبيه */
+}
+.fajerpop{
+    height: 90px;
+}
+.fajerpop>div{
+    height: 100%;
+}

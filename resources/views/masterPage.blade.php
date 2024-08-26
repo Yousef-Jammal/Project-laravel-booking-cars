@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="{{ asset('css/feather.css')}}">
 
 <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/fajer.css')}}">
 
 <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
