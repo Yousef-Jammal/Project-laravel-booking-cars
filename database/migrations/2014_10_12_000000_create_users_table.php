@@ -21,6 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('image')->nullable();
             $table->bigInteger('phone');
+            $table->date('date_created');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
