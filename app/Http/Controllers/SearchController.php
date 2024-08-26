@@ -6,6 +6,8 @@ use App\Models\Car;
 use App\Models\Brand;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
@@ -103,5 +105,35 @@ class SearchController extends Controller
         ->get();
 
         return view('listing-list', compact('cars', 'brands'));
+    }
+
+    public function showCalendar(string $id)
+    {
+
+        // Array of dates to be disabled (YYYY-MM-DD format)
+
+        $rentalDates = [];
+
+        $rentals = DB::table('rentals')->where('car_id', $id)->get(); // Get all rentals
+
+        foreach ($rentals as $rental) {
+            $start = Carbon::parse($rental->rent_start);
+            $end = Carbon::parse($rental->rent_end);
+
+            // Generate the dates between rent_start and rent_end, inclusive
+            $dates = new Collection();
+            for ($date = $start; $date->lte($end); $date->addDay()) {
+                $dates->push($date->format('Y-m-d'));
+            }
+
+            // Store the dates in the rentalDates array
+            $rentalDates[] = $dates->toArray();
+        }
+
+        // Flatten the array to get a single array of all dates
+        $disabled_dates = Arr::flatten($rentalDates);
+
+        // $disabled_dates = ['2024-08-29', '2024-09-09'];
+        return response()->json(["dates_array" => $disabled_dates]);
     }
 }

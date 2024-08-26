@@ -53,6 +53,10 @@ Route::get('/filter', [SearchController::class, 'filterCars']);
 Route::get('/booking', function () {
     return view('booking');
 })->name('booking');
+Route::get('/calendar', function () {
+    return view('calendartest');
+});
+
 
 
 
