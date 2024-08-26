@@ -136,4 +136,9 @@ class SearchController extends Controller
         // $disabled_dates = ['2024-08-29', '2024-09-09'];
         return response()->json(["dates_array" => $disabled_dates]);
     }
+
+    public function calendarModal(string $id)
+    {
+        return view('calendartest');
+    }
 }

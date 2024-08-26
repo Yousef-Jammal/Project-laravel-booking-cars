@@ -59,22 +59,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-<div class="detail-product">
-    <div class="slider detail-bigimg">
-        @foreach($car->images as $image)
-            <div class="product-img">
-                <img src="{{  url("/car_images/" . $image->name) }}" alt="Slider">
-            </div>
-        @endforeach
-    </div>
-    <div class="slider slider-nav-thumbnails">
-        @foreach($car->images as $image)
-            <div>
-                <img src="{{  url("/car_images/" . $image->name) }}" alt="product image">
-            </div>
-        @endforeach
-    </div>
-</div>
+                <div class="detail-product">
+                    <div class="slider detail-bigimg">
+                        @foreach($car->images as $image)
+                        <div class="product-img">
+                            <img src="{{  url("/car_images/" . $image->name) }}" alt="Slider">
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="slider slider-nav-thumbnails">
+                        @foreach($car->images as $image)
+                        <div>
+                            <img src="{{  url("/car_images/" . $image->name) }}" alt="product image">
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
                 <div class="review-sec specification-card">
                     <div class="review-header">
                         <h4>Specifications</h4>
@@ -360,48 +360,27 @@
                         <h4>Check Availability</h4>
                     </div>
                     <div>
+                        <form action="/show_calendar/{{$car->id}}" method="get">
+                            @csrf
+                            <ul>
+                                <li class="column-group-last">
+                                    <div class="input-block mb-0">
+                                        <div class="search-btn">
+                                            <button class="btn btn-primary check-available w-100" type="submit">Choose Rent Date </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                        <br>
                         <form action="{{ route('check.availability') }}" method="POST">
                             @csrf
                             <input type="hidden" name="car_id" value="{{ $car->id }}">
                             <ul>
-                                <li class="column-group-main">
-                                    <div class="input-block m-0">
-                                        <label>Pickup Date</label>
-                                    </div>
-                                    <div class="input-block-wrapp sidebar-form">
-                                        <div class="input-block me-2">
-                                            <div class="group-img">
-                                                <input type="date" name="pickup_date_d" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="input-block">
-                                            <div class="group-img">
-                                                <input type="time" name="pickup_date_h" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="column-group-main">
-                                    <div class="input-block m-0">
-                                        <label>Return Date</label>
-                                    </div>
-                                    <div class="input-block-wrapp sidebar-form">
-                                        <div class="input-block me-2">
-                                            <div class="group-img">
-                                                <input type="date" name="return_date_d" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="input-block">
-                                            <div class="group-img">
-                                                <input type="time" name="return_date_h" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
                                 <li class="column-group-last">
                                     <div class="input-block mb-0">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Start Your Journey </button>
+                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Price </button>
                                         </div>
                                     </div>
                                 </li>
@@ -436,7 +415,7 @@
                                         </div>
                                         <div class="grand-total">
                                             <h5>Grand Total</h5>
-                                            <span id="grand-total"></span>
+                                            <span id="grand-total">help</span>
                                         </div>
                                     </div>
                                 </div>
@@ -555,11 +534,6 @@
         function checkAvailability() {
             // جلب البيانات من الحقول
             let carId = document.querySelector('input[name="car_id"]').value;
-            let pickupDate = document.querySelector('input[name="pickup_date_d"]').value;
-            let pickupTime = document.querySelector('input[name="pickup_date_h"]').value;
-            let returnDate = document.querySelector('input[name="return_date_d"]').value;
-            let returnTime = document.querySelector('input[name="return_date_h"]').value;
-
             // إرسال البيانات عبر AJAX
             fetch('{{ route("check.availability") }}', {
                     method: 'POST',
@@ -569,10 +543,7 @@
                     },
                     body: JSON.stringify({
                         car_id: carId,
-                        pickup_date_d: pickupDate,
-                        pickup_date_h: pickupTime,
-                        return_date_d: returnDate,
-                        return_date_h: returnTime
+
                     })
                 })
                 .then(response => response.json())
