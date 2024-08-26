@@ -50,6 +50,7 @@
             text-align: center;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             /* Smooth shadow */
+            position: relative;
         }
 
         /* Blurred background image */
@@ -71,15 +72,36 @@
             font-weight: 500;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        .input-container {
+            position: relative;
             margin-bottom: 20px;
+        }
+
+        .input-container input[type="text"] {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            /* Adjusted padding for icon */
             border: 1px solid #000;
             border-radius: 10px;
             /* Rounded corners */
             box-sizing: border-box;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #ffa633;
         }
 
         button {
@@ -101,17 +123,28 @@
         button:hover {
             background-color: #e6952a;
         }
+
+        /* Icons */
+        .icon-calendar {
+            content: '\1F4C5';
+            /* Unicode for calendar icon */
+        }
     </style>
 </head>
 
 <body>
     <div class="modal">
         <div class="modal-content">
+            <div class="modal-title">Choose Dates</div>
             <form action="#">
-                <h2>Pick Up Date</h2>
-                <input type="text" class="datepicker" name="rent_start">
-                <h2>Drop Off Date</h2>
-                <input type="text" class="datepicker" name="rent_end">
+                <div class="input-container">
+                    <span class="icon icon-calendar"></span>
+                    <input type="text" class="datepicker" name="rent_start" placeholder="Pick Up Date">
+                </div>
+                <div class="input-container">
+                    <span class="icon icon-calendar"></span>
+                    <input type="text" class="datepicker" name="rent_end" placeholder="Drop Off Date">
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
