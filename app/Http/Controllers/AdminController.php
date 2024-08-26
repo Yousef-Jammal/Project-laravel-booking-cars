@@ -13,6 +13,10 @@ use Illuminate\Validation\Rule;
 class AdminController extends Controller
 {
     // Start User functions
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
     public function index_tables()
     {
         $users = User::select('*')->orderby('id', 'ASC')->paginate(5);
