@@ -60,22 +60,6 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="detail-product">
-    <div class="slider detail-bigimg">
-        @foreach($car->images as $image)
-            <div class="product-img">
-                <img src="{{url("/car_images/".$image->name) }}" alt="Slider">
-            </div>
-        @endforeach
-    </div>
-    <div class="slider slider-nav-thumbnails">
-        @foreach($car->images as $image)
-            <div>
-                <img src="{{url("/car_images/".$image->name) }}" alt="product image">
-            </div>
-        @endforeach
-    </div>
-</div>
-                {{-- <div class="detail-product">
                     <div class="slider detail-bigimg">
                         <div class="product-img">
                             <img src="{{ asset('img/cars/slider-01.jpg') }}" alt="Slider">
@@ -100,7 +84,7 @@
                         <div><img src="{{ asset('img/cars/slider-thum-04.jpg') }}" alt="product image"></div>
                         <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="review-sec specification-card">
                     <div class="review-header">
                         <h4>Specifications</h4>
@@ -322,94 +306,60 @@
 
 
                 {{-- SECTION: Leave a Reply --}}
-                @auth
-                    <div class="review-sec leave-reply-form mb-0">
-                        <div class="review-header">
-                            <h4>Leave a Reply</h4>
-                        </div>
-                        <ul class="review-list-rating mb-3">
-                            <li>
-                                Quality
-                                <p>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                </p>
-                            </li>
-                            <li>
-                                Price
-                                <p>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                </p>
-                            </li>
-                            <li>
-                                Comfort
-                                <p>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                </p>
-                            </li>
-                            <li>
-                                Driving
-                                <p>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                </p>
-                            </li>
-                        </ul>
-                        <div class="card-body">
-                            <div class="review-list">
-                                <ul>
-                                    <li class="review-box feedbackbox mb-0">
-                                        <div class="review-details">
-                                            <form id="review-form" action="{{ route('reviews.submit', ['id' => $car->id]) }}" method="POST">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="input-block">
-                                                            <label>Full Name <span class="text-danger">*</span></label>
-                                                            <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
-                                                        </div>
+                {{-- @auth --}}
+                <div class="review-sec leave-reply-form mb-0">
+                    <div class="review-header">
+                        <h4>Leave a Reply</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="review-list">
+                            <ul>
+                                <li class="review-box feedbackbox mb-0">
+                                    <div class="review-details">
+                                        <form id="review-form" action="{{ route('reviews.submit', ['id' => $car->id]) }}" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="input-block">
+                                                        <label>Full Name <span class="text-danger">*</span></label>
+                                                        {{-- <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly> --}}
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="input-block">
-                                                            <label>Email Address <span class="text-danger">*</span></label>
-                                                            <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
-                                                        </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="input-block">
+                                                        <label>Email Address <span class="text-danger">*</span></label>
+                                                        {{-- <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly> --}}
                                                     </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="input-block">
-                                                            <label>Comments </label>
-                                                            <textarea rows="4" name="content" class="form-control" required></textarea>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="input-block">
+                                                        <label>Rating <span class="text-danger">*</span></label>
+                                                        <div class="star-rating">
+                                                            @for($i = 5; $i >= 1; $i--)
+                                                                <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}">
+                                                                <label for="rating-{{ $i }}" class="fa fa-star"></label>
+                                                            @endfor
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="submit-btn">
-                                                    <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
+                                                <div class="col-lg-12">
+                                                    <div class="input-block">
+                                                        <label>Comments </label>
+                                                        <textarea rows="4" name="content" class="form-control" required></textarea>
+                                                    </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                            </div>
+                                            <div class="submit-btn">
+                                                <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                @else
-                    <!-- رسالة تطلب من المستخدم تسجيل الدخول -->
-                    <p>Please log in to leave a review.</p>
-                @endauth
+                </div>
+            {{-- @endauth --}}
 
             </div>
 {{-- 777777777777777777777777777777777777777777777777777777 --}}
