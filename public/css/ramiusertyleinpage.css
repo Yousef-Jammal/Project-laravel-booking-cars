@@ -1,0 +1,76 @@
+/* Default styling for your page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    header {
+        background-color: #f4f4f4;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .profile-page {
+        padding: 20px;
+    }
+
+    .content__cover {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .content__actions {
+        margin-top: 20px;
+    }
+
+    .content__actions a {
+        text-decoration: none;
+        color: #ffa633;
+        /* Default text color */
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        /* Default border */
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .content__actions a:hover {
+        border-color: #ffa633;
+        /* Border color on hover */
+        color: #ffa633;
+        /* Text color on hover */
+    }
+
+    .content__actions a svg {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        fill: currentColor;
+        /* Inherits the color from parent <a> element */
+    }
+
+    .content__actions a span {
+        transition: color 0.3s ease;
+    }
+
+
+
+    .my_user_image {
+        box-shadow: 1px 1px 5px #00000012;
+        width: 200px;
+        height: 200px;
+        background: white;
+        position: absolute;
+        right: 300px;
+        top: -115px;
+        border-radius: 50%;
+        background-image: url("george.jpg");
+        background-size: cover;
+    }

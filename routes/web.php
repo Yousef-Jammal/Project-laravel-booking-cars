@@ -145,6 +145,14 @@ Route::patch('/company/update-availability-status/{car}', [CompanyController::cl
 
 // });
 
+use App\Http\Controllers\UserController;
+
+
+Route::get('/user/user-info', [UserController::class, 'showUserInfo'])->name('user.user-info');
+Route::post('/user/user-info', [UserController::class, 'updateUserInfo'])->name('user.user-info.update');
+Route::get('/user/rental-history-center', [UserController::class, 'rentalHistoryCenter'])->name('user.rental-history-center');
+Route::get('/user/rental-request-center', [UserController::class, 'rentalRequestCenter'])->name('user.rental-request-center');
+
 
 // // FOR ASEEL USES
 // Route::get('/index', function () {
@@ -204,3 +212,6 @@ Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
 //khawara end
 
 // fajer end//
+
+
+
