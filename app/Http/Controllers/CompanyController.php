@@ -98,7 +98,6 @@ class CompanyController extends Controller
         return view('companies.user-info', compact('user', 'company'));
     }
 
-    // Handle the form submission to update user information
     public function updateUserInfo(Request $request)
     {
         // dd($request->all());
@@ -118,20 +117,19 @@ class CompanyController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:20',
             'description' => 'nullable|string',
-            'image' => 'nullable|image', // Validate image
+            'image' => 'nullable|image',
         ]);
 
         // Handle image upload
         if ($request->hasFile('image')) {
             // dd($request->file('image')); // Debug the uploaded file
 
-            // Delete the old image if it exists
             if ($user->image && $user->image !== 'default.png') {
-                Storage::delete('public/profile_images/' . $user->image);
+                Storage::delete('/user_images/' . $user->image);
             }
 
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/profile_images', $imageName);
+            $request->image->move(public_path('user_images'), $imageName);
             $user->image = $imageName;
         }
 
@@ -325,8 +323,9 @@ class CompanyController extends Controller
         $car = Car::findOrFail($id);
         $brands = Brand::all();
         $company = Company::where('user_id', $userId)->first();
+        $images = $car->images;
 
-        return view('companies.edit_car', compact('car', 'brands', 'company'));
+        return view('companies.edit_car', compact('car', 'brands', 'company', 'images'));
     }
 
     public function updateCar(Request $request, $id)
@@ -351,7 +350,7 @@ class CompanyController extends Controller
             'price_per_day' => 'required|numeric',
             'features' => 'required|array',
             'features.*' => 'nullable|string|max:255',
-            'image' => 'image',
+            'image.*' => 'nullable|image',
         ]);
         $car->update($request->only([
             'brand_id',
@@ -371,31 +370,36 @@ class CompanyController extends Controller
             'price_per_day'
         ]));
         // Update features
-    $car->features()->delete(); // Delete old features
-    foreach (array_filter($request->features) as $feature) {  // Filter out empty features
-        if (!empty($feature)) {  // Explicitly check that the feature is not empty
-            $car->features()->create(['name' => $feature]);
-        }
-    }
-
-        // Update image if a new one is uploaded
-        if ($request->hasFile('image')) {
-            // Delete the old image
-            if ($car->images->isNotEmpty()) {
-                Storage::delete('public/' . $car->images->first()->name);
-                $car->images()->delete();
+        $car->features()->delete();
+        foreach (array_filter($request->features) as $feature) {
+            if (!empty($feature)) {
+                $car->features()->create(['name' => $feature]);
             }
+        }
 
-            // Store the new image
-            $image = $request->file('image');
-            $imageName = 'cars/' . $image->getClientOriginalName();
-            $image->storeAs('public', $imageName);
+        // Handle image deletion
+        if ($request->has('delete_images')) {
+            foreach ($request->input('delete_images') as $imageId) {
+                $image = $car->images()->find($imageId);
+                if ($image) {
+                    Storage::delete('public/' . $image->name); // Ensure correct path
+                    $image->delete();
+                }
+            }
+        }
 
-            $car->images()->create(['name' => $imageName]);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $imageName = time() . '.' . $image->extension();
+                $image->move(public_path('car_images'), $imageName);
+                $car->images()->create(['name' => 'car_images/' . $imageName]);
+            }
         }
 
         return redirect()->route('company.carControlCenter')->with('success', 'Car updated successfully.');
     }
+
 
 
     public function deleteCar($id)
@@ -412,9 +416,51 @@ class CompanyController extends Controller
         return redirect()->route('companies.carControlCenter')->with('success', 'Car deleted successfully.');
     }
 
+    public function availabilityCenter()
+    {
+        // $userId = auth()->user()->id;
+        $userId = 1;
+        $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
+        $times_rented = [];
+        $total_profit = [];
+        foreach ($cars as $car) {
+            $time_rented = Rental::where(
+                'car_id',
+                $car->id
+            )->count();
+            $times_rented["$car->id"] = $time_rented;
+            $money = 0;
+            $rentals = Rental::where(
+                'car_id',
+                $car->id
+            )->get();
+            foreach ($rentals as $rental) {
+                $start = Carbon::parse($rental->rent_start)->startOfDay();
+                $end = Carbon::parse($rental->rent_end)->endOfDay();
+                $days = $end->diffInDays($start);
+                $money += $days * $car->price_per_day;
+            }
+            $total_profit["$car->id"] = $money;
+        }
 
-    // public function getTotalPriceAttribute()
-    // {
-    //     return $this->rent_duration * $this->car->price_per_day;
-    // }
+        $company = Company::where('user_id', $userId)->first();
+
+
+        return view('companies.availability_center', compact('company', 'cars', 'times_rented', 'total_profit'));
+    }
+
+    public function updateAvailabilityStatus(Request $request, $carId)
+    {
+        $car = Car::findOrFail($carId);
+
+        // $userId = Auth::id();
+        // if ($car->user_id !== $userId) {
+        //     return redirect()->back()->with('error', 'Unauthorized access.');
+        // }
+
+        $car->availability = $request->input('availability');
+        $car->save();
+
+        return redirect()->back()->with('success', 'Availability status updated successfully.');
+    }
 }

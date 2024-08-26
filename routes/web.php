@@ -67,10 +67,9 @@ Route::get('/calendar', function () {
 
 use App\Http\Controllers\CompanyController;
 
-// Route::middleware(['auth', 'company'])->group(function () {
+Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
-// Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
 Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
@@ -89,18 +88,25 @@ Route::get('/company/carControlCenter', [CompanyController::class, 'carControlCe
     Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
 
     Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
-// });
+
+
+Route::get('/company/availability_center', [CompanyController::class, 'availabilityCenter'])->name('company.availabilityCenter');
+Route::patch('/company/update-availability-status/{car}', [CompanyController::class, 'updateAvailabilityStatus'])->name('company.update-availability-status');
+
+
+});
+
 
 // // FOR ASEEL USES
 Route::get('/index', function () {
     return view('index');
 });
 
-// use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginController;
 
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login']);
-// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // aseel routes end
@@ -109,6 +115,7 @@ Route::get('/index', function () {
 //
 // fajer route
 //
+
 Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
