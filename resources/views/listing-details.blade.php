@@ -445,7 +445,7 @@
                                 <li class="column-group-last">
                                     <div class="input-block mb-0">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Availability</button>
+                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Start Your Journey </button>
                                         </div>
                                     </div>
                                 </li>
