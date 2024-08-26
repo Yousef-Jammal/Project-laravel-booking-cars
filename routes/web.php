@@ -22,6 +22,39 @@ Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetail
 
 // yousef routes start
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
+
+Route::prefix('admin')->group(function(){
+
+    // Route::get('/', [HomeController::class, 'dashboard']);
+    Route::get('/', [AdminController::class, 'index'])->name('admin_index');
+    Route::get('/tables', [AdminController::class, 'index_tables'])->name('admin_index_tables');
+
+    // users table
+    Route::get('showUser/{id}', [AdminController::class, 'viewUser'])->name('admin_show_user');
+    Route::get('editUser/{id}', [AdminController::class, 'editUser'])->name('admin_edit_user');
+    Route::get('deleteUser/{id}', [AdminController::class, 'deleteUser'])->name('admin_delete_user');
+
+    Route::put('updateUser/{id}', [AdminController::class, 'updateUser'])->name('admin_update_user');
+
+
+    // cars table
+    Route::get('showCar/{id}', [AdminController::class, 'viewCar'])->name('admin_show_car');
+    Route::get('editCar/{id}', [AdminController::class, 'editCar'])->name('admin_edit_car');
+    Route::get('deleteCar/{id}', [AdminController::class, 'deleteCar'])->name('admin_delete_car');
+
+    Route::put('updateCar/{id}', [AdminController::class, 'updateCar'])->name('admin_update_car');
+
+    // companys table
+    Route::get('showCompany/{id}', [AdminController::class, 'viewCompany'])->name('admin_show_company');
+    Route::get('editCompany/{id}', [AdminController::class, 'editCompany'])->name('admin_edit_company');
+    Route::get('deleteCompany/{id}', [AdminController::class, 'deleteCompany'])->name('admin_delete_company');
+
+    Route::put('updateCompany/{id}', [AdminController::class, 'updateCompany'])->name('admin_update_company');
+
+
+});
 
 Route::prefix('home')->group(function () {
 
@@ -53,6 +86,10 @@ Route::get('/filter', [SearchController::class, 'filterCars']);
 Route::get('/booking', function () {
     return view('booking');
 })->name('booking');
+Route::get('/calendar', function () {
+    return view('calendartest');
+});
+
 
 
 
@@ -94,15 +131,15 @@ Route::patch('/company/update-availability-status/{car}', [CompanyController::cl
 
 
 // // FOR ASEEL USES
-Route::get('/index', function () {
-    return view('index');
-});
+// Route::get('/index', function () {
+//     return view('index');
+// });
 
-use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\LoginController;
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // aseel routes end
