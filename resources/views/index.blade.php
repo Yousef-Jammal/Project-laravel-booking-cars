@@ -234,10 +234,10 @@ Acura
                             {{--  result --}}
         @foreach ($cars as $car)                     {{--  start --}}
 
-            <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
+            <div class="col-lg-4 col-md-6 col-12" >
                 <div class="listing-item">
                     <div class="listing-img">
-            <a href="listing-details.html">
+            <a href="{{ route('pruduct_details', $car->id) }}">
                 <img src="{{ asset('img/cars/car-01.jpg')}}" class="img-fluid" alt="Toyota">
             </a>
             <div class="fav-item">

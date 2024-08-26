@@ -42,7 +42,7 @@ class HomeController extends Controller
         $data['return_date_h'] = $request->return_date_h;
 
         // print_r($data);
-        return redirect()->route('pruduct_list_from_home_with_filter', ['data_form_home' => $data]);
+        return redirect()->route('pruduct_list_from_home_with_filter', ['brands' => $data]);
 
     }
 
