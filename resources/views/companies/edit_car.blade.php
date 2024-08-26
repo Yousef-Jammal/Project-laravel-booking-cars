@@ -221,21 +221,30 @@
             </div>
 
             <!-- Step 4: Car Images -->
-            <div class="aseel-card">
-                <div class="aseel-card-header">
-                    <h3>Step 4: Car Images</h3>
+<div class="aseel-card">
+    <div class="aseel-card-header">
+        <h3>Step 4: Car Images</h3>
+    </div>
+    <div class="card-body">
+        <div class="aseel-form-group">
+            <label for="image">Car Image</label>
+            <input type="file" name="image[]" class="aseel-form-control" id="image" multiple>
+
+            @if ($images->isNotEmpty())
+                <div class="mt-3">
+                    @foreach ($images as $image)
+                        <div class="mb-2">
+                            <img src="{{url('/car_images/' . $image->name)}}" class="aseel-img-fluid" width="150" alt="Car Image">
+                            <label>
+                                <input type="checkbox" name="delete_images[]" value="{{ $image->id }}"> Delete
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="card-body">
-                    <div class="aseel-form-group">
-                        <label for="image">Car Image</label>
-                        <input type="file" name="image" class="aseel-form-control" id="image">
-                        @if ($car->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="aseel-img-fluid mt-2"
-                                alt="Car Image">
-                        @endif
-                    </div>
-                </div>
-            </div>
+            @endif
+        </div>
+    </div>
+</div>
 
             <button type="submit" class="aseel-btn-primary">Update Car</button>
         </form>

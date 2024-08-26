@@ -8,7 +8,7 @@
     <h2 class="breadcrumb-title">{{ $company->user->name }} Cars </h2>
     <nav aria-label="breadcrumb" class="page-breadcrumb">
     <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>    
+    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ $company->user->name }} User Information
     </li>
     </ol>
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label for="image">Profile Image</label>
             <div class="mb-3">
-                <img src="{{ asset('storage/profile_images/' . ($user->image ?? 'default.png')) }}" alt="Profile Image" class="img-thumbnail" width="150">
+                <img src="{{url("/user_images/".$user->image) }}" alt="Profile Image" class="img-thumbnail" width="150">
             </div>
             <input type="file" class="form-control-file" id="image" name="image">
         </div>
