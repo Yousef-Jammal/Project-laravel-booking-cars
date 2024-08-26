@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Brand;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -55,10 +57,51 @@ class SearchController extends Controller
 
 
 
-        $cars = Car::whereIn('brand_id', $brands_array)
-            ->whereIn('door', $doors_array)
-            ->where('price_per_day', '<=', $price)
-            ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)->get();
+        // $cars = Car::whereIn('brand_id', $brands_array)
+        //     ->whereIn('door', $doors_array)
+        //     ->where('price_per_day', '<=', $price)
+        //     ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)->get();
+
+        // $cars = $cars
+        // dd($cars->first()->model);
+
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+
+
+
+
+
+        if (
+            $startDate === null or $endDate === null
+        ) {
+            $startDate = '1990-01-01';
+            $endDate = '1990-01-01';
+        } else {
+            $startDate = Carbon::createFromFormat('d-m-Y', $startDate)->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('d-m-Y', $endDate)->format('Y-m-d');
+        }
+        // dd($startDate, $endDate);
+        
+
+        $cars = Car::whereNotExists(function ($query) use ($startDate, $endDate) {
+            $query->select(DB::raw(1))
+            ->from('rentals')
+                ->whereColumn('cars.id', 'rentals.car_id')
+                ->where(function ($query) use ($startDate, $endDate) {
+                    $query->whereBetween('rentals.rent_start', [$startDate, $endDate])
+                    ->orWhereBetween('rentals.rent_end', [$startDate, $endDate])
+                    ->orWhere(function ($query) use ($startDate, $endDate) {
+                        $query->where('rentals.rent_start', '<=', $startDate)
+                        ->where('rentals.rent_end', '>=', $endDate);
+                    });
+                });
+        })->whereIn('brand_id', $brands_array)
+        ->whereIn('door', $doors_array)
+        ->where('price_per_day', '<=', $price)
+        ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)
+        ->get();
+
         return view('listing-list', compact('cars', 'brands'));
     }
 }

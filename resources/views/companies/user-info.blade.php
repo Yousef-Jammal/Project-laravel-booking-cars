@@ -8,7 +8,7 @@
     <h2 class="breadcrumb-title">{{ $company->user->name }} Cars </h2>
     <nav aria-label="breadcrumb" class="page-breadcrumb">
     <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>    
+    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ $company->user->name }} User Information
     </li>
     </ol>
@@ -18,9 +18,9 @@
     </div>
     </div>
 <div class="container">
-    <div class="dashboard-nav">
-        <ul class="nav">
-            <li class="nav-item">
+<div class="dashboard-nav">
+            <ul class="nav">
+                            <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/dashboard') ? 'active' : '' }}" href="{{ route('company.dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item">
@@ -30,16 +30,16 @@
                 <a class="nav-link {{ request()->is('company/carControlCenter') ? 'active' : '' }}" href="{{ route('company.carControlCenter') }}">Cars Control Center</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My cart</a>
+                <a class="nav-link {{ request()->is('company/availability_center') ? 'active' : '' }}" href="{{ route('company.availabilityCenter') }}">Availability Control Center</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('company/user-info') ? 'active' : '' }}" href="{{ route('company.user-info') }}">Edit Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Log-out</a>
-            </li>
-        </ul>
-    </div>
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}">Log-out</a>
+                </li> --}}
+            </ul>
+        </div>
 </div>
 
 <div class="container mt-5">
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label for="image">Profile Image</label>
             <div class="mb-3">
-                <img src="{{ asset('storage/profile_images/' . ($user->image ?? 'default.png')) }}" alt="Profile Image" class="img-thumbnail" width="150">
+                <img src="{{url("/user_images/".$user->image) }}" alt="Profile Image" class="img-thumbnail" width="150">
             </div>
             <input type="file" class="form-control-file" id="image" name="image">
         </div>

@@ -70,6 +70,8 @@
 
 
 
+
+
 .actionbtnaseel{
 width: 100%; 
 margin-left:10px;
@@ -272,3 +274,37 @@ background-color: #a6eaf7;
     border-radius: 4px;
     margin-top: 10px;
 }
+
+
+.preview img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-right: 10px;
+}
+.feature-input {
+    margin-bottom: 15px;
+}
+
+#add-feature-button{
+    margin-top: 16px;
+}
+#add-image-button{
+    margin-top: 16px;
+}
+
+/* ****************************************************************************************** */
+/* ****************************************************************************************** */
+
+
+
+.availabilityImg{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+
+/* ****************************************************************************************** */
