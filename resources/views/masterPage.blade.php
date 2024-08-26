@@ -359,5 +359,14 @@
     <script src="{{ asset('js/script.js') }}" type="92c909a9da2673a89e5fe5b0-text/javascript"></script>
     <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="92c909a9da2673a89e5fe5b0-|49" defer></script>
     @yield('script')
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBJC10P65W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZBJC10P65W');   
+</script>
 </body>
 </html>
