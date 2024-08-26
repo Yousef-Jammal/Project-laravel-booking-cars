@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class CarDetailsController extends Controller
 {
@@ -49,7 +51,7 @@ class CarDetailsController extends Controller
         $car = Car::findOrFail($request->car_id);
 
         // التأكد من توافر السيارة بناءً على التواريخ المدخلة (هنا يتم فقط افتراض القيمة من عمود is_available)
-        $isAvailable = $car->is_available;
+        $isAvailable = $car->availability;
 
         // حساب عدد الأيام بين تاريخ الاستلام والإرجاع
         $pickupDate = Carbon::parse($request->pickup_date_d);
@@ -64,7 +66,6 @@ class CarDetailsController extends Controller
         $extraService = 10; // خدمة إضافية ثابتة
 
         // حساب الجراند توتال
-        $grandTotal = $totalPrice + $tax + $extraService;
 
         // تخزين المعلومات في الـ session
         session([
@@ -82,45 +83,53 @@ class CarDetailsController extends Controller
             'totalPrice' => $totalPrice,
             'tax' => $tax,
             'extraService' => $extraService,
-            'grandTotal' => $grandTotal,
             'days' => $days,
             'car' => $car,
         ]);
     }
 
 
-    public function submitReview(Request $request, $car_id)
-    {
-        $user_id=2;
-        // جلب السيارة بناءً على معرفها
+
+
+public function submitReview(Request $request, $car_id)
+{
+        // Validate the incoming request data
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'content' => 'required|string|max:1000',
+        ]);
+
+        // Retrieve the car instance
         $car = Car::findOrFail($car_id);
 
-        // تحقق من صحة البيانات
-        $request->validate([
-            'content' => 'required|string',
-            'rating' => 'required|numeric|min:1|max:5',
-        ]);
-
-        // إنشاء تعليق جديد مع اسم المستخدم والإيميل
-        $review = $car->reviews()->create([
-
-            // 'user_id' => auth()->id(),
-            'user_id' => 2,
-            'car_id' => $car_id,
+        // Attach the review to the car with the user as the pivot
+        $car->reviews()->attach(Auth::id(), [
+            'rating' => $request->input('rating'),
+            'content' => $request->input('content'),
             'date' => now(),
-            'content' => $request->content,
-            'rating' => $request->rating,
         ]);
 
-        // إرجاع HTML للتعليق الجديد وعدد التعليقات الحالي
-        $newReviewHtml = view('partials.review', ['review' => $review])->render();
+        // Prepare the HTML for the new review (you may need to adjust this based on your view)
+        // $newReviewHtml = view('partials.review', [
+        //     'review' => [
+        //         'user' => Auth::user(),
+        //         'rating' => $request->input('rating'),
+        //         'content' => $request->input('content'),
+        //         'date' => now(),
+        //     ]
+        // ])->render();
 
-        return response()->json([
-            'success' => true,
-            'newReviewHtml' => $newReviewHtml,
-            'reviewCount' => $car->reviews->count(),
-        ]);
-    }
+        // Return a JSON response
+        // return response()->json([
+        //     'success' => true,
+        //     // 'newReviewHtml' => $newReviewHtml,
+        //     'reviewCount' => $car->reviews()->count(),
+        // ]);
+
+        return view('listing-details', compact('car'));
+
+    
+}
 
     public function showCarDetailsImg($carId)
 {

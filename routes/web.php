@@ -4,8 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CarDetailsController;
+
+use App\Http\Controllers\BookingController;
+
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -111,7 +116,7 @@ Route::get('/calendar', function () {
 
 use App\Http\Controllers\CompanyController;
 
-Route::middleware(['auth', 'company'])->group(function () {
+// Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
@@ -138,7 +143,7 @@ Route::get('/company/availability_center', [CompanyController::class, 'availabil
 Route::patch('/company/update-availability-status/{car}', [CompanyController::class, 'updateAvailabilityStatus'])->name('company.update-availability-status');
 
 
-});
+// });
 
 
 // // FOR ASEEL USES
@@ -159,8 +164,11 @@ Route::patch('/company/update-availability-status/{car}', [CompanyController::cl
 //
 // fajer route
 //
-
-Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
+Route::post('/cars/{id}/reviews', [
+    CarDetailsController::class,
+    'submitReview'
+])->name('reviews.submit')->middleware('auth');
+// Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 
@@ -176,12 +184,8 @@ Route::get('/listing-details', function () {
     return view('listing-details');
 });
 
-Route::get('/', function () {
-    return view('listing-list');
-});
-// Route::get('/', function () {
-//     return view('admin.views.dashboard.index');
-// });
+
+
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 
 Route::get('/carlist', [CarController::class, 'index']);
@@ -190,5 +194,14 @@ Route::get('/filter', [SearchController::class, 'filterCars']);
 Route::get('/booking', function () {
     return view('booking');
 })->name('booking');
+
+// fajer end//
+
+//khawara start
+
+Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
+Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
+
+//khawara end
 
 // fajer end//
