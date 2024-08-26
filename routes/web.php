@@ -142,11 +142,11 @@ Route::patch('/company/update-availability-status/{car}', [CompanyController::cl
 
 
 // // FOR ASEEL USES
-Route::get('/index', function () {
-    return view('index');
-});
+// Route::get('/index', function () {
+//     return view('index');
+// });
 
-use App\Http\Controllers\LoginController;
+// use App\Http\Controllers\LoginController;
 
 // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 // Route::post('/login', [LoginController::class, 'login']);

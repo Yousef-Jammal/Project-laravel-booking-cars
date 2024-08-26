@@ -118,5 +118,13 @@ class CarDetailsController extends Controller
             'reviewCount' => $car->reviews->count(),
         ]);
     }
+
+    public function showCarDetailsImg($carId)
+{
+    $car = Car::with('images')->findOrFail($carId);
+
+    return view('listing-details', compact('car'));
+}
+
 }
 
