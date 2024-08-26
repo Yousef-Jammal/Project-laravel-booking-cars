@@ -306,7 +306,7 @@
 
 
                 {{-- SECTION: Leave a Reply --}}
-                {{-- @auth --}}
+                @auth
                 <div class="review-sec leave-reply-form mb-0">
                     <div class="review-header">
                         <h4>Leave a Reply</h4>
@@ -322,13 +322,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="input-block">
                                                         <label>Full Name <span class="text-danger">*</span></label>
-                                                        {{-- <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly> --}}
+                                                        <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="input-block">
                                                         <label>Email Address <span class="text-danger">*</span></label>
-                                                        {{-- <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly> --}}
+                                                        <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -359,7 +359,7 @@
                         </div>
                     </div>
                 </div>
-            {{-- @endauth --}}
+            @endauth
 
             </div>
 {{-- 777777777777777777777777777777777777777777777777777777 --}}
