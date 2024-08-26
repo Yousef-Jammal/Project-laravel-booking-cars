@@ -200,6 +200,7 @@ Route::get('/booking', function () {
 //khawara start
 
 Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
+Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
 
 //khawara end
 

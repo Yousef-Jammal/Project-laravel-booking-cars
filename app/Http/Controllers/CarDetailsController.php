@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class CarDetailsController extends Controller
@@ -51,7 +51,7 @@ class CarDetailsController extends Controller
         $car = Car::findOrFail($request->car_id);
 
         // التأكد من توافر السيارة بناءً على التواريخ المدخلة (هنا يتم فقط افتراض القيمة من عمود is_available)
-        $isAvailable = $car->is_available;
+        $isAvailable = $car->availability;
 
         // حساب عدد الأيام بين تاريخ الاستلام والإرجاع
         $pickupDate = Carbon::parse($request->pickup_date_d);
@@ -66,7 +66,6 @@ class CarDetailsController extends Controller
         $extraService = 10; // خدمة إضافية ثابتة
 
         // حساب الجراند توتال
-        $grandTotal = $totalPrice + $tax + $extraService;
 
         // تخزين المعلومات في الـ session
         session([
@@ -84,7 +83,6 @@ class CarDetailsController extends Controller
             'totalPrice' => $totalPrice,
             'tax' => $tax,
             'extraService' => $extraService,
-            'grandTotal' => $grandTotal,
             'days' => $days,
             'car' => $car,
         ]);

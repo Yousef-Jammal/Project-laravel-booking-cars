@@ -53,17 +53,26 @@
             position: relative;
         }
 
-        /* Blurred background image */
-        .modal::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('your-background-image-url.jpg') no-repeat center center/cover;
-            filter: blur(10px);
-            z-index: -1;
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ffa633;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #e6952a;
         }
 
         h2 {
@@ -135,6 +144,7 @@
 <body>
     <div class="modal">
         <div class="modal-content">
+            <a href="javascript:history.back()" class="back-button">Back</a>
             <div class="modal-title">Choose Dates</div>
             <form action="#">
                 <div class="input-container">
@@ -151,10 +161,20 @@
     </div>
 
     <script>
+        // Disable all <a> links from redirecting (for other purposes)
+        $(document).on('click', '.ui-datepicker a', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+        // Fetch the current URL and extract the ID
+        const url = window.location.href;
+        const id = url.match(/show_calendar\/(\d+)/);
+
         // Hardcoded dates to isolate the problem
         var disabledDates = [];
         document.addEventListener('DOMContentLoaded', async function() {
-            const response = await fetch('http://127.0.0.1:8000/api/disabled_dates/2');
+            const response = await fetch('http://127.0.0.1:8000/api/disabled_dates/' + id[1]);
             const data = await response.json();
             disabledDates = data.dates_array;
         });
