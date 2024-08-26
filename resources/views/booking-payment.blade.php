@@ -44,17 +44,17 @@
 <div class="row booking-info">
 <div class="col-md-4 col-sm-6 pickup-address">
 <h5>Pickup</h5>
-<p>45, 4th Avanue Mark Street USA</p>
+<p>{{ $location }}</p>
 <span>Date & time : 11 Jan 2023</span>
 </div>
 <div class="col-md-4 col-sm-6 drop-address">
 <h5>Drop Off</h5>
-<p>78, 10th street Laplace USA</p>
+<p>{{ $location }}</p>
 <span>Date & time : 11 Jan 2023</span>
 </div>
 <div class="col-md-4 col-sm-6 booking-amount">
 <h5>Amount to be paid</h5>
-<h6><span>$315 </span><i class="feather-info"></i></h6>
+<h6><span>${{$totalPrice }} </span><i class="feather-info"></i></h6>
 </div>
 </div>
 <div class="booking-form">
@@ -112,7 +112,7 @@
 <div class="booking-info">
 <div class="booking-amount">
 <h5>Your Payment</h5>
-<h6><span>$315 </span><i class="feather-info"></i></h6>
+<h6><span>${{$totalPrice }} </span><i class="feather-info"></i></h6>
 </div>
 </div>
 <div class="payment-method">
@@ -127,38 +127,100 @@
 <div class="booking-title">
 <h5>Enter Below details</h5>
 </div>
-<form class="#">
-<div class="row">
-<div class="col-lg-12">
-<div class="input-block">
-<label>Card Number <span class="text-danger">*</span></label>
-<input type="number" class="form-control" placeholder="45612212255455">
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-center w-100" id="successModalLabel">
+          <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Success!</h4>
+        <p>We've confirmed your order and payment.<br>Thank you for shopping with us!</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">Continue Browsing</button>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<div class="col-lg-6">
-<div class="input-block">
-<label>Expiration date <span class="text-danger">*</span></label>
-<input type="number" class="form-control" placeholder="12/25">
-</div>
-</div>
-<div class="col-lg-6">
-<div class="input-block">
-<label>Security number <span class="text-danger">*</span></label>
-<input type="text" class="form-control" placeholder>
-</div>
-</div>
-<div class="input-block payment-checkbox m-0">
-<label class="custom_check">
-<input type="checkbox" name="rememberme" class="rememberme">
-<span class="checkmark"></span>
-Save this account for future transaction
-</label>
-</div>
-</div>
-<div class="payment-btn">
-<button class="btn btn-primary submit-review w-100" type="button" data-bs-toggle="modal" data-bs-target="#pages_edit">Pay $315</button>
-</div>
+
+<!-- Payment Form -->
+<form class="#" id="payment-form" novalidate>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-block">
+        <label>Card Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" placeholder="45612212255455" id="cardNumber">
+        <small id="cardNumberError" class="text-danger"></small>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-block">
+        <label>Expiration date <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" placeholder="MM/YY" id="expiryDate">
+        <small id="expiryDateError" class="text-danger"></small>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-block">
+        <label>Security number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" placeholder="CVV" id="securityNumber">
+        <small id="securityNumberError" class="text-danger"></small>
+      </div>
+    </div>
+    
+  </div>
+  <div class="payment-btn">
+    <button class="btn btn-primary submit-review w-100" type="button" id="submitBtn">Pay $315</button>
+  </div>
 </form>
+
+
+<script>
+document.getElementById('submitBtn').addEventListener('click', function(event) {
+    // Clear previous errors
+    document.getElementById('cardNumberError').innerText = "";
+    document.getElementById('expiryDateError').innerText = "";
+    document.getElementById('securityNumberError').innerText = "";
+    
+    // Get form elements
+    const cardNumber = document.getElementById('cardNumber');
+    const expiryDate = document.getElementById('expiryDate');
+    const securityNumber = document.getElementById('securityNumber');
+    
+    let isValid = true;
+
+    // Validate Card Number
+    if (!cardNumber.value.match(/^\d{13,19}$/)) {
+        document.getElementById('cardNumberError').innerText = "Please enter a valid card number between 13 to 19 digits.";
+        isValid = false;
+    }
+
+    // Validate Expiration Date
+    if (!expiryDate.value.match(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/)) {
+        document.getElementById('expiryDateError').innerText = "Please enter a valid expiration date in MM/YY format.";
+        isValid = false;
+    }
+
+    // Validate Security Number
+    if (!securityNumber.value.match(/^\d{3,4}$/)) {
+        document.getElementById('securityNumberError').innerText = "Please enter a valid security number (CVV) with 3 or 4 digits.";
+        isValid = false;
+    }
+
+    // If valid, show the success modal
+    if (isValid) {
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    }
+});
+
+</script>
+
 </div>
 </div>
 </div>

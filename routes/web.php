@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CarDetailsController;
+use App\Http\Controllers\BookingController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -121,12 +124,8 @@ Route::get('/listing-details', function () {
     return view('listing-details');
 });
 
-Route::get('/', function () {
-    return view('listing-list');
-});
-// Route::get('/', function () {
-//     return view('admin.views.dashboard.index');
-// });
+
+
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 
 Route::get('/carlist', [CarController::class, 'index']);
@@ -137,3 +136,9 @@ Route::get('/booking', function () {
 })->name('booking');
 
 // fajer end//
+
+//khawara start
+
+Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
+
+//khawara end
