@@ -159,8 +159,11 @@ Route::patch('/company/update-availability-status/{car}', [CompanyController::cl
 //
 // fajer route
 //
-
-Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
+Route::post('/cars/{id}/reviews', [
+    CarDetailsController::class,
+    'submitReview'
+])->name('reviews.submit')->middleware('auth');
+// Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 

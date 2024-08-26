@@ -59,32 +59,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="detail-product">
-                    <div class="slider detail-bigimg">
-                        <div class="product-img">
-                            <img src="{{ asset('img/cars/slider-01.jpg') }}" alt="Slider">
-                        </div>
-                        <div class="product-img">
-                            <img src="{{ asset('img/cars/slider-02.jpg') }}" alt="Slider">
-                        </div>
-                        <div class="product-img">
-                            <img src="{{ asset('img/cars/slider-03.jpg') }}" alt="Slider">
-                        </div>
-                        <div class="product-img">
-                            <img src="{{ asset('img/cars/slider-04.jpg') }}" alt="Slider">
-                        </div>
-                        <div class="product-img">
-                            <img src="{{ asset('img/cars/slider-05.jpg') }}" alt="Slider">
-                        </div>
-                    </div>
-                    <div class="slider slider-nav-thumbnails">
-                        <div><img src="{{ asset('img/cars/slider-thum-01.jpg') }}" alt="product image"></div>
-                        <div><img src="{{ asset('img/cars/slider-thum-02.jpg') }}" alt="product image"></div>
-                        <div><img src="{{ asset('img/cars/slider-thum-03.jpg') }}" alt="product image"></div>
-                        <div><img src="{{ asset('img/cars/slider-thum-04.jpg') }}" alt="product image"></div>
-                        <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
-                    </div>
-                </div> --}}
+<div class="detail-product">
+    <div class="slider detail-bigimg">
+        @foreach($car->images as $image)
+            <div class="product-img">
+                <img src="{{  url("/car_images/" . $image->name) }}" alt="Slider">
+            </div>
+        @endforeach
+    </div>
+    <div class="slider slider-nav-thumbnails">
+        @foreach($car->images as $image)
+            <div>
+                <img src="{{  url("/car_images/" . $image->name) }}" alt="product image">
+            </div>
+        @endforeach
+    </div>
+</div>
                 <div class="review-sec specification-card">
                     <div class="review-header">
                         <h4>Specifications</h4>
