@@ -91,6 +91,7 @@ class CarDetailsController extends Controller
 
     public function submitReview(Request $request, $car_id)
     {
+        $user_id=2;
         // جلب السيارة بناءً على معرفها
         $car = Car::findOrFail($car_id);
 
@@ -102,7 +103,9 @@ class CarDetailsController extends Controller
 
         // إنشاء تعليق جديد مع اسم المستخدم والإيميل
         $review = $car->reviews()->create([
-            'user_id' => auth()->id(),
+
+            // 'user_id' => auth()->id(),
+            'user_id' => 2,
             'car_id' => $car_id,
             'date' => now(),
             'content' => $request->content,

@@ -61,350 +61,534 @@
             <div class="col-lg-8">
                 <div class="detail-product">
                     <div class="slider detail-bigimg">
-                        @foreach($car->images as $image)
-                        <div class="product-img">
-                            <img src="{{url("/car_images/".$image->name) }}" alt="Slider">
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="slider slider-nav-thumbnails">
-                        @foreach($car->images as $image)
-                        <div>
-                            <img src="{{url("/car_images/".$image->name) }}" alt="product image">
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                {{-- <div class="detail-product">
-                    <div class="slider detail-bigimg">
                         <div class="product-img">
                             <img src="{{ asset('img/cars/slider-01.jpg') }}" alt="Slider">
-            </div>
-            <div class="product-img">
-                <img src="{{ asset('img/cars/slider-02.jpg') }}" alt="Slider">
-            </div>
-            <div class="product-img">
-                <img src="{{ asset('img/cars/slider-03.jpg') }}" alt="Slider">
-            </div>
-            <div class="product-img">
-                <img src="{{ asset('img/cars/slider-04.jpg') }}" alt="Slider">
-            </div>
-            <div class="product-img">
-                <img src="{{ asset('img/cars/slider-05.jpg') }}" alt="Slider">
-            </div>
-        </div>
-        <div class="slider slider-nav-thumbnails">
-            <div><img src="{{ asset('img/cars/slider-thum-01.jpg') }}" alt="product image"></div>
-            <div><img src="{{ asset('img/cars/slider-thum-02.jpg') }}" alt="product image"></div>
-            <div><img src="{{ asset('img/cars/slider-thum-03.jpg') }}" alt="product image"></div>
-            <div><img src="{{ asset('img/cars/slider-thum-04.jpg') }}" alt="product image"></div>
-            <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
-        </div>
-    </div> --}}
-    <div class="review-sec specification-card">
-        <div class="review-header">
-            <h4>Specifications</h4>
-        </div>
-        <div class="card-body">
-            <div class="lisiting-featues">
-                <div class="row">
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-1.svg') }}" alt="Icon">
                         </div>
-                        <div class="featues-info">
-                            <span>Body </span>
-                            <h6>{{ $car->body }}</h6>
+                        <div class="product-img">
+                            <img src="{{ asset('img/cars/slider-02.jpg') }}" alt="Slider">
+                        </div>
+                        <div class="product-img">
+                            <img src="{{ asset('img/cars/slider-03.jpg') }}" alt="Slider">
+                        </div>
+                        <div class="product-img">
+                            <img src="{{ asset('img/cars/slider-04.jpg') }}" alt="Slider">
+                        </div>
+                        <div class="product-img">
+                            <img src="{{ asset('img/cars/slider-05.jpg') }}" alt="Slider">
                         </div>
                     </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-2.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Make </span>
-                            <h6>{{ $car->make }}</h6>
-                        </div>
+                    <div class="slider slider-nav-thumbnails">
+                        <div><img src="{{ asset('img/cars/slider-thum-01.jpg') }}" alt="product image"></div>
+                        <div><img src="{{ asset('img/cars/slider-thum-02.jpg') }}" alt="product image"></div>
+                        <div><img src="{{ asset('img/cars/slider-thum-03.jpg') }}" alt="product image"></div>
+                        <div><img src="{{ asset('img/cars/slider-thum-04.jpg') }}" alt="product image"></div>
+                        <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
                     </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-3.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Transmission </span>
-                            <h6>{{ $car->transmission }}</h6>
-                        </div>
+                </div> --}}
+                <div class="review-sec specification-card">
+                    <div class="review-header">
+                        <h4>Specifications</h4>
                     </div>
-                    {{-- 44444444444444444444444444444444444444444444444 --}}
-                    {{-- SECTION: Additional Features --}}
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-4.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Fuel Type </span>
-                            <h6>{{ $car->fuel_type }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-5.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Mileage </span>
-                            <h6>{{ $car->mileage }} Km</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-6.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Drivetrian </span>
-                            <h6>{{ $car->drivetrian }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-7.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Year</span>
-                            <h6>{{ $car->year }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-8.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>AC </span>
-                            <h6>{{ $car->ac }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-9.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>VIN </span>
-                            <h6>{{ $car->vin }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-10.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Door </span>
-                            <h6>{{ $car->door }} Doors</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-11.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Brake </span>
-                            <h6>{{ $car->brake }}</h6>
-                        </div>
-                    </div>
-                    <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
-                        <div class="feature-img">
-                            <img src="{{ asset('img/specification/specification-icon-12.svg') }}" alt="Icon">
-                        </div>
-                        <div class="featues-info">
-                            <span>Engine (Hp) </span>
-                            <h6>{{ $car->engine_hp }}</h6>
+                    <div class="card-body">
+                        <div class="lisiting-featues">
+                            <div class="row">
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-1.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Body </span>
+                                        <h6>{{ $car->body }}</h6>
+                                    </div>
+                                </div>
+                                <div class="slider slider-nav-thumbnails">
+                                    <div><img src="{{ asset('img/cars/slider-thum-01.jpg') }}" alt="product image"></div>
+                                    <div><img src="{{ asset('img/cars/slider-thum-02.jpg') }}" alt="product image"></div>
+                                    <div><img src="{{ asset('img/cars/slider-thum-03.jpg') }}" alt="product image"></div>
+                                    <div><img src="{{ asset('img/cars/slider-thum-04.jpg') }}" alt="product image"></div>
+                                    <div><img src="{{ asset('img/cars/slider-thum-05.jpg') }}" alt="product image"></div>
+                                </div>
+                            </div>
+                            <div class="review-sec specification-card">
+                                <div class="review-header">
+                                    <h4>Specifications</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="lisiting-featues">
+                                        <div class="row">
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-1.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Body </span>
+                                                    <h6>{{ $car->body }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-2.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Make </span>
+                                                    <h6>{{ $car->make }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-3.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Transmission </span>
+                                                    <h6>{{ $car->transmission }}</h6>
+                                                </div>
+                                            </div>
+                                            {{-- 44444444444444444444444444444444444444444444444 --}}
+                                            {{-- SECTION: Additional Features --}}
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-4.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Fuel Type </span>
+                                                    <h6>{{ $car->fuel_type }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-5.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Mileage </span>
+                                                    <h6>{{ $car->mileage }} Km</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-6.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Drivetrian </span>
+                                                    <h6>{{ $car->drivetrian }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-7.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Year</span>
+                                                    <h6>{{ $car->year }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-8.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>AC </span>
+                                                    <h6>{{ $car->ac }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-9.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>VIN </span>
+                                                    <h6>{{ $car->vin }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-10.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Door </span>
+                                                    <h6>{{ $car->door }} Doors</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-11.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Brake </span>
+                                                    <h6>{{ $car->brake }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                                <div class="feature-img">
+                                                    <img src="{{ asset('img/specification/specification-icon-12.svg') }}" alt="Icon">
+                                                </div>
+                                                <div class="featues-info">
+                                                    <span>Engine (Hp) </span>
+                                                    <h6>{{ $car->engine_hp }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-3.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Transmission </span>
+                                        <h6>{{ $car->transmission }}</h6>
+                                    </div>
+                                </div>
+                                {{-- 44444444444444444444444444444444444444444444444 --}}
+                                {{-- SECTION: Additional Features --}}
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-4.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Fuel Type </span>
+                                        <h6>{{ $car->fuel_type }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-5.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Mileage </span>
+                                        <h6>{{ $car->mileage }} Km</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-6.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Drivetrian </span>
+                                        <h6>{{ $car->drivetrian }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-7.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Year</span>
+                                        <h6>{{ $car->year }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-8.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>AC </span>
+                                        <h6>{{ $car->ac }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-9.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>VIN </span>
+                                        <h6>{{ $car->vin }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-10.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Door </span>
+                                        <h6>{{ $car->door }} Doors</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-11.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Brake </span>
+                                        <h6>{{ $car->brake }}</h6>
+                                    </div>
+                                </div>
+                                <div class="featureslist d-flex align-items-center col-xl-3 col-md-4 col-sm-6">
+                                    <div class="feature-img">
+                                        <img src="{{ asset('img/specification/specification-icon-12.svg') }}" alt="Icon">
+                                    </div>
+                                    <div class="featues-info">
+                                        <span>Engine (Hp) </span>
+                                        <h6>{{ $car->engine_hp }}</h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="review-sec listing-feature">
-        <div class="review-header">
-            <h4>Car Features</h4>
-        </div>
-        <div class="listing-description">
-            <div class="row">
-                @foreach ($car->features->chunk(ceil($car->features->count() / 3)) as $chunk)
-                <div class="col-md-4">
-                    <ul>
-                        @foreach ($chunk as $feature)
-                        <li><span><i class="fa-solid fa-check-double"></i></span>{{ $feature->name }}</li>
-                        @endforeach
+                <div class="review-sec listing-feature">
+                    <div class="review-header">
+                        <h4>Car Features</h4>
+                    </div>
+                    <div class="listing-description">
+                        <div class="row">
+                            @foreach ($car->features->chunk(ceil($car->features->count() / 3)) as $chunk)
+                            <div class="col-md-4">
+                                <ul>
+                                    @foreach ($chunk as $feature)
+                                    <li><span><i class="fa-solid fa-check-double"></i></span>{{ $feature->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                {{-- 55555555555555555555555555555555555555555555555555555 --}}
+                {{-- SECTION: Reviews --}}
+                <div class="review-sec listing-review">
+                    <!-- عرض عدد التقييمات -->
+                    <div class="review-header">
+                        <h4>Reviews<span class="me-2">({{ $car->reviews->count() }})</span></h4>
+                        <div class="reviewbox-list-rating">
+                            <p>
+                                @php
+                                $averageRating = $car->reviews->avg('rating');
+                                @endphp
+
+                                @for($i = 0; $i < floor($averageRating); $i++)
+                                    <i class="fas fa-star filled"></i>
+                                    @endfor
+                                    @if($averageRating - floor($averageRating) >= 0.5)
+                                    <i class="fas fa-star-half-alt filled"></i>
+                                    @endif
+                                    @for($i = 0; $i < (5 - ceil($averageRating)); $i++)
+                                        <i class="fas fa-star"></i>
+                                        @endfor
+                                        <span> ({{ number_format($averageRating, 1) }} out of 5)</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- عرض التقييمات التفصيلية -->
+                    @foreach($car->reviews as $review)
+                    <div class="review-card">
+                        <div class="review-header-group">
+                            <div class="review-widget-header">
+                                <div class="review-design">
+                                    <h6>
+                                        @if($review->pivot->user_id)
+                                        {{ $review->name }}
+                                        @else
+                                        Unknown User
+                                        @endif
+                                    </h6>
+                                    <p>{{ \Carbon\Carbon::parse($review->pivot->date)->format('d M Y') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>{{ $review->pivot->content }}</p>
+                        <ul class="review-list-rating">
+                            <li>
+                                <p>
+                                    @php
+                                    $wholeStars = floor($review->pivot->rating);
+                                    $fraction = $review->pivot->rating - $wholeStars;
+                                    $halfStar = ($review->pivot->rating - $wholeStars >= 0.5);
+                                    $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0);
+                                    @endphp
+
+                                    @for ($i = 0; $i < $wholeStars; $i++)
+                                        <i class="fas fa-star filled"></i>
+                                        @endfor
+
+                                        @if($halfStar)
+                                        <i class="fas fa-star-half-alt filled"></i>
+                                        @endif
+
+                                        @for ($i = 0; $i < $emptyStars; $i++)
+                                            <i class="far fa-star"></i>
+                                            @endfor
+
+                                            <span>({{ number_format($review->pivot->rating, 1) }})</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    @endforeach
+
+
+
+
+                </div>
+
+
+
+
+                {{-- SECTION: Leave a Reply --}}
+                @auth
+                <div class="review-sec leave-reply-form mb-0">
+                    <div class="review-header">
+                        <h4>Leave a Reply</h4>
+                    </div>
+                    <ul class="review-list-rating mb-3">
+                        <li>
+                            Quality
+                            <p>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </p>
+                        </li>
+                        <li>
+                            Price
+                            <p>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </p>
+                        </li>
+                        <li>
+                            Comfort
+                            <p>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </p>
+                        </li>
+                        <li>
+                            Driving
+                            <p>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </p>
+                        </li>
                     </ul>
                 </div>
                 @endforeach
-            </div>
-        </div>
-    </div>
-    {{-- 55555555555555555555555555555555555555555555555555555 --}}
-    {{-- SECTION: Reviews --}}
-    <div class="review-sec listing-review">
-        <!-- عرض عدد التقييمات -->
-        <div class="review-header">
-            <h4>Reviews<span class="me-2">({{ $car->reviews->count() }})</span></h4>
-            <div class="reviewbox-list-rating">
-                <p>
-                    @php
-                    $averageRating = $car->reviews->avg('rating');
-                    @endphp
 
-                    @for($i = 0; $i < floor($averageRating); $i++)
-                        <i class="fas fa-star filled"></i>
-                        @endfor
-                        @if($averageRating - floor($averageRating) >= 0.5)
-                        <i class="fas fa-star-half-alt filled"></i>
-                        @endif
-                        @for($i = 0; $i < (5 - ceil($averageRating)); $i++)
-                            <i class="fas fa-star"></i>
-                            @endfor
-                            <span> ({{ number_format($averageRating, 1) }} out of 5)</span>
-                </p>
-            </div>
-        </div>
 
-        <!-- عرض التقييمات التفصيلية -->
-        @foreach($car->reviews as $review)
-        <div class="review-card">
-            <div class="review-header-group">
-                <div class="review-widget-header">
-                    <div class="review-design">
-                        <h6>
-                            @if($review->pivot->user_id)
-                            {{ $review->name }}
-                            @else
-                            Unknown User
-                            @endif
-                        </h6>
-                        <p>{{ \Carbon\Carbon::parse($review->pivot->date)->format('d M Y') }}</p>
+
+
+            </div>
+
+
+
+
+            {{-- SECTION: Leave a Reply --}}
+            @auth
+            <div class="review-sec leave-reply-form mb-0">
+                <div class="review-header">
+                    <h4>Leave a Reply</h4>
+                </div>
+                <div class="card-body">
+                    <div class="review-list">
+                        <ul>
+                            <li class="review-box feedbackbox mb-0">
+                                <div class="review-details">
+                                    <form id="review-form" action="{{ route('reviews.submit', ['id' => $car->id]) }}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="input-block">
+                                                    <label>Full Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="input-block">
+                                                    <label>Email Address <span class="text-danger">*</span></label>
+                                                    <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="input-block">
+                                                    <label>Rating <span class="text-danger">*</span></label>
+                                                    <div class="star-rating">
+                                                        @for($i = 5; $i >= 1; $i--)
+                                                        <input type="radio" name="rating" value="{{ $i }}" id="rating-{{ $i }}">
+                                                        <label for="rating-{{ $i }}" class="fa fa-star"></label>
+                                                        @endfor
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="input-block">
+                                                    <label>Comments </label>
+                                                    <textarea rows="4" name="content" class="form-control" required></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn">
+                                            <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <p>{{ $review->pivot->content }}</p>
-            <ul class="review-list-rating">
-                <li>
-                    <p>
-                        @php
-                        $wholeStars = floor($review->pivot->rating);
-                        $fraction = $review->pivot->rating - $wholeStars;
-                        $halfStar = ($review->pivot->rating - $wholeStars >= 0.5);
-                        $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0);
-                        @endphp
+            @endauth
 
-                        @for ($i = 0; $i < $wholeStars; $i++)
-                            <i class="fas fa-star filled"></i>
-                            @endfor
-
-                            @if($halfStar)
-                            <i class="fas fa-star-half-alt filled"></i>
-                            @endif
-
-                            @for ($i = 0; $i < $emptyStars; $i++)
-                                <i class="far fa-star"></i>
-                                @endfor
-
-                                <span>({{ number_format($review->pivot->rating, 1) }})</span>
-                    </p>
-                </li>
+        </div>
+        {{-- 777777777777777777777777777777777777777777777777777777 --}}
+        {{-- SECTION: Availability --}}
+        <div class="col-lg-4 theiaStickySidebar">
+            <div class="review-sec mt-0">
+                <div class="review-header">
+                    <h4>Check Availability</h4>
+                </div>
+                <div>
+                    <form action="{{ route('check.availability') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="car_id" value="{{ $car->id }}">
+                        <ul>
+                            <li class="column-group-main">
+                                <div class="input-block m-0">
+                                    <label>Pickup Date</label>
+                                </div>
+                                <div class="input-block-wrapp sidebar-form">
+                                    <div class="input-block me-2">
+                                        <div class="group-img">
+                                            <input type="date" name="pickup_date_d" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="input-block">
+                                        <label>Full Name <span class="text-danger">*</span></label>
+                                        <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-block">
+                                        <label>Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="input-block">
+                                        <label>Comments </label>
+                                        <textarea rows="4" name="content" class="form-control" required></textarea>
+                                    </div>
+                                </div>
+                </div>
+                <div class="submit-btn">
+                    <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
+                </div>
+                </form>
+            </div>
+            </li>
             </ul>
         </div>
-        @endforeach
-
-
-
-
     </div>
-
-
-
-
-    {{-- SECTION: Leave a Reply --}}
-    @auth
-    <div class="review-sec leave-reply-form mb-0">
-        <div class="review-header">
-            <h4>Leave a Reply</h4>
-        </div>
-        <ul class="review-list-rating mb-3">
-            <li>
-                Quality
-                <p>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                </p>
-            </li>
-            <li>
-                Price
-                <p>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                </p>
-            </li>
-            <li>
-                Comfort
-                <p>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                </p>
-            </li>
-            <li>
-                Driving
-                <p>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                </p>
-            </li>
-        </ul>
-        <div class="card-body">
-            <div class="review-list">
-                <ul>
-                    <li class="review-box feedbackbox mb-0">
-                        <div class="review-details">
-                            <form id="review-form" action="{{ route('reviews.submit', ['id' => $car->id]) }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-block">
-                                            <label>Full Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="full_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-block">
-                                            <label>Email Address <span class="text-danger">*</span></label>
-                                            <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="input-block">
-                                            <label>Comments </label>
-                                            <textarea rows="4" name="content" class="form-control" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="submit-btn">
-                                    <button class="btn btn-primary submit-review" type="submit">Submit Review</button>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
     @else
     <!-- رسالة تطلب من المستخدم تسجيل الدخول -->

@@ -8,7 +8,9 @@
     <img src="{{ asset('img/cars/car-01.jpg')}}" class="img-fluid" alt="Toyota">
 </a>
 <div class="fav-item">
-<span class="featured-text">{{ $car->brand }}</span>
+<span class="featured-text">@php
+    echo json_decode($car->brand, true)['name'];
+    @endphp</span>
 <a  class="fav-icon" id="{{ $car->id }}" onclick="for_ajax_fav_home(this)">
 <i class="feather-heart"></i>
 </a>
@@ -20,7 +22,9 @@
 <img src="{{ asset('img/profiles/avatar-0.jpg')}}" alt="author">
 </a>
 <h3 class="listing-title">
-<a href="listing-details.html">{{ $car->brand }} {{ $car->model }} {{ $car->year }}</a>
+<a href="listing-details.html">@php
+    echo json_decode($car->brand, true)['name'];
+    @endphp {{ $car->model }} {{ $car->year }}</a>
 </h3>
 <div class="list-rating">
 
