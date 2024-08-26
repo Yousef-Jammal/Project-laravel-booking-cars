@@ -111,7 +111,7 @@ Route::get('/calendar', function () {
 
 use App\Http\Controllers\CompanyController;
 
-Route::middleware(['auth', 'company'])->group(function () {
+// Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
@@ -138,7 +138,7 @@ Route::get('/company/availability_center', [CompanyController::class, 'availabil
 Route::patch('/company/update-availability-status/{car}', [CompanyController::class, 'updateAvailabilityStatus'])->name('company.update-availability-status');
 
 
-});
+// });
 
 
 // // FOR ASEEL USES
