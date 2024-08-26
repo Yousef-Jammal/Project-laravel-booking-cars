@@ -76,3 +76,24 @@
 .fajerpop>div{
     height: 100%;
 }
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+}

@@ -34,6 +34,7 @@
 <h5>Payments Details</h5>
 </a>
 </li>
+<!-- hi -->
 </ul>
 <div class="tab-content" id="pills-tabContent">
 <div class="tab-pane fade show active" id="pills-booking" role="tabpanel" aria-labelledby="pills-booking-tab">

@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CarDetailsController;
+
 use App\Http\Controllers\BookingController;
 
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 
 
 /*
@@ -25,10 +29,52 @@ Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetail
 
 // yousef routes start
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
+
+Route::prefix('admin')->group(function(){
+
+    // Route::get('/', [HomeController::class, 'dashboard']);
+    Route::get('/', [AdminController::class, 'index'])->name('admin_index');
+    Route::get('/tables', [AdminController::class, 'index_tables'])->name('admin_index_tables');
+
+    // users table
+    Route::get('showUser/{id}', [AdminController::class, 'viewUser'])->name('admin_show_user');
+    Route::get('editUser/{id}', [AdminController::class, 'editUser'])->name('admin_edit_user');
+    Route::get('deleteUser/{id}', [AdminController::class, 'deleteUser'])->name('admin_delete_user');
+
+    Route::put('updateUser/{id}', [AdminController::class, 'updateUser'])->name('admin_update_user');
+
+
+    // cars table
+    Route::get('showCar/{id}', [AdminController::class, 'viewCar'])->name('admin_show_car');
+    Route::get('editCar/{id}', [AdminController::class, 'editCar'])->name('admin_edit_car');
+    Route::get('deleteCar/{id}', [AdminController::class, 'deleteCar'])->name('admin_delete_car');
+
+    Route::put('updateCar/{id}', [AdminController::class, 'updateCar'])->name('admin_update_car');
+
+    // companys table
+    Route::get('showCompany/{id}', [AdminController::class, 'viewCompany'])->name('admin_show_company');
+    Route::get('editCompany/{id}', [AdminController::class, 'editCompany'])->name('admin_edit_company');
+    Route::get('deleteCompany/{id}', [AdminController::class, 'deleteCompany'])->name('admin_delete_company');
+
+    Route::put('updateCompany/{id}', [AdminController::class, 'updateCompany'])->name('admin_update_company');
+
+});
+
+
+Route::prefix('log_sign')->group(function () {
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+});
 
 Route::prefix('home')->group(function () {
 
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
     Route::view('/viewCars', 'listing-list')->name('allCars');
 
@@ -56,6 +102,10 @@ Route::get('/filter', [SearchController::class, 'filterCars']);
 Route::get('/booking', function () {
     return view('booking');
 })->name('booking');
+Route::get('/calendar', function () {
+    return view('calendartest');
+});
+
 
 
 
@@ -69,7 +119,6 @@ use App\Http\Controllers\CompanyController;
 // Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
-// Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
 Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
@@ -88,12 +137,19 @@ Route::get('/company/carControlCenter', [CompanyController::class, 'carControlCe
     Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
 
     Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
+
+
+Route::get('/company/availability_center', [CompanyController::class, 'availabilityCenter'])->name('company.availabilityCenter');
+Route::patch('/company/update-availability-status/{car}', [CompanyController::class, 'updateAvailabilityStatus'])->name('company.update-availability-status');
+
+
 // });
 
+
 // // FOR ASEEL USES
-Route::get('/index', function () {
-    return view('index');
-});
+// Route::get('/index', function () {
+//     return view('index');
+// });
 
 // use App\Http\Controllers\LoginController;
 
@@ -108,7 +164,11 @@ Route::get('/index', function () {
 //
 // fajer route
 //
-Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
+Route::post('/cars/{id}/reviews', [
+    CarDetailsController::class,
+    'submitReview'
+])->name('reviews.submit')->middleware('auth');
+// Route::post('/cars/{id}/reviews', [CarDetailsController::class, 'submitReview'])->name('reviews.submit');
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 
@@ -142,3 +202,5 @@ Route::get('/booking', function () {
 Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
 
 //khawara end
+
+// fajer end//

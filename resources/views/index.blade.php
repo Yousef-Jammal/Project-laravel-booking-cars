@@ -234,14 +234,18 @@ Acura
                             {{--  result --}}
         @foreach ($cars as $car)                     {{--  start --}}
 
-            <div class="col-lg-4 col-md-6 col-12" data-aos="fade-down">
+            <div class="col-lg-4 col-md-6 col-12" >
                 <div class="listing-item">
                     <div class="listing-img">
-            <a href="listing-details.html">
+            <a href="{{ route('pruduct_details', $car->id) }}">
                 <img src="{{ asset('img/cars/car-01.jpg')}}" class="img-fluid" alt="Toyota">
             </a>
             <div class="fav-item">
-    <span class="featured-text">{{ $car->brand }}</span>
+    <span class="featured-text">
+        @php
+        echo json_decode($car->brand, true)['name'];
+        @endphp
+    </span>
     <a  class="fav-icon my_fav_for_js" id="{{ $car->id }}">
         <i class="feather-heart"></i>
     </a>
@@ -253,7 +257,9 @@ Acura
             <img src="{{ asset('img/profiles/avatar-0.jpg')}}" alt="author">
         </a>
         <h3 class="listing-title">
-            <a href="listing-details.html">{{ $car->brand }} {{ $car->model }} {{ $car->year }}</a>
+            <a href="listing-details.html"> @php
+                echo json_decode($car->brand, true)['name'];
+                @endphp {{ $car->model }} {{ $car->year }}</a>
         </h3>
 <div class="list-rating">
 

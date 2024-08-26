@@ -7,7 +7,6 @@ function foucusFav() {
             if(localStorage.getItem(`my_fav_form_home${i}`)){
                 if(document.getElementById(i)){
                     document.getElementById(i).classList.add("selected");
-                    // document.getElementById(myEle.id).className = 'fav-icon selected'
                 }
             }
         }
@@ -21,12 +20,23 @@ listEle.forEach(function(elem) {
 
     if(localStorage.getItem(`my_fav_form_home${this.id}`)){
         localStorage.removeItem(`my_fav_form_home${this.id}`);
-        console.log('not added')
+
     }else{
         localStorage.setItem(`my_fav_form_home${this.id}`, this.id)
-        console.log('added')
+
     }
 })
 });
+
+
+function for_ajax_fav_home(elem) {
+    if(localStorage.getItem(`my_fav_form_home${elem.id}`)){
+        localStorage.removeItem(`my_fav_form_home${elem.id}`);
+        elem.classList.remove("selected");
+    }else{
+        localStorage.setItem(`my_fav_form_home${elem.id}`, elem.id)
+        elem.classList.add("selected");
+    }
+}
 
 

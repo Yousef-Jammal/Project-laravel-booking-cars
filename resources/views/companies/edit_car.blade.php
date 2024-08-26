@@ -27,30 +27,26 @@
         </div>
     </div>
     <div class="container">
-        <div class="dashboard-nav">
+<div class="dashboard-nav">
             <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('company/dashboard') ? 'active' : '' }}"
-                        href="{{ route('company.dashboard') }}">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('company/rental-control-center') ? 'active' : '' }}"
-                        href="{{ route('company.rental-control-center') }}">Rental Control Center</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('company/carControlCenter') ? 'active' : '' }}"
-                        href="{{ route('company.carControlCenter') }}">Cars Control Center</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('company/user-info') ? 'active' : '' }}"
-                        href="{{ route('company.user-info') }}">Edit Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log-out</a>
-                </li>
+                            <li class="nav-item">
+                <a class="nav-link {{ request()->is('company/dashboard') ? 'active' : '' }}" href="{{ route('company.dashboard') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('company/rental-control-center') ? 'active' : '' }}" href="{{ route('company.rental-control-center') }}">Rental Control Center</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('company/carControlCenter') ? 'active' : '' }}" href="{{ route('company.carControlCenter') }}">Cars Control Center</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('company/availability_center') ? 'active' : '' }}" href="{{ route('company.availabilityCenter') }}">Availability Control Center</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('company/user-info') ? 'active' : '' }}" href="{{ route('company.user-info') }}">Edit Profile</a>
+            </li>
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}">Log-out</a>
+                </li> --}}
             </ul>
         </div>
     </div>
@@ -225,21 +221,30 @@
             </div>
 
             <!-- Step 4: Car Images -->
-            <div class="aseel-card">
-                <div class="aseel-card-header">
-                    <h3>Step 4: Car Images</h3>
+<div class="aseel-card">
+    <div class="aseel-card-header">
+        <h3>Step 4: Car Images</h3>
+    </div>
+    <div class="card-body">
+        <div class="aseel-form-group">
+            <label for="image">Car Image</label>
+            <input type="file" name="image[]" class="aseel-form-control" id="image" multiple>
+
+            @if ($images->isNotEmpty())
+                <div class="mt-3">
+                    @foreach ($images as $image)
+                        <div class="mb-2">
+                            <img src="{{url('/car_images/' . $image->name)}}" class="aseel-img-fluid" width="150" alt="Car Image">
+                            <label>
+                                <input type="checkbox" name="delete_images[]" value="{{ $image->id }}"> Delete
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="card-body">
-                    <div class="aseel-form-group">
-                        <label for="image">Car Image</label>
-                        <input type="file" name="image" class="aseel-form-control" id="image">
-                        @if ($car->images->isNotEmpty())
-                            <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="aseel-img-fluid mt-2"
-                                alt="Car Image">
-                        @endif
-                    </div>
-                </div>
-            </div>
+            @endif
+        </div>
+    </div>
+</div>
 
             <button type="submit" class="aseel-btn-primary">Update Car</button>
         </form>

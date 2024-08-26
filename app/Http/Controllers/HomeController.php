@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +43,7 @@ class HomeController extends Controller
         $data['return_date_h'] = $request->return_date_h;
 
         // print_r($data);
-        return redirect()->route('pruduct_list_from_home_with_filter', ['data_form_home' => $data]);
+        return redirect()->route('pruduct_list_from_home_with_filter', ['brands' => $data]);
 
     }
 
@@ -63,16 +64,28 @@ class HomeController extends Controller
     }
     public function ajax_search(Request $request)
     {
+
         if($request->ajax()){
 
             $searchUser = $request->searchUser;
 
             if($searchUser != ''){
 
+                $brands = Brand::select('*')
+                ->where('name', 'like', "%$searchUser%")
+                ->orderby('id', 'ASC')
+                ->paginate(1);
+
+                foreach($brands as $u){
+                    $brand_id =  $u->id;
+                }
+
                 $cars = Car::select('*')
-                ->where('brand', 'like', "%$searchUser%")
+                ->where('brand_id', '=', "$brand_id")
                 ->orderby('id', 'ASC')
                 ->paginate(6);
+
+                // var_dump($cars);
 
             }else{
                 $cars = Car::all()->paginate(6);
