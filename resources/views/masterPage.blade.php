@@ -228,7 +228,7 @@
     </div>
     <div class="update-form">
     <form action="#">
-    <span><i class="feather-mail</i></">span>
+    <span><i class="feather-mail"></i></span>
     <input type="email" class="form-control" placeholder="Enter You Email Here">
     <button type="submit" class="btn btn-subscribe"><span><i class="feather-send"></i></span></button>
     </form>
