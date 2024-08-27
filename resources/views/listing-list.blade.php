@@ -291,7 +291,7 @@
                                                 </div>
                                             </div>
                                             <div class="listing-button">
-                                                <a href="" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
+                                                <a href="{{route('cardetails.show',$car->id)}}" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
                                             </div>
                                         </div>
                                     </div>
