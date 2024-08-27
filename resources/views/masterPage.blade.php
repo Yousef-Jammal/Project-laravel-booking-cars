@@ -81,15 +81,15 @@
 </li>
 
 <li><a href="/carlist">Pricing</a></li>
-<li><a href="/home#footer" >FAQ</a></li>
-<li><a href="/home#footer">Testimonials</a></li>
+<li><a href="/home#frequently" >FAQ</a></li>
+<li><a href="/home#testimonials">Testimonials</a></li>
 <li><a href="/terms">Terms & Conditions</a></li>
-<li><a href="/privacy">Privacy Policy</a></li>
+<li><a href="/privacy">Privacy Policy</a></li>  
 <li><a href="/coming_soon">Coming Soon</a></li>
 </ul>
 </li>
 
-<li><a href="/Contact">Contact</a></li>
+<li><a href="/contact">Contact</a></li>
 <li class="login-link">
 <a href="log_sign/register">Sign Up</a>
 </li>

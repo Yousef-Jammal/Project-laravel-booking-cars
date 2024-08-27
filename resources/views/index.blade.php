@@ -483,7 +483,7 @@
 </section>
 
 
-<section class="section about-testimonial testimonials-section">
+<section class="section about-testimonial testimonials-section" id="testimonials">
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
@@ -647,7 +647,7 @@
 </section>
 
 
-<section class="section faq-section bg-light-primary">
+<section class="section faq-section bg-light-primary" id="frequently">
     <div class="container">
 
         <div class="section-heading" data-aos="fade-down">
