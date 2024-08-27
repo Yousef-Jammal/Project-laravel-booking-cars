@@ -100,16 +100,17 @@
 {{-- <li class="has-submenu">
 <a href="javascript:void(0);">Booking</a>
 <ul class="submenu">
-<li><a href="booking-payment.html">Booking Checkout</a></li>
-<li><a href="booking.html">Booking</a></li>
-<li><a href="invoice-details.html">Invoice Details</a></li>
+<li><a href="/booking_c">Booking Checkout</a></li>
+<li><a href="/booking">Booking</a></li>
 </ul>
 </li>
-<li class="has-submenu">
-<a href="javascript:void(0);">Error Page</a>
-<ul class="submenu">
-<li><a href="error-404.html">404 Error</a></li>
-<li><a href="error-500.html">500 Error</a></li>
+
+<li><a href="/carlist">Pricing</a></li>
+<li><a href="/home#frequently" >FAQ</a></li>
+<li><a href="/home#testimonials">Testimonials</a></li>
+<li><a href="/terms">Terms & Conditions</a></li>
+<li><a href="/privacy">Privacy Policy</a></li>  
+<li><a href="/coming_soon">Coming Soon</a></li>
 </ul>
 </li> --}}
 {{-- <li><a href="pricing.html">Pricing</a></li> --}}
@@ -186,7 +187,7 @@
 </header>
 
 @yield('content')
-<footer class="footer">
+<footer class="footer" id="footer">
 
     <div class="footer-top aos" data-aos="fade-up">
     <div class="container">
@@ -292,13 +293,13 @@
     <div class="footer-address">
     <span><i class="feather-phone-call"></i></span>
     <div class="addr-info">
-    <a href="tel:+1(888)7601940">+ 1 (888) 760 1940</a>
+    <a href="tel:+1(888)7601940">+962-785532135  Eng : Mo-Khawara</a>
     </div>
     </div>
     <div class="footer-address">
     <span><i class="feather-mail"></i></span>
     <div class="addr-info">
-    <a href="https://dreamsrent.dreamstechnologies.com/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9abfa2bbb7aab6bff4b9b5b7"><span class="__cf_email__" data-cfemail="80f3f5f0f0eff2f4c0e5f8e1edf0ece5aee3efed">[email&#160;protected]</span></a>
+    <a href="https://dreamsrent.dreamstechnologies.com/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9abfa2bbb7aab6bff4b9b5b7"><span class="__cf_email__" data-cfemail="80f3f5f0f0eff2f4c0e5f8e1edf0ece5aee3efed">Mohamed.Alkhawara@yahoo.com</span></a>
     </div>
     </div>
     <div class="update-form">
@@ -343,7 +344,7 @@
     <div class="row align-items-center">
     <div class="col-md-6">
     <div class="copyright-text">
-    <p>© 2023 Dreams Rent. All Rights Reserved.</p>
+    <p>© 2024 Dreams Rent. All Rights Reserved.</p>
     </div>
     </div>
     <div class="col-md-6">
@@ -351,10 +352,10 @@
     <div class="copyright-menu">
     <div class="vistors-details">
     <ul class="d-flex">
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg" alt') }}="Paypal"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg" alt') }}="Visa"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg" alt') }}="Master"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg" alt') }}="applegpay"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg')}}" alt="Paypal"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg ')}}" alt="Visa"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg')}}" alt="Master"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg')}}" alt="applegpay"></a></li>
     </ul>
     </div>
     </div>
