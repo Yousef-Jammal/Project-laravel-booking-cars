@@ -141,13 +141,13 @@
 <ul class="nav header-navbar-rht">
 
   @auth
-    @if(Auth::user()->role_id == 2) {{-- Renter --}}
+@if(Auth::user()->role->name == 'renter') {{-- Renter --}}
         <li class="nav-item">
             <a class="nav-link header-login" href="{{ route('user.user-info') }}">
                 <span><i class="fa-regular fa-user"></i></span> Profile
             </a>
         </li>
-    @elseif(Auth::user()->role_id == 3) {{-- Company --}}
+@elseif(Auth::user()->role->name == 'company') {{-- Company --}}
         <li class="nav-item">
             <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
                 <span><i class="fa-regular fa-user"></i></span> Dashboard
@@ -193,12 +193,13 @@
     <div class="container">
     <div class="row">
     <div class="col-lg-7">
-    <div class="row">
-    <div class="col-lg-4 col-md-6">
+    <div style="justify-content: space-between;" class="row">
+    <div  style="flex: 1;" class="col-lg-4 col-md-6">
 
-    <div class="footer-widget footer-menu">
+    <div  class="footer-widget footer-menu">
     <h5 class="footer-title">About Company</h5>
-    <ul>
+    <p>rusted car rentals made easy. Choose from luxury, sports, or everyday cars with competitive prices and excellent service. Your satisfaction is our priority</p>
+    {{-- <ul>
     <li>
     <a href="about.html">Our Company</a>
     </li>
@@ -220,11 +221,11 @@
     <li>
     <a href="javascript:void(0)">Virtual Auto Show</a>
     </li>
-    </ul>
+    </ul> --}}
     </div>
 
     </div>
-    <div class="col-lg-4 col-md-6">
+    {{-- <div class="col-lg-4 col-md-6">
 
     <div class="footer-widget footer-menu">
     <h5 class="footer-title">Vehicles Type</h5>
@@ -253,32 +254,42 @@
     </ul>
     </div>
 
-    </div>
-    <div class="col-lg-4 col-md-6">
+    </div> --}}
+    <div style="flex: 1;" class="col-lg-4 col-md-6">
 
     <div class="footer-widget footer-menu">
     <h5 class="footer-title">Quick links</h5>
     <ul>
     <li>
-    <a href="javascript:void(0)">My Account</a>
+         @auth
+@if(Auth::user()->role->name == 'renter') {{-- Renter --}}
+        <li class="nav-item">
+            <a class="nav-link header-login" href="{{ route('user.user-info') }}">
+My Account            </a>
+        </li>
+@elseif(Auth::user()->role->name == 'company') {{-- Company --}}
+        <li class="nav-item">
+            <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
+            My Account</a>
+        </li>
+    @endif
+    @endauth
+    </li>
+
+    <li>
+    <a href="{{ route('about') }}">About Us</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Champaigns</a>
+    <a href="{{ route('coming_soon') }}">Coming Soon</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Dreamsrental Dealers</a>
+    <a href="{{ route('terms') }}">Terms Condition</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Deals and Incentive</a>
+    <a href="{{ route('privacy') }}">Privacy Policy</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Financial Services</a>
-    </li>
-    <li>
-    <a href="javascript:void(0)">Dreamsrental Insurance</a>
-    </li>
-    <li>
-    <a href="javascript:void(0)">Dreamsrental Care</a>
+    <a href="{{ route('contact') }}">Contact</a>
     </li>
     </ul>
     </div>
@@ -314,19 +325,19 @@
     <h6>Connect with us</h6>
     <ul class="nav-social">
     <li>
-    <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-instagram fi-icon"></i></a>
+    <a href="j{{ route('coming_soon') }}"><i class="fab fa-instagram fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-behance fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-behance fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-twitter fi-icon"></i> </a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-twitter fi-icon"></i> </a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-linkedin fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-linkedin fi-icon"></i></a>
     </li>
     </ul>
     </div>
@@ -351,12 +362,12 @@
 
     <div class="copyright-menu">
     <div class="vistors-details">
-    <ul class="d-flex">
+    {{-- <ul class="d-flex">
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg')}}" alt="Paypal"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg ')}}" alt="Visa"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg')}}" alt="Master"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg')}}" alt="applegpay"></a></li>
-    </ul>
+    </ul> --}}
     </div>
     </div>
 

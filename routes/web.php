@@ -156,9 +156,9 @@ Route::get('/user/rental-request-center', [UserController::class, 'rentalRequest
 
 
 // // FOR ASEEL USES
-Route::get('/contact', function () {
-    return view('contact-us');
-})->name('contact');
+// Route::get('/contact', function () {
+//     return view('contact-us');
+// })->name('contact');
 
 // use App\Http\Controllers\LoginController;
 
@@ -212,19 +212,19 @@ Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
 Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
 Route::get('about', function () {
     return view('about-us');
-});
+})->name('about');
 Route::get('coming_soon', function () {
     return view('coming-soon');
-});
+})->name('coming_soon');
 Route::get('terms', function () {
     return view('terms-condition');
-});
+})->name('terms');
 Route::get('privacy', function () {
     return view('privacy-policy');
-});
+})->name('privacy');
 Route::get('contact', function () {
     return view('contact-us');
-});
+})->name('contact');
 
 //khawara end
 
