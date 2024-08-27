@@ -67,7 +67,7 @@
 
         <div class="section-heading" data-aos="fade-down">
             <h2>How It Works</h2>
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+            <p>Select your car, choose your dates, book, and drive. Simple and quick!</p>
         </div>
 
         <div class="services-work">
