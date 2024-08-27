@@ -460,7 +460,7 @@
                     </div>
                     <div class="owner-detail">
                         <div class="owner-img">
-                            <a href="#"><img src="{{ asset('storage/profile_images/' . ($car->user->image ?? 'default.png'))}}" alt="{{ $car->user->name }}"></a>
+                            <a href="#"><img src='{{ asset("user_images/" . ($car->user->image ?? "default.png"))}}' alt="{{ $car->user->name }}"></a>
                         </div>
                         <div class="reviewbox-list-rating">
                             <h5><a>{{ $car->user->name }}</a></h5>
