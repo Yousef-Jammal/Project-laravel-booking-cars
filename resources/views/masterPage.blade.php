@@ -47,7 +47,7 @@
 <span></span>
 </span>
 </a>
-<a href="index-2.html" class="navbar-brand logo">
+<a href="/home" class="navbar-brand logo">
 <img src="{{ asset('img/logo.svg') }}" class="img-fluid" alt="Logo">
 </a>
 <a href="index-2.html" class="navbar-brand logo-small">
@@ -62,77 +62,48 @@
 <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
 </div>
 <ul class="main-nav">
-<li class="active"><a href="index-2.html">Home</a></li>
+<li class="active"><a href="/home">Home</a></li>
 <li class="has-submenu">
-<a href="#">Listings <i class="fas fa-chevron-down"></i></a>
-<ul class="submenu">
-<li><a href="listing-grid.html">Listing Grid</a></li>
-<li><a href="listing-list.html">Listing List</a></li>
-<li><a href="listing-details.html">Listing Details</a></li>
-</ul>
+<a href="/carlist">View Cars <i class="fas fa-chevron-down"></i></a>
+
 </li>
 <li class="has-submenu">
 <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
 <ul class="submenu">
-<li><a href="about-us.html">About Us</a></li>
-<li class="has-submenu">
-<a href="javascript:void(0);">Authentication</a>
-<ul class="submenu">
-<li><a href="register.html">Signup</a></li>
-<li><a href="login.html">Signin</a></li>
-<li><a href="forgot-password.html">Forgot Password</a></li>
-<li><a href="reset-password.html">Reset Password</a></li>
-</ul>
-</li>
+<li><a href="/about">About Us</a></li>
+
 <li class="has-submenu">
 <a href="javascript:void(0);">Booking</a>
 <ul class="submenu">
-<li><a href="booking-payment.html">Booking Checkout</a></li>
-<li><a href="booking.html">Booking</a></li>
-<li><a href="invoice-details.html">Invoice Details</a></li>
+<li><a href="/booking_c">Booking Checkout</a></li>
+<li><a href="/booking">Booking</a></li>
 </ul>
 </li>
-<li class="has-submenu">
-<a href="javascript:void(0);">Error Page</a>
-<ul class="submenu">
-<li><a href="error-404.html">404 Error</a></li>
-<li><a href="error-500.html">500 Error</a></li>
+
+<li><a href="/carlist">Pricing</a></li>
+<li><a href="/home#footer" >FAQ</a></li>
+<li><a href="/home#footer">Testimonials</a></li>
+<li><a href="/terms">Terms & Conditions</a></li>
+<li><a href="/privacy">Privacy Policy</a></li>
+<li><a href="/coming_soon">Coming Soon</a></li>
 </ul>
 </li>
-<li><a href="pricing.html">Pricing</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="gallery.html">Gallery</a></li>
-<li><a href="our-team.html">Our Team</a></li>
-<li><a href="testimonial.html">Testimonials</a></li>
-<li><a href="terms-condition.html">Terms & Conditions</a></li>
-<li><a href="privacy-policy.html">Privacy Policy</a></li>
-<li><a href="maintenance.html">Maintenance</a></li>
-<li><a href="coming-soon.html">Coming Soon</a></li>
-</ul>
-</li>
-<li class="has-submenu">
-<a href="#">Blog <i class="fas fa-chevron-down"></i></a>
-<ul class="submenu">
-<li><a href="blog-list.html">Blog List</a></li>
-<li><a href="blog-grid.html">Blog Grid</a></li>
-<li><a href="blog-details.html">Blog Details</a></li>
-</ul>
-</li>
-<li><a href="contact-us.html">Contact</a></li>
+
+<li><a href="/Contact">Contact</a></li>
 <li class="login-link">
-<a href="register.html">Sign Up</a>
+<a href="log_sign/register">Sign Up</a>
 </li>
 <li class="login-link">
-<a href="login.html">Sign In</a>
+<a href="log_sign/login">Sign In</a>
 </li>
 </ul>
 </div>
 <ul class="nav header-navbar-rht">
 <li class="nav-item">
-<a class="nav-link header-login" href="login.html"><span><i class="fa-regular fa-user"></i></span>Sign In</a>
+<a class="nav-link header-login" href="log_sign/login"><span><i class="fa-regular fa-user"></i></span>Sign In</a>
 </li>
 <li class="nav-item">
-<a class="nav-link header-reg" href="register.html"><span><i class="fa-solid fa-lock"></i></span>Sign Up</a>
+<a class="nav-link header-reg" href="log_sign/register"><span><i class="fa-solid fa-lock"></i></span>Sign Up</a>
 </li>
 </ul>
 </nav>
@@ -140,7 +111,7 @@
 </header>
 
 @yield('content')
-<footer class="footer">
+<footer class="footer" id="footer">
 
     <div class="footer-top aos" data-aos="fade-up">
     <div class="container">
@@ -246,18 +217,18 @@
     <div class="footer-address">
     <span><i class="feather-phone-call"></i></span>
     <div class="addr-info">
-    <a href="tel:+1(888)7601940">+ 1 (888) 760 1940</a>
+    <a href="tel:+1(888)7601940">+962-785532135  Eng : Mo-Khawara</a>
     </div>
     </div>
     <div class="footer-address">
     <span><i class="feather-mail"></i></span>
     <div class="addr-info">
-    <a href="https://dreamsrent.dreamstechnologies.com/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9abfa2bbb7aab6bff4b9b5b7"><span class="__cf_email__" data-cfemail="80f3f5f0f0eff2f4c0e5f8e1edf0ece5aee3efed">[email&#160;protected]</span></a>
+    <a href="https://dreamsrent.dreamstechnologies.com/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9abfa2bbb7aab6bff4b9b5b7"><span class="__cf_email__" data-cfemail="80f3f5f0f0eff2f4c0e5f8e1edf0ece5aee3efed">Mohamed.Alkhawara@yahoo.com</span></a>
     </div>
     </div>
     <div class="update-form">
     <form action="#">
-    <span><i class="feather-mail"></i></span>
+    <span><i class="feather-mail</i></">span>
     <input type="email" class="form-control" placeholder="Enter You Email Here">
     <button type="submit" class="btn btn-subscribe"><span><i class="feather-send"></i></span></button>
     </form>
@@ -297,7 +268,7 @@
     <div class="row align-items-center">
     <div class="col-md-6">
     <div class="copyright-text">
-    <p>© 2023 Dreams Rent. All Rights Reserved.</p>
+    <p>© 2024 Dreams Rent. All Rights Reserved.</p>
     </div>
     </div>
     <div class="col-md-6">
@@ -305,10 +276,10 @@
     <div class="copyright-menu">
     <div class="vistors-details">
     <ul class="d-flex">
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg" alt') }}="Paypal"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg" alt') }}="Visa"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg" alt') }}="Master"></a></li>
-    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg" alt') }}="applegpay"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg')}}" alt="Paypal"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg ')}}" alt="Visa"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg')}}" alt="Master"></a></li>
+    <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg')}}" alt="applegpay"></a></li>
     </ul>
     </div>
     </div>
