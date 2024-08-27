@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Carbon\Carbon;
+
 
 class AuthController extends Controller
 {
@@ -62,11 +64,13 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:8|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
         ]);
 
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'date_created' => Carbon::now()->format('Y-m-d')
         ]);
 
         Auth::login($user);

@@ -76,7 +76,7 @@ Route::prefix('home')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
-    Route::view('/viewCars', 'listing-list')->name('allCars');
+    Route::view('/carlist', 'listing-list')->name('allCars');
 
     Route::view('/viewCars-f', 'listing-list')->name('pruduct_list_from_home_with_filter');  // this node to handle from listing-list page
 
