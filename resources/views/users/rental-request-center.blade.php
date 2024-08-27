@@ -5,11 +5,11 @@
         <div class="container">
             <div class="row align-items-center text-center">
                 <div class="col-md-12 col-12">
-                    <h2 class="breadcrumb-title">{{ $user->name }} Cars </h2>
+                    <h2 class="breadcrumb-title">{{ $user->name }} Dashboard </h2>
                     <nav aria-label="breadcrumb" class="page-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }} Rental History Center </li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }} Booking Requests </li>
                         </ol>
                     </nav>
                 </div>

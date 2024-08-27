@@ -98,7 +98,6 @@ class UserController extends Controller
     {
         $userId = Auth::id();
         $user = User::find($userId);
-        $userId = 1; // Assuming you want to filter by this user ID
 
         // Fetch the status IDs for "Confirmed" and "Cancelled"
         $confirmedStatus = Status::where('name', 'Pending')->first();

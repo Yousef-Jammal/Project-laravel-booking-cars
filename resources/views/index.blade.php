@@ -485,7 +485,7 @@ Acura
 <section class="section about-testimonial testimonials-section">
 <div class="container">
 
-<div class="section-heading" data-aos="fade-down">
+<div id="reviewNavbar" class="section-heading" data-aos="fade-down">
 <h2 class="title text-white">What People say about us? </h2>
 <p class="description text-white">Read reviews from satisfied customers about our excellent service and vehicles.</p>
 </div>
@@ -649,7 +649,7 @@ Acura
 <section class="section faq-section bg-light-primary">
 <div class="container">
 
-<div class="section-heading" data-aos="fade-down">
+<div id="faqNavbar" class="section-heading" data-aos="fade-down">
 <h2>Frequently Asked Questions </h2>
 <p>Get answers to common questions about booking, vehicles, and policies in our FAQ section.</p>
 </div>

@@ -67,6 +67,7 @@ Route::prefix('log_sign')->group(function () {
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
@@ -155,9 +156,9 @@ Route::get('/user/rental-request-center', [UserController::class, 'rentalRequest
 
 
 // // FOR ASEEL USES
-// Route::get('/index', function () {
-//     return view('index');
-// });
+Route::get('/contact', function () {
+    return view('contact-us');
+})->name('contact');
 
 // use App\Http\Controllers\LoginController;
 
