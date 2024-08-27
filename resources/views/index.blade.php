@@ -317,7 +317,7 @@
                                         </div>
                                     </div>
                                     <div class="listing-button">
-                                        <a href="{{ route('pruduct_details', $car->id ) }}" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
+                                        <a href="{{ route('cardetails.show', $car->id ) }}" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Rent Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -486,10 +486,10 @@
 <section class="section about-testimonial testimonials-section" id="testimonials">
     <div class="container">
 
-<div id="reviewNavbar" class="section-heading" data-aos="fade-down">
-<h2 class="title text-white">What People say about us? </h2>
-<p class="description text-white">Read reviews from satisfied customers about our excellent service and vehicles.</p>
-</div>
+        <div id="reviewNavbar" class="section-heading" data-aos="fade-down">
+            <h2 class="title text-white">What People say about us? </h2>
+            <p class="description text-white">Read reviews from satisfied customers about our excellent service and vehicles.</p>
+        </div>
 
         <div class="owl-carousel about-testimonials testimonial-group mb-0 owl-theme">
 
@@ -650,10 +650,10 @@
 <section class="section faq-section bg-light-primary" id="frequently">
     <div class="container">
 
-<div id="faqNavbar" class="section-heading" data-aos="fade-down">
-<h2>Frequently Asked Questions </h2>
-<p>Get answers to common questions about booking, vehicles, and policies in our FAQ section.</p>
-</div>
+        <div id="faqNavbar" class="section-heading" data-aos="fade-down">
+            <h2>Frequently Asked Questions </h2>
+            <p>Get answers to common questions about booking, vehicles, and policies in our FAQ section.</p>
+        </div>
 
         <div class="faq-info">
             <div class="faq-card bg-white" data-aos="fade-down">

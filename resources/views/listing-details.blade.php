@@ -63,14 +63,14 @@
                     <div class="slider detail-bigimg">
                         @foreach($car->images as $image)
                         <div class="product-img">
-                            <img src="{{  url("/car_images/" . $image->name) }}" alt="Slider">
+                            <img src='{{  asset("/car_images/" . $image->name) }}' alt="Slider">
                         </div>
                         @endforeach
                     </div>
                     <div class="slider slider-nav-thumbnails">
                         @foreach($car->images as $image)
                         <div>
-                            <img src="{{  url("/car_images/" . $image->name) }}" alt="product image">
+                            <img src='{{  asset("/car_images/" . $image->name) }}' alt="product image">
                         </div>
                         @endforeach
                     </div>

@@ -22,10 +22,9 @@ class CompanyController extends Controller
 
     public function showCars($id)
     {
-        $company = Company::findOrFail($id);
         $brands = Brand::all();
 
-        $cars = Car::where('user_id', $company->user_id)->get();
+        $cars = Car::where('user_id', $id)->get();
 
         return view('listing-list', compact('brands', 'cars'));
     }
