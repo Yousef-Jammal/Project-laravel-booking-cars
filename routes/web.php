@@ -76,7 +76,7 @@ Route::prefix('home')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
-    Route::view('/viewCars', 'listing-list')->name('allCars');
+    Route::view('/carlist', 'listing-list')->name('allCars');
 
     Route::view('/viewCars-f', 'listing-list')->name('pruduct_list_from_home_with_filter');  // this node to handle from listing-list page
 
@@ -209,10 +209,22 @@ Route::get('/booking', function () {
 
 Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
 Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
+Route::get('about', function () {
+    return view('about-us');
+});
+Route::get('coming_soon', function () {
+    return view('coming-soon');
+});
+Route::get('terms', function () {
+    return view('terms-condition');
+});
+Route::get('privacy', function () {
+    return view('privacy-policy');
+});
+Route::get('contact', function () {
+    return view('contact-us');
+});
 
 //khawara end
 
 // fajer end//
-
-
-
