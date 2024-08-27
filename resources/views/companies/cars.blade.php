@@ -27,7 +27,215 @@
         <div class="col-lg-3 col-12 theiaStickySidebar">
         <form action="#" autocomplete="off" class="sidebar-form">
 
-            <div class="sidebar-heading">
+<!-- Filter Form -->
+                <div class="sidebar-heading">
+                    <h6>What Are You Looking For</h6>
+                </div>
+                <form action="/search" id="search_form">
+                    <div class="product-search">
+                        <div class="form-custom">
+                            <input type="text" class="form-control" id="member_search1" placeholder="Search" name="queryy">
+                            <span onclick="submitSearch()" id="search_submit" style="cursor: pointer;"><img src="{{ asset('img/icons/search.svg') }}" alt="img"></span>
+                        </div>
+                    </div>
+                </form>
+                <form action="/filter" autocomplete="off" class="sidebar-form">
+
+
+                    <div class="accordion" id="accordionMain1">
+                        <div class="card-header-new" id="headingOne">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Car Brand
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample1">
+                            <div class="card-body-chat">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="checkBoxes1">
+                                            <div class="selectBox-cont">
+                                                @foreach($brands as $brand)
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="brands_array[]" value="{{$brand->id}}">
+                                                    <span class="checkmark"></span> {{$brand->name}}
+                                                </label>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="accordion" id="accordionMain2">
+                        <div class="card-header-new" id="headingTwo">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    Date
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                            <div class="card-body-chat">
+                                <div id="checkBoxes6">
+                                    <div class="selectBox-cont">
+                                        <div class="input-block">
+                                            <label>Pickup Date</label>
+                                        </div>
+                                        <div class="input-block-wrapp">
+                                            <!-- Pickup Date Input -->
+                                            <div class="input-block date-widget">
+                                                <div class="group-img">
+                                                    <input type="text" class="form-control datetimepicker" name="startDate" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-block">
+                                            <label>Return Date</label>
+                                        </div>
+                                        <div class="input-block-wrapp">
+                                            <!-- Return Date Input -->
+                                            <div class="input-block date-widget">
+                                                <div class="group-img">
+                                                    <input type="text" class="form-control datetimepicker" name="endDate" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="view-content">
+                                            <div class="viewall-One">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="accordion" id="accordionMain3">
+                        <div class="card-header-new" id="headingThree">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    Doors
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
+                            <div class="card-body-chat">
+                                <div id="checkBoxes3">
+                                    <div class="selectBox-cont">
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="doors_array[]" value="2">
+                                            <span class="checkmark"></span> 2
+                                        </label>
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="doors_array[]" value="4">
+                                            <span class="checkmark"></span> 4
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="accordion" id="accordionMain4">
+                        <div class="card-header-new" id="headingFour">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    Price
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
+                            <div class="card-body-chat">
+                                <div class="filter-range">
+                                    <input type="text" class="input-range" name="price" placeholder="Enter Price">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion" id="accordionMain5">
+                        <div class="card-header-new" id="headingFive">
+                            <h6 class="filter-title">
+                                <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                    Rating
+                                    <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample5">
+                            <div class="card-body-chat">
+                                <div id="checkBoxes4">
+                                    <div class="selectBox-cont">
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="ratings_array[]" value="5">
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                        </label>
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="ratings_array[]" value="4">
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                        </label>
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="ratings_array[]" value="3">
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                        </label>
+                                        <label class="custom_check w-100">
+                                            <input type="checkbox" name="ratings_array[]" value="2">
+                                            <span class="checkmark"></span>
+                                            <i class="fas fa-star filled"></i>
+                                            <i class="fas fa-star filled"></i>
+                                        </label>
+                                        <div class="view-content">
+                                            <div class="viewall-Two">
+                                                <label class="custom_check w-100">
+                                                    <input type="checkbox" name="ratings_array[]" value="1">
+                                                    <span class="checkmark"></span>
+                                                    <i class="fas fa-star filled"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary filter-btn">
+                        <span><i class="feather-filter me-2"></i></span>Filter results
+                    </button>
+                    <a href="#" class="reset-filter">Reset Filter</a>
+                </form>
+            </div>
+
+
+            {{-- <div class="sidebar-heading"> --}}
                 <h3>What Are You Looking For</h3>
                 </div>
                 <div class="product-search">
@@ -329,7 +537,7 @@
                             <div style="height: 250px; object-fit: cover; " class="listing-img">
                                 <a href="{{ route('car.details', $car->id) }}">
                                     @if($car->images->isNotEmpty())
-                                    <img src="{{ asset('storage/' . $car->images->first()->name) }}" class="img-fluid" alt="{{ $car->brand }}">
+                                    <img src='{{url("/car_images/".$car->images->first()->name)}}' class="img-fluid" alt="{{ $car->brand }}">
                                 @else
                                     <img src="{{ asset('img/cars/car-01.jpg') }}" class="img-fluid" alt="Default Image">
                                 @endif
@@ -344,7 +552,7 @@
                             <div class="listing-content">
                                 <div class="listing-features">
                                     <a href="javascript:void(0)" class="author-img">
-                                        <img src="{{ asset('img/profiles/avatar-0.jpg') }}" alt="author">
+                                        <img src='{{url("/user_images/".$car->users->images->name)}}' alt="author">
                                     </a>
                                     <h3 class="listing-title">
                                         <a href="{{ route('car.details', $car->id) }}">{{ $car->brand }} {{ $car->model }}</a>

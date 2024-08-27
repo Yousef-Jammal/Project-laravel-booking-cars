@@ -78,7 +78,7 @@
             alt="Contact" />
         </div>
         <div class="col-lg-6">
-          <form action="#">
+          <form id="newsletter-form" action="#">
             <div class="row">
               <h1>Get in touch!</h1>
               <div class="col-md-12">
@@ -120,5 +120,65 @@
     </div>
   </div>
 </section>
+    <!-- Popup Modal -->
+    <div id="thankyouModal" class="AS_popup">
+        <div class="AS_popup-content">
+            <span class="AS_close-btn">&times;</span>
+            <div class="AS_popup-body">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/newsletter-4828216-4019450.png" alt="Paper Airplane" class="AS_popup-image" />
+                <h2>Thank You!</h2>
+                <p>
+                    We appreciate you reaching out.
+                    <br />Your email has been confirmed, we will get back to you asap,  and you will now receive
+                    the latest sales, and exclusive news directly
+                    in your inbox. Stay tuned and get ready to level up your looks!
+                </p>
+                <button class="AS_done-btn">Done</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById("thankyouModal");
+        var closeBtn = document.getElementsByClassName("AS_close-btn")[0];
+        var doneBtn = document.getElementsByClassName("AS_done-btn")[0];
 
+        document.getElementById("newsletter-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../../../../Project-4-Ecommerce-WebsitePHP-MySql/api/newsletter_submit.php", true);
+            // true: Indicates that the request should be asynchronous, 
+            // the code will continue to run while the request is being processed.
+
+            xhr.onload = function() {
+                // if (xhr.status === 200) {
+                //     if (xhr.responseText === "success") {
+                        modal.style.display = "block"; // Show the popup if successful
+                //     } else {
+                //         alert(xhr.responseText); // Display error message
+                //     }
+                // } else {
+                //     alert("An error occurred during the request.");
+                // }
+            };
+
+            xhr.send(formData); // Send the form data via AJAX
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        doneBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 @endsection

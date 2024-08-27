@@ -308,3 +308,71 @@ background-color: #a6eaf7;
 
 
 /* ****************************************************************************************** */
+
+
+  .AS_popup {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .AS_popup-content {
+      background-color: #fefefe;
+      margin: 7% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 10px;
+  }
+
+  .AS_close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
+
+  .AS_close-btn:hover,
+  .AS_close-btn:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .AS_popup-body img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+  }
+
+  .AS_popup-body h2 {
+      color: #FF9307;
+      margin-bottom: 20px;
+
+  }
+
+  .AS_popup-body p {
+      color: #7d4802;
+      margin-bottom: 20px;
+  }
+
+  .AS_done-btn {
+      background-color: #FF9307;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .AS_done-btn:hover {
+      background-color: #7d4802;
+  }

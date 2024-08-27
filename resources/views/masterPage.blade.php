@@ -141,13 +141,13 @@
 <ul class="nav header-navbar-rht">
 
   @auth
-    @if(Auth::user()->role_id == 2) {{-- Renter --}}
+@if(Auth::user()->role->name == 'renter') {{-- Renter --}}
         <li class="nav-item">
             <a class="nav-link header-login" href="{{ route('user.user-info') }}">
                 <span><i class="fa-regular fa-user"></i></span> Profile
             </a>
         </li>
-    @elseif(Auth::user()->role_id == 3) {{-- Company --}}
+@elseif(Auth::user()->role->name == 'company') {{-- Company --}}
         <li class="nav-item">
             <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
                 <span><i class="fa-regular fa-user"></i></span> Dashboard
@@ -193,12 +193,13 @@
     <div class="container">
     <div class="row">
     <div class="col-lg-7">
-    <div class="row">
-    <div class="col-lg-4 col-md-6">
+    <div style="justify-content: space-between;" class="row">
+    <div  style="flex: 1;" class="col-lg-4 col-md-6">
 
-    <div class="footer-widget footer-menu">
+    <div  class="footer-widget footer-menu">
     <h5 class="footer-title">About Company</h5>
-    <ul>
+    <p>rusted car rentals made easy. Choose from luxury, sports, or everyday cars with competitive prices and excellent service. Your satisfaction is our priority</p>
+    {{-- <ul>
     <li>
     <a href="about.html">Our Company</a>
     </li>
@@ -220,11 +221,11 @@
     <li>
     <a href="javascript:void(0)">Virtual Auto Show</a>
     </li>
-    </ul>
+    </ul> --}}
     </div>
 
     </div>
-    <div class="col-lg-4 col-md-6">
+    {{-- <div class="col-lg-4 col-md-6">
 
     <div class="footer-widget footer-menu">
     <h5 class="footer-title">Vehicles Type</h5>
@@ -253,32 +254,42 @@
     </ul>
     </div>
 
-    </div>
-    <div class="col-lg-4 col-md-6">
+    </div> --}}
+    <div style="flex: 1;" class="col-lg-4 col-md-6">
 
     <div class="footer-widget footer-menu">
     <h5 class="footer-title">Quick links</h5>
     <ul>
     <li>
-    <a href="javascript:void(0)">My Account</a>
+         @auth
+@if(Auth::user()->role->name == 'renter') {{-- Renter --}}
+        <li class="nav-item">
+            <a class="nav-link header-login" href="{{ route('user.user-info') }}">
+My Account            </a>
+        </li>
+@elseif(Auth::user()->role->name == 'company') {{-- Company --}}
+        <li class="nav-item">
+            <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
+            My Account</a>
+        </li>
+    @endif
+    @endauth
+    </li>
+
+    <li>
+    <a href="{{ route('about') }}">About Us</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Champaigns</a>
+    <a href="{{ route('coming_soon') }}">Coming Soon</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Dreamsrental Dealers</a>
+    <a href="{{ route('terms') }}">Terms Condition</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Deals and Incentive</a>
+    <a href="{{ route('privacy') }}">Privacy Policy</a>
     </li>
     <li>
-    <a href="javascript:void(0)">Financial Services</a>
-    </li>
-    <li>
-    <a href="javascript:void(0)">Dreamsrental Insurance</a>
-    </li>
-    <li>
-    <a href="javascript:void(0)">Dreamsrental Care</a>
+    <a href="{{ route('contact') }}">Contact</a>
     </li>
     </ul>
     </div>
@@ -303,30 +314,30 @@
     </div>
     </div>
     <div class="update-form">
-    <form action="#">
+    {{-- <form id="newsletter-form" action="#">
     <span><i class="feather-mail"></i></span>
     <input type="email" class="form-control" placeholder="Enter You Email Here">
     <button type="submit" class="btn btn-subscribe"><span><i class="feather-send"></i></span></button>
-    </form>
+    </form> --}}
     </div>
     </div>
     <div class="footer-social-widget">
     <h6>Connect with us</h6>
     <ul class="nav-social">
     <li>
-    <a href="javascript:void(0)"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fa-brands fa-facebook-f fa-facebook fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-instagram fi-icon"></i></a>
+    <a href="j{{ route('coming_soon') }}"><i class="fab fa-instagram fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-behance fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-behance fi-icon"></i></a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-twitter fi-icon"></i> </a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-twitter fi-icon"></i> </a>
     </li>
     <li>
-    <a href="javascript:void(0)"><i class="fab fa-linkedin fi-icon"></i></a>
+    <a href="{{ route('coming_soon') }}"><i class="fab fa-linkedin fi-icon"></i></a>
     </li>
     </ul>
     </div>
@@ -351,12 +362,12 @@
 
     <div class="copyright-menu">
     <div class="vistors-details">
-    <ul class="d-flex">
+    {{-- <ul class="d-flex">
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/paypal.svg')}}" alt="Paypal"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/visa.svg ')}}" alt="Visa"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/master.svg')}}" alt="Master"></a></li>
     <li><a href="javascript:void(0)"><img class="img-fluid" src="{{ asset('img/icons/applegpay.svg')}}" alt="applegpay"></a></li>
-    </ul>
+    </ul> --}}
     </div>
     </div>
 
@@ -369,6 +380,8 @@
 
     </footer>
 
+
+
     </div>
 
     <div class="progress-wrap active-progress">
@@ -376,6 +389,69 @@
     <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
     </svg>
     </div>
+
+    <!-- Popup Modal -->
+    <div id="thankyouModal" class="AS_popup">
+        <div class="AS_popup-content">
+            <span class="AS_close-btn">&times;</span>
+            <div class="AS_popup-body">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/newsletter-4828216-4019450.png" alt="Paper Airplane" class="AS_popup-image" />
+                <h2>Thank You!</h2>
+                <p>
+                    We appreciate you reaching out.
+                    <br />Your email has been confirmed,we will get back to you asap,  and you will now receive
+                    the latest sales, and exclusive news directly
+                    in your inbox. Stay tuned and get ready to level up your looks!
+                </p>
+                <button class="AS_done-btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("thankyouModal");
+        var closeBtn = document.getElementsByClassName("AS_close-btn")[0];
+        var doneBtn = document.getElementsByClassName("AS_done-btn")[0];
+
+        document.getElementById("newsletter-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../../../../Project-4-Ecommerce-WebsitePHP-MySql/api/newsletter_submit.php", true);
+            // true: Indicates that the request should be asynchronous, 
+            // the code will continue to run while the request is being processed.
+
+            xhr.onload = function() {
+                // if (xhr.status === 200) {
+                //     if (xhr.responseText === "success") {
+                        modal.style.display = "block"; // Show the popup if successful
+                //     } else {
+                //         alert(xhr.responseText); // Display error message
+                //     }
+                // } else {
+                //     alert("An error occurred during the request.");
+                // }
+            };
+
+            xhr.send(formData); // Send the form data via AJAX
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        doneBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
