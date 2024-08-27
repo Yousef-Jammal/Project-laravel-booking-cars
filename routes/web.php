@@ -65,8 +65,8 @@ Route::prefix('admin')->group(function(){
 
 Route::prefix('log_sign')->group(function () {
 
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/login', [AuthController::class, 'showLoginForm']);
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
@@ -77,7 +77,7 @@ Route::prefix('home')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
-    Route::view('/carlist', 'listing-list')->name('allCars');
+    Route::get('/carlist', [HomeController::class, 'allCars'])->name('allCars');
 
     Route::view('/viewCars-f', 'listing-list')->name('pruduct_list_from_home_with_filter');  // this node to handle from listing-list page
 
@@ -156,9 +156,11 @@ Route::get('/user/rental-request-center', [UserController::class, 'rentalRequest
 
 
 // // FOR ASEEL USES
-Route::get('/contact', function () {
+Route::get('/contact_us', function () {
     return view('contact-us');
 })->name('contact');
+
+
 
 // use App\Http\Controllers\LoginController;
 
