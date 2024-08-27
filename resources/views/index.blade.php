@@ -517,7 +517,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"The car was perfect for our road trip."</p>
                     </div>
                 </div>
             </div>
@@ -547,7 +547,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Quick pickup and return, zero hassles!"</p>
                     </div>
                 </div>
             </div>
@@ -577,7 +577,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Affordable rates and a great selection of vehicles."</p>
                     </div>
                 </div>
             </div>
@@ -607,7 +607,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Smooth booking process and friendly customer support."</p>
                     </div>
                 </div>
             </div>
@@ -637,7 +637,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>"Excellent service and spotless cars. Highly recommend!"</p>
                     </div>
                 </div>
             </div>

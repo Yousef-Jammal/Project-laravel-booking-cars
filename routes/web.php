@@ -209,10 +209,22 @@ Route::get('/booking', function () {
 
 Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
 Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
+Route::get('about', function () {
+    return view('about-us');
+});
+Route::get('coming_soon', function () {
+    return view('coming-soon');
+});
+Route::get('terms', function () {
+    return view('terms-condition');
+});
+Route::get('privacy', function () {
+    return view('privacy-policy');
+});
+Route::get('contact', function () {
+    return view('contact-us');
+});
 
 //khawara end
 
 // fajer end//
-
-
-

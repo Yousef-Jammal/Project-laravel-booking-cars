@@ -35,7 +35,7 @@ class AuthController extends Controller
 
             $role_id = $data['id']; // Accessing the 'id' value
 
-            if ($role_id == '1') {
+            if ($role_id == '3') {
                 return redirect()->route('admin_index');
             } else {
                 return redirect()->route('home_index');
