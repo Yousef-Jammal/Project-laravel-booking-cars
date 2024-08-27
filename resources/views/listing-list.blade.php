@@ -230,7 +230,7 @@
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
                                     <a href="">
-                                        {{-- <img src="car_images/{{ $car->images->first()->name }}" class="img-fluid" alt="car-image" height="200px" width="200px"> --}}
+                                        <img src="car_images/{{ $car->images->first()->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
                                     </a>
                                 </div>
                                 <div class="bloglist-content w-100">
@@ -282,7 +282,7 @@
                                             <div class="blog-list-title">
                                                 <div class="title-bottom">
                                                     <div class="car-list-icon">
-                                                        <img src="user_images/{{ $car->user->image }}" alt="car icon">
+                                                        <img src='{{asset("user_images/" . $car->user->image) }}' alt="car icon">
                                                     </div>
                                                     <div class="address-info">
                                                         <h5><a href="#">{{ $car->user->name }}</a></h5>
