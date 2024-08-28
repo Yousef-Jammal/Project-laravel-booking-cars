@@ -150,8 +150,8 @@ class CompanyController extends Controller
 
     public function rentalControlCenter()
     {
-        // $userId = Auth::id();
-        $userId = 1;
+        $userId = Auth::id();
+        // $userId = 1;
 
         // Get the rentals for the cars owned by the authenticated user, including the image
         $rentals = Rental::whereHas('car', function ($query) use ($userId) {
@@ -192,8 +192,8 @@ class CompanyController extends Controller
 
     public function carControlCenter()
     {
-        // $userId = auth()->user()->id;
-        $userId = 1;
+        $userId = auth()->user()->id;
+        // $userId = 1;
         $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
         $times_rented = [];
         $total_profit = [];
