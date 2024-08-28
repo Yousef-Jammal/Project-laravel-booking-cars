@@ -26,7 +26,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'), $request->remember)) {
-            $request->session()->regenerate();
+        //     $request->session()->regenerate();
 
             // Redirect based on user role
             $user = Auth::user();
@@ -34,17 +34,17 @@ class AuthController extends Controller
             $data = json_decode($user->role, true); // Decodes into an associative array
 
             $role_id = $data['id']; // Accessing the 'id' value
-
-            if ($role_id == '3') {
+            if ($role_id == '1') {
                 return redirect()->route('admin_index');
             } else {
                 return redirect()->route('home_index');
             }
         }
+        return redirect()->route('home_index');
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        // return back()->withErrors([
+        //     'email' => 'The provided credentials do not match our records.',
+        // ]);
     }
 
 

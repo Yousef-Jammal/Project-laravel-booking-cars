@@ -98,9 +98,12 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function allCars()
     {
-        //
+        // return 'jfdsl';
+        $brands = Brand::all();
+        $cars = Car::all();
+        return view('listing-list', ['brands'=>$brands, 'cars'=>$cars]);
     }
 
     /**
