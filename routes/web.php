@@ -227,7 +227,11 @@ Route::get('privacy', function () {
 Route::get('contact', function () {
     return view('contact-us');
 })->name('contact');
+Route::get('invoice-details', function () {
+    return view('invoice-details');
+})->name('contact');
+
 
 //khawara end
-
+//invoice-details
 // fajer end//

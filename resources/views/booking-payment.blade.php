@@ -45,57 +45,20 @@
                     <div class="row booking-info">
                         <div class="col-md-4 col-sm-6 pickup-address">
                             <h5>Pickup</h5>
-                            <p>{{ $location }}</p>
-                            <span>Date & time : 11 Jan 2023</span>
+                            <p>{{ 'location'}}</p>
+                            <span>Date & time : {{ $data['pickup_date'}}</span>
                         </div>
                         <div class="col-md-4 col-sm-6 drop-address">
                             <h5>Drop Off</h5>
-                            <p>{{ $location }}</p>
-                            <span>Date & time : 11 Jan 2023</span>
+                            <p>{{ $data['location'] }}</p>
+                            <span>Date & time : {{ 'return_date' }}</span>
                         </div>
                         <div class="col-md-4 col-sm-6 booking-amount">
                             <h5>Amount to be paid</h5>
-                            <h6><span>${{$totalPrice }} </span><i class="feather-info"></i></h6>
+                            <h6><span>{{ 'total_price' }} </span><i class="feather-info"></i></h6>
                         </div>
                     </div>
-                    <div class="booking-form">
-                        <div class="booking-title">
-                            <h5>Enter Below details</h5>
-                        </div>
-                        <form class="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-block">
-                                        <label>Enter Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Your Name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-block">
-                                        <label>Email Address <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" placeholder="Your Email">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-block">
-                                        <label>Phone Number <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="+ 1 65656565656">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-block">
-                                        <label>Address <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Adderss">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-block">
-                                        <label>Comments <span class="text-danger"> *</span> </label>
-                                        <textarea rows="4" class="form-control" placeholder="Comments"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="payment-btn">
+                         <div class="payment-btn">
                                 <button class="btn btn-primary submit-review" type="button" id="goToPaymentBtn">
                                     Go to Payment <i class="fa-solid fa-arrow-right ms-2"></i>
                                 </button>
@@ -104,7 +67,7 @@
                     </div>
                 </div>
                 <div class="back-detail-page">
-                    <a href="listing-details.html"><i class="fa-solid fa-arrow-left me-2"></i> Back to detail page</a>
+                    <a href="/booking_c"><i class="fa-solid fa-arrow-left me-2"></i> Back to detail page</a>
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-payment" role="tabpanel" aria-labelledby="pills-payment-tab"
@@ -116,7 +79,7 @@
                     <div class="booking-info">
                         <div class="booking-amount">
                             <h5>Your Payment</h5>
-                            <h6><span>${{$totalPrice }} </span><i class="feather-info"></i></h6>
+                            <h6><span>{{$data['total_price'] }} </span><i class="feather-info"></i></h6>
                         </div>
                     </div>
                     <div class="payment-method">
@@ -188,12 +151,108 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="payment-btn">
+                              
+                            </form>
+
+
+
+
+<section class="order-confirmation">
+<div class="container">
+<div class="confirm-order">
+<div class="section-title">
+<h3>Order Confirmation</h3>
+<h5>Order Total : <span>$315.00</span></h5>
+</div>
+<div class="booking-details order-confirm-box">
+<div class="row">
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Car Details</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<div class="order-car">
+<span><img src="{{ asset('img/detail-smallcar-img-2.jpg') }}" alt="car"></span>
+<h5>Chevrolet Camaro<span>$315</span></h5>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Extra Service</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<ul class="address-info">
+<li>Baby Seat : $10</li>
+</ul>
+</div>
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Payment details</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<div class="visa-card">
+<a href="#"><img src="{{ asset('img/visa.svg') }}" alt="Visa"></a>
+<h6>Visa card ending in 1245</h6>
+</div>
+</div>
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Pickup Location & Date</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<ul class="address-info">
+<li>45, 4th Avanue Mark Street USA</li>
+<li>11 Jan 2023 - 11:00 PM</li>
+</ul>
+</div>
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Your Information</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<ul class="address-info">
+<li>Casandra</li>
+<li><a href="https://dreamsrent.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="36555745575852445776534e575b465a531855595b">[email&#160;protected]</a></li>
+<li>+1 73940 45355</li>
+<li>45, 4th Avanue Mark Street USA</li>
+</ul>
+</div>
+<div class="col-lg-6">
+<div class="confirmation-title">
+<h4>Drop Off Location</h4>
+<a href="javascript:void(0)">Edit</a>
+</div>
+<ul class="address-info mb-0">
+<li>45, 4th Avanue Mark Street USA</li>
+<li>11 Jan 2023 - 11:00 PM</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="payment-btn">
                                     <button class="btn btn-primary submit-review w-100" type="button" id="submitBtn">
-                                        ${{$totalPrice }}
+                                    {{$data['total'] }}
                                     </button>
                                 </div>
-                            </form>
+</div>
+</div>
+</section>
+
+<div class="modal custom-modal fade check-availability-modal payment-success-modal" id="pages_edit" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-md">
+<div class="modal-content">
+<div class="modal-body">
+<div class="payment-success">
+<span class="check"><i class="fa-solid fa-check-double"></i></span>
+<h5>Order Confirmed</h5>
+<p>You Payment has been successfully done.
+Trasaction id :<span> #5064164454</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
                             <script>
@@ -254,7 +313,7 @@
                     </div>
                 </div>
                 <div class="back-detail-page">
-                    <a href="booking.html"><i class="fa-solid fa-arrow-left me-2"></i> Back to Booking Detail</a>
+                    <a href="/booking_c"><i class="fa-solid fa-arrow-left me-2"></i> Back to Booking Detail</a>
                 </div>
             </div>
         </div>
