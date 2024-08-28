@@ -146,7 +146,8 @@
         <div class="modal-content">
             <a href="javascript:history.back()" class="back-button">Back</a>
             <div class="modal-title">Choose Dates</div>
-            <form action="#">
+            <form action="{{route('rental-session')}}" method="post">
+                @csrf
                 <div class="input-container">
                     <span class="icon icon-calendar"></span>
                     <input type="text" class="datepicker" name="rent_start" placeholder="Pick Up Date">
@@ -154,6 +155,7 @@
                 <div class="input-container">
                     <span class="icon icon-calendar"></span>
                     <input type="text" class="datepicker" name="rent_end" placeholder="Drop Off Date">
+                    <input type="hidden" id="car_id" name="car_id" value="" />
                 </div>
                 <button type="submit">Submit</button>
             </form>
@@ -177,6 +179,7 @@
             const response = await fetch('http://127.0.0.1:8000/api/disabled_dates/' + id[1]);
             const data = await response.json();
             disabledDates = data.dates_array;
+            document.querySelector("#car_id").value = id[1];
         });
 
         function disableDates(date) {

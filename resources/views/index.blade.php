@@ -239,12 +239,10 @@
                             <div class="listing-item">
                                 <div class="listing-img">
                                     <a href="{{ route('pruduct_details', $car->id) }}">
-                                        {{-- @php
-                                        @endphp --}}
                                         @php
-                                         $car_image = json_decode($car->images, true)[0]['name'];
+                                        $car_image = $car->images->first()->name;
                                         @endphp
-                                        <img src="{{ asset("car_images/$car_image")}}" class="img-fluid" alt="Toyota">
+                                        <img src='{{ asset("car_images/".$car_image)}}' class="img-fluid" alt="Toyota">
                                     </a>
                                     <div class="fav-item">
                                         <span class="featured-text">

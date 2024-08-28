@@ -57,16 +57,6 @@ class SearchController extends Controller
             $ratings_array = [0, 1, 2, 3, 4, 5];
         }
 
-
-
-        // $cars = Car::whereIn('brand_id', $brands_array)
-        //     ->whereIn('door', $doors_array)
-        //     ->where('price_per_day', '<=', $price)
-        //     ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)->get();
-
-        // $cars = $cars
-        // dd($cars->first()->model);
-
         $startDate = $request->startDate;
         $endDate = $request->endDate;
 
