@@ -16,10 +16,10 @@ class BookingController extends Controller
 
      public function getCompanyLocation(Request $request)
      {
-        $totalPrice = 315; 
+        $totalPrice = 20; 
 
          return view('booking-payment',[
-            'location' =>'slat',
+            'location' =>'salt',
             'totalPrice' => $totalPrice, 
          ]);
 
