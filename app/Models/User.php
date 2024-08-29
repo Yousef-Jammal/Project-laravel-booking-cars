@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'role_id',
         'phone',
-        'date_created'
+        'date_created',
+        'image'
     ];
 
     /**
@@ -54,7 +55,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Car::class, 'reviews')->withPivot('rating', 'date', 'content');
     }
-    
+
     public function cars()
     {
         return $this->hasMany(Car::class);
