@@ -32,6 +32,7 @@ return new class extends Migration
             $table->float('rating')->default(0);
             $table->integer('num_of_ratings')->default(0);
             $table->float('price_per_day');
+            $table->string('status'); //pending , accepted and rejected 
             $table->date('date_created');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
