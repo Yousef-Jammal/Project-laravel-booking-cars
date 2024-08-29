@@ -62,6 +62,10 @@
                         <div class="step-number">3</div>
                         <div class="step-title">Car Images</div>
                     </div>
+                                      <div class="step-indicator">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Car Certificate</div>
+                    </div>
                 </div>
                 <form class="carCreateAseel" method="POST" action="{{ route('company.store_car') }}" enctype="multipart/form-data">
                     @csrf
@@ -269,23 +273,47 @@
         <button type="button" class="btn btn-secondary" id="add-image-button">
             <i class="fas fa-plus"></i> Add More Images
         </button>
+                    <button type="button" class="btn btn-secondary prev-step mt-3">Previous</button>
+            <button type="button" class="btn btn-primary next-step mt-3">Next</button>
+
+        {{-- <button type="submit" class="btn btn-success mt-3">Submit</button> --}}
+    
+        </div>
+    </div>
+    </div>
+
+
+    
+ <!-- Step 4: Car Images -->
+    <div id="step-4" class="form-step">
+    <div class="card">
+        <div class="card-header">
+
+        <h5>Step 4: Car Certificate </h5>
+        </div>
+        <div class="card-body">
+
+        <div id="image-input-container">
+            <!-- Image Input 1 -->
+            <div class="form-group image-input">
+                <label for="imageC">Upload Image 1</label>
+                <input type="file" class="form-control" name="imagesC" id="imageC" onchange="previewFile(this)">
+                <div id="previewC" class="preview mt-2"></div>
+            </div>
+
+        <!-- Button to Add More Images -->
+        <button type="button" class="btn btn-secondary" id="add-image-button">
+            <i class="fas fa-plus"></i> Add More Images
+        </button>
 
         <button type="submit" class="btn btn-success mt-3">Submit</button>
     
         </div>
     </div>
     </div>
+    </div>
 
-                    <!-- Step 3: Car Images -->
-                    {{-- <div id="step-3" class="form-step">
-                        <h5>Step 3: Car Images</h5>
-                        <div class="form-group">
-                            <label for="images">Upload Images</label>
-                            <input type="file" class="form-control" name="images[]" id="images" multiple>
-                        </div>
-                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </div> --}}
+
                 </form>
                 
             </div>
@@ -384,6 +412,64 @@
         container.appendChild(newInputDiv);
     });
 </script>
+
+<script>
+    let imageCount = 1;
+
+    function previewFile(input) {
+        const previewId = input.id.replace('imageC', 'previewC');
+        const preview = document.getElementById(previewId);
+        const file = input.files[0];
+
+        // Clear previous preview
+        preview.innerHTML = '';
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                const img = document.createElement('img');
+                img.src = reader.result;
+                img.style.maxWidth = '100px';
+                img.style.marginTop = '10px';
+                preview.appendChild(img);
+            };
+
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    }
+
+    document.getElementById('add-image-button').addEventListener('click', function() {
+        imageCount++;
+        const container = document.getElementById('image-input-container');
+
+        const newInputDiv = document.createElement('div');
+        newInputDiv.classList.add('form-group', 'image-input');
+
+        const newLabel = document.createElement('label');
+        newLabel.setAttribute('for', 'imageC' + imageCount);
+        newLabel.textContent = 'Upload Image ' + imageCount;
+
+        const newInput = document.createElement('input');
+        newInput.type = 'file';
+        newInput.classList.add('form-control');
+        newInput.name = 'imagesC';
+        newInput.id = 'imageC' + imageCount;
+        newInput.setAttribute('onchange', 'previewFile(this)');
+
+        const newPreviewDiv = document.createElement('div');
+        newPreviewDiv.id = 'previewC' + imageCount;
+        newPreviewDiv.classList.add('previewC', 'mt-2');
+
+        newInputDiv.appendChild(newLabel);
+        newInputDiv.appendChild(newInput);
+        newInputDiv.appendChild(newPreviewDiv);
+
+        container.appendChild(newInputDiv);
+    });
+</script>
+
+
 
 <script>
     let featureCount = 3;

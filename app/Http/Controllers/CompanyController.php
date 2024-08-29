@@ -23,10 +23,12 @@ class CompanyController extends Controller
     public function showCars($id)
     {
         $brands = Brand::all();
+        $company = Company::findOrFail($id);
+        $userId = Auth::id();
+        $user = User::find($userId);
+        $cars = Car::where('user_id', $id)->with('images')->get();
 
-        $cars = Car::where('user_id', $id)->get();
-
-        return view('listing-list', compact('brands', 'cars'));
+        return view('companies.cars', compact('user', 'brands','company', 'cars'));
     }
 
 
@@ -194,7 +196,10 @@ class CompanyController extends Controller
     {
         $userId = auth()->user()->id;
         // $userId = 1;
-        $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
+        $cars = Car::where('user_id', $userId)
+            ->where('status', 'accepted')
+            ->with('images', 'features')
+            ->get();
         $times_rented = [];
         $total_profit = [];
         foreach ($cars as $car) {
@@ -223,6 +228,26 @@ class CompanyController extends Controller
         return view('companies.car_control_center', compact('company', 'cars', 'times_rented', 'total_profit'));
     }
 
+    public function requestsCar()
+    {
+        
+        $userId = auth()->user()->id;
+        // $userId = 1;
+        $cars = Car::where('user_id', $userId)
+        ->where(function ($query) {
+            $query->where('status', 'pending')
+            ->orWhere('status', 'rejected');
+        })
+        ->with('images', 'features')
+        ->get();
+
+
+        $company = Company::where('user_id', $userId)->first();
+
+
+        return view('companies.requestsCar', compact('company', 'cars'));
+    }
+
     public function createCar()
     {
         $userId = auth()->user()->id;
@@ -231,6 +256,7 @@ class CompanyController extends Controller
 
         return view('companies.create_car', compact('brands', 'company'));
     }
+
 
     public function storeCar(Request $request)
     {
@@ -254,6 +280,7 @@ class CompanyController extends Controller
             'features.*' => 'nullable|string|max:255',
             'images' => 'required|array|min:1',
             'images.*' => 'required|image',
+            'imagesC' => 'nullable|image', // Validate the certificate image if provided
         ]);
 
         // Create a new car record
@@ -268,14 +295,16 @@ class CompanyController extends Controller
         $car->fuel_type = $validatedData['fuel_type'];
         $car->make = $validatedData['make'];
         $car->transmission = $validatedData['transmission'];
-        $car->drivetrian = $validatedData['drivetrain'];
+        $car->drivetrian = $validatedData['drivetrain']; // Corrected spelling of "drivetrain"
         $car->vin = $validatedData['vin'];
         $car->brake = $validatedData['brake'];
         $car->year = $validatedData['year'];
         $car->engine_hp = $validatedData['engine_hp'];
         $car->price_per_day = $validatedData['price_per_day'];
         $car->user_id = auth()->id();
-        $car->availability = "Availabile";
+        $car->availability = "Available";
+        $car->status = "pending";
+
 
         $car->save();
 
@@ -284,22 +313,92 @@ class CompanyController extends Controller
             $car->features()->create(['name' => $feature]);
         }
 
-        // Save images
+        // Save car images from step 3
         foreach ($request->file('images') as $image) {
             $imageName = time() . '.' . $image->extension();
             $image->move(public_path('car_images'), $imageName);
             $car->images()->create(['name' => $imageName]);
         }
-        // Save images
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $image) {
-        //         $path = $image->store('cars', 'public');
-        //         $car->images()->create(['name' => $path]);
-        //     }
-        // }
+
+        // Save certificate image from step 4 (if provided)
+        if ($request->hasFile('imagesC')) {
+            $certificateImage = $request->file('imagesC');
+            $certificateImageName = 'certificate_' . time() . '.' . $certificateImage->extension();
+            $certificateImage->move(public_path('car_images'), $certificateImageName);
+            $car->images()->create(['name' => $certificateImageName, 'type' => 'certificate']);
+        }
 
         return redirect()->route('company.carControlCenter')->with('success', 'Car created successfully.');
     }
+
+    // public function storeCar(Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'brand_id' => 'required|exists:brands,id',
+    //         'model' => 'required|string|max:255',
+    //         'body' => 'required|string|max:255',
+    //         'ac' => 'required|in:Yes,No',
+    //         'door' => 'required|integer|min:1|max:10',
+    //         'mileage' => 'required|integer|min:0',
+    //         'fuel_type' => 'required|string|max:255',
+    //         'make' => 'required|string|max:255',
+    //         'transmission' => 'required|string|max:255',
+    //         'drivetrain' => 'required|string|max:255',
+    //         'vin' => 'required|string|max:255',
+    //         'brake' => 'required|string|max:255',
+    //         'year' => 'required|integer|min:1886|max:' . date('Y'),
+    //         'engine_hp' => 'required|integer|min:0',
+    //         'price_per_day' => 'required|numeric|min:0',
+    //         'features' => 'required|array|min:1',
+    //         'features.*' => 'nullable|string|max:255',
+    //         'images' => 'required|array|min:1',
+    //         'images.*' => 'required|image',
+    //     ]);
+
+    //     // Create a new car record
+    //     $car = new Car();
+
+    //     $car->brand_id = $validatedData['brand_id'];
+    //     $car->model = $validatedData['model'];
+    //     $car->body = $validatedData['body'];
+    //     $car->ac = $validatedData['ac'];
+    //     $car->door = $validatedData['door'];
+    //     $car->mileage = $validatedData['mileage'];
+    //     $car->fuel_type = $validatedData['fuel_type'];
+    //     $car->make = $validatedData['make'];
+    //     $car->transmission = $validatedData['transmission'];
+    //     $car->drivetrian = $validatedData['drivetrain'];
+    //     $car->vin = $validatedData['vin'];
+    //     $car->brake = $validatedData['brake'];
+    //     $car->year = $validatedData['year'];
+    //     $car->engine_hp = $validatedData['engine_hp'];
+    //     $car->price_per_day = $validatedData['price_per_day'];
+    //     $car->user_id = auth()->id();
+    //     $car->availability = "Availabile";
+
+    //     $car->save();
+
+    //     // Save features
+    //     foreach ($validatedData['features'] as $feature) {
+    //         $car->features()->create(['name' => $feature]);
+    //     }
+
+    //     // Save images
+    //     foreach ($request->file('images') as $image) {
+    //         $imageName = time() . '.' . $image->extension();
+    //         $image->move(public_path('car_images'), $imageName);
+    //         $car->images()->create(['name' => $imageName]);
+    //     }
+    //     // Save images
+    //     // if ($request->hasFile('images')) {
+    //     //     foreach ($request->file('images') as $image) {
+    //     //         $path = $image->store('cars', 'public');
+    //     //         $car->images()->create(['name' => $path]);
+    //     //     }
+    //     // }
+
+    //     return redirect()->route('company.carControlCenter')->with('success', 'Car created successfully.');
+    // }
 
 
     public function showCar($id)
@@ -350,6 +449,8 @@ class CompanyController extends Controller
             'features' => 'required|array',
             'features.*' => 'nullable|string|max:255',
             'image.*' => 'nullable|image',
+            'image' => 'nullable|image',
+
         ]);
         $car->update($request->only([
             'brand_id',
