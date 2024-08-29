@@ -29,7 +29,7 @@ class RentalController extends Controller
         session()->put('rent_end', $rent_end);
         session()->put('total', $total);
         $data = ['car_id' => $car->id, 'user_id' => $user_id, 'rent_start' => $rent_start, 'rent_end' => $rent_end, 'total' => $total];
-        return view('cardetails.show', compact('car', 'data'));
+        return view('listing-details', compact('car', 'data'));
         // dd($request->rent_start);
         // return view('calendartest');
         // return details with success message
