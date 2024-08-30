@@ -142,6 +142,8 @@ Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('
 
 Route::get('/company/carControlCenter', [CompanyController::class, 'carControlCenter'])->name('company.carControlCenter');
     Route::get('/company/carControlCenter/create', [CompanyController::class, 'createCar'])->name('company.createCar');
+Route::get('/company/requestsCar', [CompanyController::class, 'requestsCar'])->name('company.requestsCar');
+
 
     Route::get('/company/cars/{id}/edit', [CompanyController::class, 'editCar'])->name('company.editCar');
     Route::put('/company/cars/{id}', [CompanyController::class, 'updateCar'])->name('company.updateCar');

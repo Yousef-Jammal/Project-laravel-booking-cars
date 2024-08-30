@@ -142,13 +142,13 @@
                     <ul class="nav header-navbar-rht">
 
                         @auth
-                        @if(Auth::user()->role->name == 'User') {{-- Renter --}}
+                        @if(Auth::user()->role->name == 'renter') {{-- Renter --}}
                         <li class="nav-item">
                             <a class="nav-link header-login" href="{{ route('user.user-info') }}">
                                 <span><i class="fa-regular fa-user"></i></span> Profile
                             </a>
                         </li>
-                        @elseif(Auth::user()->role->name == 'Company') {{-- Company --}}
+                        @elseif(Auth::user()->role->name == 'company') {{-- Company --}}
                         <li class="nav-item">
                             <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
                                 <span><i class="fa-regular fa-user"></i></span> Dashboard
