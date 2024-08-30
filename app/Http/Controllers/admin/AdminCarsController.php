@@ -16,14 +16,14 @@ class AdminCarsController extends Controller
 {
         public function index(){
             $cars = Car::select('*')->orderby('id', 'ASC')->paginate(5);
-              return view('admin.edit.manage_cars', ['cars'=> $cars]);
+              return view('admin.manage_cars', ['cars'=> $cars]);
         }
 
         // start Car section
         public function viewCar(string $id)
         {
-            $user = Car::find($id);
-            return response()->json(["user" => $user]);
+            $car = Car::find($id);
+            return view('admin.view.view_cars', ['car'=>$car]);
         }
         public function addCar(Request $request)
         {
@@ -47,7 +47,7 @@ class AdminCarsController extends Controller
         }
         public function editCar($id){
             $car = Car::find($id);
-            return view('admin.edit_car', ['car'=>$car]);
+            return view('admin.edit.edit_car', ['car'=>$car]);
         }
         public function updateCar(string $id, Request $request)
         {
