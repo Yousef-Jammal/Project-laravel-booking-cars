@@ -171,7 +171,7 @@
                                 <div id="checkBoxes4">
                                     <div class="selectBox-cont">
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="5">
+                                            <input type="radio" name="ratings_array" value="5">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -180,7 +180,7 @@
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="4">
+                                            <input type="radio" name="ratings_array" value="4">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -188,14 +188,14 @@
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="3">
+                                            <input type="radio" name="ratings_array" value="3">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="2">
+                                            <input type="radio" name="ratings_array" value="2">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -203,7 +203,7 @@
                                         <div class="view-content">
                                             <div class="viewall-Two">
                                                 <label class="custom_check w-100">
-                                                    <input type="checkbox" name="ratings_array[]" value="1">
+                                                    <input type="radio" name="ratings_array" value="1">
                                                     <span class="checkmark"></span>
                                                     <i class="fas fa-star filled"></i>
                                                 </label>
