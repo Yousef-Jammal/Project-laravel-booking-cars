@@ -88,7 +88,7 @@ Route::prefix('home')->group(function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home_index');
 
-    Route::get('/carlist', [HomeController::class, 'allCars'])->name('allCars');
+    // Route::get('/carlist', [HomeController::class, 'allCars'])->name('allCars');
 
     Route::view('/viewCars-f', 'listing-list')->name('pruduct_list_from_home_with_filter');  // this node to handle from listing-list page
 
@@ -108,7 +108,7 @@ Route::prefix('home')->group(function () {
 // });
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 
-Route::get('/carlist', [CarController::class, 'index']);
+Route::get('/carlist', [CarController::class, 'index'])->name('allCars');
 Route::get('/search', [SearchController::class, 'searchCars']);
 Route::get('/filter', [SearchController::class, 'filterCars']);
 Route::get('/booking', function () {
