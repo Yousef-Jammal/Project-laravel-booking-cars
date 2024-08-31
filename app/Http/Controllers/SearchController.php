@@ -92,7 +92,7 @@ class SearchController extends Controller
         })->whereIn('brand_id', $brands_array)
         ->whereIn('door', $doors_array)
         ->where('price_per_day', '<=', $price)
-        ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)
+            ->where('rating', '>=', $ratings_array)
         ->get();
 
         return view('listing-list', compact('cars', 'brands'));
