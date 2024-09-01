@@ -146,7 +146,7 @@
         <div class="modal-content">
             <a href="javascript:history.back()" class="back-button">Back</a>
             <div class="modal-title">Choose Dates</div>
-            <form action="{{route('rental-session')}}" method="post">
+            <form action="{{route('rental-session')}}" method="post" autocomplete="off">
                 @csrf
                 <div class="input-container">
                     <span class="icon icon-calendar"></span>

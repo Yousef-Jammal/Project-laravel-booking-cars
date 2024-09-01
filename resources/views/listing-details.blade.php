@@ -47,12 +47,10 @@
     <div class="container">
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">{{ $car->make }} {{ $car->model }}</h2>
+                <h2 class="breadcrumb-title">{{ $car->brand->name }} {{ $car->model }}</h2>
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Listings</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $car->make }} {{ $car->model }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $car->make }}</li>
                     </ol>
                 </nav>
             </div>

@@ -5,13 +5,6 @@
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
                 <h2 class="breadcrumb-title">Booking</h2>
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Booking</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div>
@@ -117,7 +110,7 @@
                                             us!</p>
                                     </div>
                                     <div class="modal-footer border-0">
-                                        <button type="button" class="btn btn-success w-100"
+                                        <button onclick="submitToDB()" type="button" class="btn btn-success w-100"
                                             data-bs-dismiss="modal">Continue Browsing</button>
                                     </div>
                                 </div>
@@ -130,7 +123,7 @@
                                 <div class="col-lg-12">
                                     <div class="input-block">
                                         <label>Card Number <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="45612212255455"
+                                        <input onkeyup="checkPayment()" type="text" class="form-control" placeholder="45612212255455"
                                             id="cardNumber">
                                         <small id="cardNumberError" class="text-danger"></small>
                                     </div>
@@ -138,7 +131,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-block">
                                         <label>Expiration date <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="MM/YY" id="expiryDate">
+                                        <input onkeyup="checkPayment()" type="text" class="form-control" placeholder="MM/YY" id="expiryDate">
                                         <small id="expiryDateError" class="text-danger"></small>
                                     </div>
                                 </div>
@@ -146,7 +139,7 @@
                                     <div class="input-block">
                                         <label>Security number <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" placeholder="CVV"
-                                            id="securityNumber">
+                                            id="securityNumber" onkeyup="checkPayment()">
                                         <small id="securityNumberError" class="text-danger"></small>
                                     </div>
                                 </div>
@@ -190,8 +183,8 @@
                                                     <h4>Pickup Location & Date</h4>
                                                 </div>
                                                 <ul class="address-info">
-                                                    <li>45, 4th Avanue Mark Street USA</li>
-                                                    <li>11 Jan 2023 - 11:00 PM</li>
+                                                    <li>{{$data['company']->location}}</li>
+                                                    <li>{{$data['pickup_date']}}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6">
@@ -199,14 +192,14 @@
                                                     <h4>Drop Off Location</h4>
                                                 </div>
                                                 <ul class="address-info mb-0">
-                                                    <li>45, 4th Avanue Mark Street USA</li>
-                                                    <li>11 Jan 2023 - 11:00 PM</li>
+                                                    <li>{{$data['company']->location}}</li>
+                                                    <li>{{$data['return_date']}}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="payment-btn">
-                                        <button class="btn btn-primary submit-review w-100" type="button" id="submitBtn">
+                                        <button class="btn btn-primary submit-review w-100" type="button" id="submitBtn" onclick="payNow()">
                                             Pay Now
                                         </button>
                                     </div>
@@ -257,6 +250,13 @@
     </div>
 </div>
 
+
+<form action="store_rental" method="post" id="hiddenForm">
+    @csrf
+    <input type="hidden" value="{{$data['pickup_date']}}" name="rent_start">
+    <input type="hidden" value="{{$data['return_date']}}" name="rent_end">
+    <input type="hidden" value="{{$data['car']->id}}" name="car_id">
+</form>
 <script>
     document.getElementById('goToPaymentBtn').addEventListener('click', function(event) {
         // Activate the Payment Details tab
@@ -269,7 +269,7 @@
         });
     });
 
-    document.getElementById('submitBtn').addEventListener('click', function(event) {
+    function checkPayment() {
         // Clear previous errors
         document.getElementById('cardNumberError').innerText = "";
         document.getElementById('expiryDateError').innerText = "";
@@ -283,10 +283,12 @@
         let isValid = true;
 
         // Validate Card Number
-        if (!cardNumber.value.match(/^\d{13,19}$/)) {
+        if (!cardNumber.value.match(/^\d{16}$/)) {
             document.getElementById('cardNumberError').innerText =
                 "Please enter a valid card number between 13 to 19 digits.";
             isValid = false;
+            document.querySelector("#submitBtn").disabled = true;
+
         }
 
         // Validate Expiration Date
@@ -294,20 +296,30 @@
             document.getElementById('expiryDateError').innerText =
                 "Please enter a valid expiration date in MM/YY format.";
             isValid = false;
+            document.querySelector("#submitBtn").disabled = true;
+
         }
 
         // Validate Security Number
-        if (!securityNumber.value.match(/^\d{3,4}$/)) {
+        if (!securityNumber.value.match(/^\d{3}$/)) {
             document.getElementById('securityNumberError').innerText =
                 "Please enter a valid security number (CVV) with 3 or 4 digits.";
             isValid = false;
+            document.querySelector("#submitBtn").disabled = true;
         }
 
-        // If valid, show the success modal
         if (isValid) {
-            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-            successModal.show();
+            document.querySelector("#submitBtn").disabled = false;
         }
-    });
+    }
+
+    function payNow() {
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    }
+
+    function submitToDB() {
+        document.getElementById('hiddenForm').submit();
+    }
 </script>
 @endsection

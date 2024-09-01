@@ -248,3 +248,5 @@ Route::post('rental-session', [RentalController::class, 'storeRentalInSession'])
 //khawara end
 //invoice-details
 // fajer end//
+
+Route::post('/store_rental', [RentalController::class, 'storeRentalInDatabase']);
