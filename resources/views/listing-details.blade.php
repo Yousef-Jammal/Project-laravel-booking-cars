@@ -520,7 +520,7 @@
         }
 
         function goToDetails() {
-            window.location.href = "{{ route('booking') }}";
+            window.location.href = "http://127.0.0.1:8000/booking_c";
         }
     </script>
 
