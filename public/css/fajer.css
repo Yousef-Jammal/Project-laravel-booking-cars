@@ -1,22 +1,30 @@
+#pop-up-container{
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+
+}
+
 #availability-popup {
     position: fixed;
-    top: 50%;
-    left: 10px; /* يتحرك الصندوق لليسار */
-    transform: translateY(-50%); /* الحفاظ على المركز العمودي */
+    top : 18vh;
     background-color: white;
-    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    width: 350px; /* زيادة العرض */
+    width: 60%; /* زيادة العرض */
     font-family: 'Arial', sans-serif; /* تغيير الخط */
     border: 1px solid #ddd; /* إضافة بوردر للصندوق */
-    margin-top: 50px; /* إضافة مسافة */
+    border-radius: 10px;
+
 }
 
 .modal-content {
     border-radius: 10px;
     overflow: hidden;
-    padding: 20px;
+    padding: 5px;
     border: 1px solid #ccc; /* إضافة بوردر للصندوق الداخلي */
     background-color: #f9f9f9; /* تغيير لون الخلفية للصندوق الداخلي */
 }
@@ -25,22 +33,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     border-bottom: 1px solid #ddd;
-    background-color: #eee; /* تغيير لون خلفية الهيدر */
     font-weight: bold; /* زيادة سمك الخط */
     font-size: 18px; /* تكبير حجم الخط */
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 6px;
 }
 
 .modal-footer {
     padding: 10px;
     text-align: right;
     border-top: 1px solid #ddd;
-    background-color: #eee; /* تغيير لون خلفية الفوتر */
     font-weight: bold; /* زيادة سمك الخط */
 }
 
@@ -48,7 +54,7 @@
     margin-left: 10px;
     padding: 10px 20px; /* زيادة حجم الزر */
     border-radius: 5px; /* إضافة زوايا مدورة للأزرار */
-    background-color: #ffaa00; /* لون خلفية الزر */
+    background-color: #FFA633; /* لون خلفية الزر */
     color: white; /* لون النص للزر */
     font-size: 16px; /* تكبير حجم الخط للزر */
 }
@@ -58,7 +64,6 @@
     border: 1px solid #ddd; /* إضافة بوردر للديفات الداخلية */
     margin-bottom: 15px; /* إضافة مسافة بين الديفات */
     padding: 15px; /* إضافة حشوة داخلية للديفات */
-    width: 100%; /* زيادة عرض الديفات الداخلية */
     background-color: #fff; /* تغيير لون الخلفية للديفات */
     border-radius: 5px; /* إضافة زوايا مدورة للديفات */
 }
@@ -70,12 +75,7 @@
     border-radius: 5px; /* إضافة زوايا مدورة للتنبيه */
     font-weight: bold; /* زيادة سمك الخط للتنبيه */
 }
-.fajerpop{
-    height: 90px;
-}
-.fajerpop>div{
-    height: 100%;
-}
+
 .star-rating {
     direction: rtl;
     display: inline-block;

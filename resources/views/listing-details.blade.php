@@ -2,6 +2,47 @@
 @section('content')
 {{-- 11111111111111111111111111111111111111111111111111 --}}
 {{-- SECTION: Breadcrumb --}}
+@if(isset($data))
+<div id="pop-up-container">
+    <div id="availability-popup">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Booking Details</h4>
+                <button type="button" class="close" onclick="closePopup()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span id="car-status">{{$car->brand->name ." ". $car->model}}</span>
+                </div>
+
+                <div class="details-row">
+                    <div class="pricing-details">
+                        <ul>
+                            <h5>Pick Up Date</h5>
+                            <h6>{{$data['rent_start']}}</h6>
+                        </ul>
+                    </div>
+                    <div class="pricing-details">
+                        <ul>
+                            <h5>Drop Off Date</h5>
+                            <h6>{{$data['rent_end']}}</h6>
+                        </ul>
+                    </div>
+                    <div class="grand-total">
+                        <h5>Total Price</h5>
+                        <span id="grand-total">${{$data['total']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="goToDetails()">Go to Details</button>
+                <button class="btn btn-primary" onclick="closePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <div class="breadcrumb-bar">
     <div class="container">
         <div class="row align-items-center text-center">
@@ -45,7 +86,7 @@
                                 <span>({{ number_format($car->rating, 1) }})</span>
                     </div>
                     <div class="camaro-info">
-                        <h3>{{ $car->make }} {{ $car->model }}</h3>
+                        <h3>{{ $car->brand->name }} {{ $car->model }} (Price Per Day : ${{$car->price_per_day}})</h3>
                     </div>
                 </div>
             </div>
@@ -380,7 +421,10 @@
                                 <li class="column-group-last">
                                     <div class="input-block mb-0">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Price </button>
+                                            <button class="btn btn-secondary check-available w-100" type="button" onclick="checkAvailability()"
+                                                @if(!isset($data))
+                                                disabled
+                                                @endif>Check Price </button>
                                         </div>
                                     </div>
                                 </li>
@@ -388,68 +432,7 @@
                         </form>
                         {{-- 88888888888888888888888888888888888888888888888888888888888888 --}}
                         <!-- SECTION: Availability Popup -->
-                        <div id="availability-popup" style="display:none ; margin-left: 350px;width: 40vw;">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Availability Details</h4>
-                                    <button type="button" class="close" onclick="closePopup()">×</button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="alert alert-success">
-                                        <i class="fa-regular fa-circle-check"></i>
-                                        <span id="car-status"></span>
-                                    </div>
-                                    <div class="details-row d-flex justify-content-between align-items-start fajerpop">
-                                        <div>
-                                            <h5>Booking Amount</h5>
-                                            <h6><span id="price-per-day"></span> /day</h6>
-                                        </div>
-                                    </div>
-                                    <div class="details-row mt-3">
-                                        <div class="pricing-details">
-                                            <ul>
-                                                <li>Booking Price <span id="booking-price"></span></li>
-                                                <li>Extra Service <span id="extra-service"></span>5$</li>
-                                                <li>Tax <span id="tax"></span>10$</li>
-                                            </ul>
-                                        </div>
-                                        <div class="grand-total">
-                                            <h5>Grand Total</h5>
-                                            <span id="grand-total">help</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary" onclick="goToDetails()">Go to Details</button>
-                                    <button class="btn btn-secondary" onclick="closePopup()">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                        @if(isset($data))
 
-                        {{-- 999999999999999999999999999999999999999999999999999 --}}
-                        {{-- SECTION: Availability Modal --}}
-                        <div class="modal fade show" id="availability-details" tabindex="-1" aria-labelledby="availabilityDetailsLabel" aria-modal="true" role="dialog" style="display: block;">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="availabilityDetailsLabel">Booking Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Car : {{ $car->brand ." ".$car->model }} </p>
-                                        <p>Pickup Date: {{ $data['rent_start'] }}</p>
-                                        <p>Return Date: {{ $data['rent_end'] }}</p>
-                                        <p>Booking Amount: ${{ $data['total'] }} /day</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="{{ url('/booking') }}" class="btn btn-primary">Go to Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
                     </div>
                 </div>
                 {{-- 10101010101010101010101010101010101001010101010 --}}
@@ -527,12 +510,13 @@
     <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="1fd1520c2fe94050b14d329a-|49" defer></script>
 
     <script>
-        $(document).ready(function() {
-            $('#availability-details').modal('show');
-        });
-
         function closePopup() {
-            document.getElementById('availability-popup').style.display = 'none';
+            document.getElementById('pop-up-container').style.display = 'none';
+        }
+
+        function checkAvailability() {
+            document.getElementById('pop-up-container').style.display = 'flex';
+
         }
 
         function goToDetails() {

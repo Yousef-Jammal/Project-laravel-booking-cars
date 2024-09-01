@@ -128,7 +128,7 @@ public function submitReview(Request $request, $car_id)
 
         return view('listing-details', compact('car'));
 
-    
+
 }
 
     public function showCarDetailsImg($carId)
@@ -139,4 +139,3 @@ public function submitReview(Request $request, $car_id)
 }
 
 }
-

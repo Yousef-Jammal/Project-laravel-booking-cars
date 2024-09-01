@@ -19,15 +19,15 @@
                 <div class="sidebar-heading">
                     <h6>What Are You Looking For</h6>
                 </div>
-                <form action="/search" id="search_form">
+                <form action="/search" id="search_form" autocomplete="off">
                     <div class="product-search">
                         <div class="form-custom">
-                            <input type="text" class="form-control" id="member_search1" placeholder="Search" name="queryy">
+                            <input type="text" class="form-control" id="searchBar" placeholder="Search" name="queryy" onkeydown="getSearchResults()">
                             <span onclick="submitSearch()" id="search_submit" style="cursor: pointer;"><img src="{{ asset('img/icons/search.svg') }}" alt="img"></span>
                         </div>
                     </div>
                 </form>
-                <form action="/filter" autocomplete="off" class="sidebar-form">
+                <form action="/filter" autocomplete="off" class="sidebar-form" id="filterForm">
 
 
                     <div class="accordion" id="accordionMain1">
@@ -171,7 +171,7 @@
                                 <div id="checkBoxes4">
                                     <div class="selectBox-cont">
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="5">
+                                            <input type="radio" name="ratings_array" value="5">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -180,7 +180,7 @@
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="4">
+                                            <input type="radio" name="ratings_array" value="4">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -188,14 +188,14 @@
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="3">
+                                            <input type="radio" name="ratings_array" value="3">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
                                         </label>
                                         <label class="custom_check w-100">
-                                            <input type="checkbox" name="ratings_array[]" value="2">
+                                            <input type="radio" name="ratings_array" value="2">
                                             <span class="checkmark"></span>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -203,7 +203,7 @@
                                         <div class="view-content">
                                             <div class="viewall-Two">
                                                 <label class="custom_check w-100">
-                                                    <input type="checkbox" name="ratings_array[]" value="1">
+                                                    <input type="radio" name="ratings_array" value="1">
                                                     <span class="checkmark"></span>
                                                     <i class="fas fa-star filled"></i>
                                                 </label>
@@ -218,7 +218,7 @@
                     <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary filter-btn">
                         <span><i class="feather-filter me-2"></i></span>Filter results
                     </button>
-                    <a href="#" class="reset-filter">Reset Filter</a>
+                    <a href="#" onclick="resetFilter()" class="reset-filter">Reset Filter</a>
                 </form>
             </div>
             <div class="col-xl-9 col-lg-8 col-sm-12 col-12">
@@ -316,6 +316,23 @@
 <script>
     function submitSearch() {
         document.getElementById('search_form').submit();
+    }
+
+    function resetFilter() {
+        document.querySelector("#filterForm").reset();
+        document.querySelector("#search_form").reset();
+    }
+
+    async function getSearchResults() {
+        let search = document.querySelector("#searchBar").value;
+        const response = await fetch('http://localhost:8000/api/getsuggestions', {
+            method: "POST",
+            body: JSON.stringify({
+                search
+            }),
+        })
+        const data = await response.json();
+        console.log(data);
     }
 </script>
 

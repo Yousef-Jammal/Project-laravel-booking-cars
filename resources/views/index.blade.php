@@ -238,9 +238,14 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="listing-item">
                                 <div class="listing-img">
-                                    <a href="{{ route('pruduct_details', $car->id) }}">
+                                    <a href="{{ route('cardetails.show', $car->id ) }}">
                                         @php
-                                        $car_image = $car->images->first()->name;
+                                        $car_image = 'default.png';
+                                        if ($car->images->first()) {
+                                            if ($car->images->first()->name) {
+                                                $car_image = $car->images->first()->name;
+                                            }
+                                        }
                                         @endphp
                                         <img src='{{ asset("car_images/".$car_image)}}' class="img-fluid" alt="Toyota">
                                     </a>

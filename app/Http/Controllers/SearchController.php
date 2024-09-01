@@ -8,11 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-
     public function searchCars(Request $request)
     {
         //if query is year
@@ -22,10 +22,12 @@ class SearchController extends Controller
             $cars = Car::where('year', $request->queryy)->get();
             return view('listing-list', compact('cars'));
         } else {
-            $cars = Car::join('brands', 'cars.brand_id', '=', 'brands.id')
-                ->where('brands.name', $request->queryy)
-                ->orWhere('model', $request->queryy)
-                ->select('cars.*')
+            $cars = Car::query()
+                ->whereRaw('LOWER(model) LIKE ?', ['%' . $queryy . '%'])
+                ->orWhereHas('brand', function ($q) use ($queryy) {
+                    $q->whereRaw('LOWER(name) LIKE ?', ['%' . $queryy . '%']);
+                })
+                ->distinct()
                 ->get();
             return view('listing-list', compact('cars', 'brands'));
         }
@@ -91,7 +93,7 @@ class SearchController extends Controller
         })->whereIn('brand_id', $brands_array)
         ->whereIn('door', $doors_array)
         ->where('price_per_day', '<=', $price)
-        ->whereIn(Car::raw('FLOOR(rating)'), $ratings_array)
+            ->where('rating', '>=', $ratings_array)
         ->get();
 
         return view('listing-list', compact('cars', 'brands'));
@@ -129,6 +131,11 @@ class SearchController extends Controller
 
     public function calendarModal(string $id)
     {
-        return view('calendartest');
+        if (Auth::user()) {
+            return view('calendartest');
+        } else {
+            return view('login');
+        }
+        
     }
 }
