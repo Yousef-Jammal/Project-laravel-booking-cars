@@ -425,7 +425,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if(isset($availabilityResult))
+                        @if(isset($data))
 
                         {{-- 999999999999999999999999999999999999999999999999999 --}}
                         {{-- SECTION: Availability Modal --}}
@@ -433,14 +433,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="availabilityDetailsLabel">Availability Details</h5>
+                                        <h5 class="modal-title" id="availabilityDetailsLabel">Booking Details</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Pickup Date: {{ $availabilityResult['pickup_date'] }}</p>
-                                        <p>Return Date: {{ $availabilityResult['return_date'] }}</p>
-                                        <p>Booking Amount: ${{ $availabilityResult['price_per_day'] }} /day</p>
-                                        <p>Grand Total: ${{ $availabilityResult['total_price'] }}</p>
+                                        <p>Car : {{ $car->brand ." ".$car->model }} </p>
+                                        <p>Pickup Date: {{ $data['rent_start'] }}</p>
+                                        <p>Return Date: {{ $data['rent_end'] }}</p>
+                                        <p>Booking Amount: ${{ $data['total'] }} /day</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -530,45 +530,6 @@
         $(document).ready(function() {
             $('#availability-details').modal('show');
         });
-
-        function checkAvailability() {
-            // جلب البيانات من الحقول
-            let carId = document.querySelector('input[name="car_id"]').value;
-            // إرسال البيانات عبر AJAX
-            fetch('{{ route("check.availability") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        car_id: carId,
-
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // تأكيد ظهور الرسالة الصحيحة بناءً على التوافر
-                    if (data.isAvailable) {
-                        document.getElementById('car-status').textContent = 'Available';
-                        document.getElementById('car-status').classList.add('text-success');
-                        document.getElementById('car-status').classList.remove('text-danger');
-                    } else {
-                        document.getElementById('car-status').textContent = 'Not Available';
-                        document.getElementById('car-status').classList.add('text-danger');
-                        document.getElementById('car-status').classList.remove('text-success');
-                    }
-
-                    document.getElementById('price-per-day').textContent = `$${data.pricePerDay}`;
-                    document.getElementById('booking-price').textContent = `$${data.totalPrice}`;
-                    document.getElementById('grand-total').textContent = `$${data.grandTotal}`;
-
-                    // إظهار البوباب
-                    document.getElementById('availability-popup').style.display = 'block';
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
 
         function closePopup() {
             document.getElementById('availability-popup').style.display = 'none';

@@ -116,6 +116,7 @@ Route::get('/calendar', function () {
 
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\RentalController;
 
 // Route::middleware(['auth', 'company'])->group(function () {
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
@@ -231,6 +232,7 @@ Route::get('invoice-details', function () {
     return view('invoice-details');
 })->name('contact');
 
+Route::post('rental-session', [RentalController::class, 'storeRentalInSession'])->name('rental-session');
 
 //khawara end
 //invoice-details

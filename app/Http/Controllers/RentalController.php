@@ -2,64 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Rental;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RentalController extends Controller
 {
-    /**
-     * Display a listingg of the resource.
-     */
-    public function index()
+    public function storeRentalInSession(Request $request)
     {
-        //
-    }
+        $car = Car::find($request->car_id);
+        $user_id = Auth::user()->id;
+        $rent_start = $request->rent_start;
+        $rent_end = $request->rent_end;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $startDate = Carbon::parse($rent_start);
+        $endDate = Carbon::parse($rent_end);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Rental $rental)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Rental $rental)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Rental $rental)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Rental $rental)
-    {
-        //
+        // Calculate the difference in days, including both start and end dates
+        $numberOfDays = $startDate->diffInDays($endDate) + 1;
+        $total = $car->price_per_day * $numberOfDays;
+        session()->put('car_id', $car->id);
+        session()->put('user_id', $user_id);
+        session()->put('rent_start', $rent_start);
+        session()->put('rent_end', $rent_end);
+        session()->put('total', $total);
+        $data = ['car_id' => $car->id, 'user_id' => $user_id, 'rent_start' => $rent_start, 'rent_end' => $rent_end, 'total' => $total];
+        return view('cardetails.show', compact('car', 'data'));
+        // dd($request->rent_start);
+        // return view('calendartest');
+        // return details with success message
     }
 }
