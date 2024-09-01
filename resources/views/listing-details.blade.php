@@ -2,6 +2,7 @@
 @section('content')
 {{-- 11111111111111111111111111111111111111111111111111 --}}
 {{-- SECTION: Breadcrumb --}}
+@if(isset($data))
 <div id="pop-up-container">
     <div id="availability-popup">
         <div class="modal-content">
@@ -41,6 +42,7 @@
         </div>
     </div>
 </div>
+@endif
 <div class="breadcrumb-bar">
     <div class="container">
         <div class="row align-items-center text-center">
@@ -84,7 +86,7 @@
                                 <span>({{ number_format($car->rating, 1) }})</span>
                     </div>
                     <div class="camaro-info">
-                        <h3>{{ $car->make }} {{ $car->model }}</h3>
+                        <h3>{{ $car->brand->name }} {{ $car->model }} (Price Per Day : ${{$car->price_per_day}})</h3>
                     </div>
                 </div>
             </div>
@@ -419,7 +421,10 @@
                                 <li class="column-group-last">
                                     <div class="input-block mb-0">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Price </button>
+                                            <button class="btn btn-secondary check-available w-100" type="button" onclick="checkAvailability()"
+                                                @if(!isset($data))
+                                                disabled
+                                                @endif>Check Price </button>
                                         </div>
                                     </div>
                                 </li>

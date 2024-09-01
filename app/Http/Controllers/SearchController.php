@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
@@ -130,6 +131,11 @@ class SearchController extends Controller
 
     public function calendarModal(string $id)
     {
-        return view('calendartest');
+        if (Auth::user()) {
+            return view('calendartest');
+        } else {
+            return view('login');
+        }
+        
     }
 }
