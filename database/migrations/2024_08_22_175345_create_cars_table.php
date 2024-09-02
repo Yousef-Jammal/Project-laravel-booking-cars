@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('availability');
-            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->string('model');
             $table->string('body');
             $table->string('ac');
@@ -32,8 +32,8 @@ return new class extends Migration
             $table->float('rating')->default(0);
             $table->integer('num_of_ratings')->default(0);
             $table->float('price_per_day');
-            $table->string('status'); //pending , accepted and rejected 
-            $table->date('date_created');
+            $table->string('status'); //pending , accepted and rejected
+            $table->date('date_created')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });

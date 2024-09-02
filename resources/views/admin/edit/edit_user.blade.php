@@ -88,16 +88,32 @@
         }
 
         .form-group .toggle-password {
-    position: absolute;
-    top: 29px;
-    right: -3px;
-    cursor: pointer;
-    user-select: none;
+            position: absolute;
+            top: 29px;
+            right: -3px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .my_show_hide{
+            color: #686868;
+            font-size: 13px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+        }
+        .my_show_hide:hover{
+            color: black
+        }
+        .form-group_a{
+            text-decoration: none;
+
         }
     </style>
 </head>
 <body>
     <div class="container">
+
+        <a href="{{ route('admin_users') }}" class="form-group_a">Back</a>
         <h1>Edit User</h1>
         <form action="{{ route('admin_update_user', $user->id) }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -116,8 +132,9 @@
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" value="{{ $user->password }}" required>
-                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                <input type="password" id="password" name="password" required>
+                {{-- <input type="password" id="password" name="password" value="{{ $user->password }}" required> --}}
+                <span class="toggle-password my_show_hide" onclick="togglePassword()">Show</span>
             </div>
             <div class="form-group">
                 <label for="image">Image:</label>
@@ -145,10 +162,10 @@
             var passwordToggle = document.querySelector('.toggle-password');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                passwordToggle.textContent = '🙈';
+                passwordToggle.textContent = 'Hide';
             } else {
                 passwordInput.type = 'password';
-                passwordToggle.textContent = '👁️';
+                passwordToggle.textContent = 'Show';
             }
         }
     </script>

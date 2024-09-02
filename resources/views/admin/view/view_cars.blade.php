@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,356 +8,148 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f4f7f6;
-            font-family: 'Arial', sans-serif;
-        }
-        .form-container {
-            max-width: 800px;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .form-heading {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #333;
-            text-align: center;
-        }
-        .form-label {
-            font-weight: 600;
-            color: #555;
-        }
-        .form-control {
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .btn-primary {
-            background-color: #ffa633;
-            border-color: #e8941c;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #e8941c;
-            border-color: #d87a0a;
-        }
-        .form-section {
-            margin-bottom: 20px;
-        }
-        .form-section h5 {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #444;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-            text-align: center;
-        }
-        .custom-file-upload {
-            border: 2px dashed #ffa633;
-            border-radius: 5px;
+            background-color: #f7f9fc;
+            font-family: Arial, sans-serif;
             padding: 20px;
-            background: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-            text-align: center;
-            overflow: hidden;
         }
-        .custom-file-upload.dragover {
-            border-color: #e8941c;
-            background-color: #f0f0f0;
-        }
-        .custom-file-upload input[type="file"] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            height: 100%;
-            width: 100%;
-            cursor: pointer;
-        }
-        .upload-btn {
-            font-size: 16px;
-            color: #ffa633;
-            border: 1px solid #ffa633;
+
+        form {
             background-color: #fff;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .upload-btn:hover {
-            background-color: #ffa633;
-            color: #fff;
-        }
-        .file-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            margin-top: 10px;
-        }
-        .file-name {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .file-preview {
-            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
-            height: auto;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-            background: #f9f9f9;
-            position: relative;
+            margin: auto;
         }
-        .file-preview img {
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
             width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        .file-preview .icon {
-            font-size: 60px;
-            color: #999;
-        }
-        .file-preview .file-icon {
-            width: 80px;
-            height: 80px;
-            background: #ddd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .remove-file-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ffa633;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            padding: 5px;
-            cursor: pointer;
-            font-size: 20px;
-            transition: background 0.3s ease, transform 0.3s ease;
-            height: 30px;
-            width: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .remove-file-btn:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-        .progress {
-            height: 5px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .progress-bar {
-            height: 100%;
-            background-color: #ffa633;
-            border-radius: 5px;
-            transition: width 0.4s ease;
-        }
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        .success-message {
-            color: green;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        .tooltip {
-            font-size: 12px;
-            color: #888;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            white-space: nowrap;
-            display: none;
         }
-        .custom-file-upload:hover .tooltip {
-            display: block;
+
+        button,
+        a {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s ease;
         }
-        @media (max-width: 768px) {
-            .form-container {
-                padding: 20px;
-            }
-            .form-heading {
-                font-size: 24px;
-            }
-            .btn-primary {
-                font-size: 14px;
-                padding: 10px 16px;
-            }
+
+        button:hover,
+        a:hover {
+            background-color: #0056b3;
         }
+        select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;base64,...'); /* Custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
     </style>
 </head>
+
 <body>
-    <div class="form-container">
-        <h2 class="form-heading">Proof of Car Ownership Form</h2>
-        <div id="carInfo">
-            <!-- Car Information Section -->
-            <div class="form-section">
-                <h5>Car Information</h5>
-                <div class="mb-3">
-                    <label class="form-label">Car Make</label>
-                    <p class="form-control-plaintext">{{ $car->make }}</p>
-                </div>
+    <form action="{{ route('admin_update_car', $car->id) }}" method="POST">
+        @method('PUT')
+        @csrf
+        <label for="user_id" >User Name:</label>
+        <input id="user_id" type="text" value="{{ $car->user->name }}" disabled>
 
-                <div class="mb-3">
-                    <label class="form-label">Car Model</label>
-                    <p class="form-control-plaintext">{{ $car->model }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Car Brand</label>
-                    <p class="form-control-plaintext">{{ $car->brand->name }}</p>
-                </div>
+        <label for="availability">Availability:</label>
+        <input type="text" id="availability" name="availability" value="{{ $car->availability }}" disabled>
+        <br>
 
-                <div class="mb-3">
-                    <label class="form-label">Body Type</label>
-                    <p class="form-control-plaintext">{{ $car->body }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Transmission</label>
-                    <p class="form-control-plaintext">{{ $car->transmission }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Fuel Type</label>
-                    <p class="form-control-plaintext">{{ $car->fuel_type }}</p>
-                </div>
+        <label for="brand_id">Brand ID:</label>
+        <input id="brand_id" type="text" value="{{ $car->brand->name }}" disabled>
 
-                <div class="mb-3">
-                    <label class="form-label">Drivetrain</label>
-                    <p class="form-control-plaintext">{{ $car->drivetrian }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Air Conditioning</label>
-                    <p class="form-control-plaintext">{{ $car->ac }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Number of Doors</label>
-                    <p class="form-control-plaintext">{{ $car->door }}</p>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Brake Type</label>
-                    <p class="form-control-plaintext">{{ $car->brake }}</p>
-                </div>
-            </div>
 
-            <!-- File Upload Section -->
-            <div class="form-section">
-                <h5>Proof of Ownership</h5>
-                <div class="file-info">
-                    @if($car->proof_of_ownership)
-                        <img src="{{ asset('car_images/' . $car->images->name ) }}" alt="Proof of Ownership" class="img-fluid">
-                    @else
-                        <p>No proof of ownership uploaded.</p>
-                    @endif
-                </div>
-            </div>
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" value="{{ $car->model }}" disabled><br>
 
-            <!-- Upload Car Images Section -->
-            {{-- <div class="form-section">
-                <h5>Car Images</h5>
-                <div class="file-previews">
-                    @if(!empty($car->images))
-                        @foreach($car->images as $image)
-                            <img src="{{ asset('car_images/' . $image) }}" alt="Car Image" class="img-fluid mb-2">
-                        @endforeach
-                    @else
-                        <p>No car images uploaded.</p>
-                    @endif
-                </div>
-            </div> --}}
-        </div>
+        <label for="body">Body:</label>
+        <input type="text" id="body" name="body" value="{{ $car->body }}" disabled><br>
 
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('fileInput');
-            const fileInfo = document.getElementById('fileInfo');
-            const fileName = document.getElementById('fileName');
-            const filePreview = document.getElementById('filePreview');
-            const removeFileBtn = document.getElementById('removeFileBtn');
-            const uploadProgress = document.getElementById('uploadProgress');
-            const progressBar = document.getElementById('progressBar');
+        <label for="ac">AC:</label>
+        <input type="text" id="ac" name="ac" value="{{ $car->ac }}" disabled><br>
 
-            fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    fileName.textContent = file.name;
-                    removeFileBtn.style.display = 'block';
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            filePreview.innerHTML = `<img src="${e.target.result}" alt="${file.name}">`;
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        filePreview.innerHTML = `<span class="icon">&#128194;</span>`;
-                    }
-                }
-            });
+        <label for="door">Door:</label>
+        <input type="number" id="door" name="door" value="{{ $car->door }}" disabled><br>
 
-            removeFileBtn.addEventListener('click', function() {
-                fileInput.value = '';
-                fileName.textContent = 'No file selected';
-                filePreview.innerHTML = '';
-                removeFileBtn.style.display = 'none';
-            });
+        <label for="mileage">Mileage:</label>
+        <input type="number" id="mileage" name="mileage" value="{{ $car->mileage }}" disabled><br>
 
-            document.getElementById('uploadForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                uploadProgress.style.display = 'block';
-                let width = 0;
-                const interval = setInterval(function() {
-                    if (width >= 100) {
-                        clearInterval(interval);
-                        uploadProgress.style.display = 'none';
-                    } else {
-                        width += 10;
-                        progressBar.style.width = width + '%';
-                    }
-                }, 200);
-            });
-        });
-    </script>
+        <label for="fuel_type">Fuel Type:</label>
+        <input type="text" id="fuel_type" name="fuel_type" value="{{ $car->fuel_type }}" disabled><br>
+
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" value="{{ $car->make }}" disabled><br>
+
+        <label for="transmission">Transmission:</label>
+        <input type="text" id="transmission" name="transmission" value="{{ $car->transmission }}" disabled><br>
+
+        <label for="drivetrain">Drivetrain:</label>
+        <input type="text" id="drivetrain" name="drivetrian" value="{{ $car->drivetrian }}" disabled><br>
+
+        <label for="vin">VIN:</label>
+        <input type="text" id="vin" name="vin" value="{{ $car->vin }}" disabled><br>
+
+        <label for="brake">Brake:</label>
+        <input type="text" id="brake" name="brake" value="{{ $car->brake }}" disabled><br>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="{{ $car->year }}" disabled><br>
+
+        <label for="engine_hp">Engine HP:</label>
+        <input type="number" id="engine_hp" name="engine_hp" value="{{ $car->engine_hp }}" disabled><br>
+
+        <label for="rating">Rating:</label>
+        <input type="number" step="0.01" id="rating" name="rating" value="{{ $car->rating }}" disabled><br>
+
+        <label for="num_of_ratings">Number of Ratings:</label>
+        <input type="number" id="num_of_ratings" name="num_of_ratings" value="{{ $car->num_of_ratings }}" disabled><br>
+
+        <label for="price_per_day">Price per Day:</label>
+        <input type="number" step="0.01" id="price_per_day" name="price_per_day" value="{{ $car->price_per_day }}" disabled><br>
+
+        <label for="date_created">Date Created:</label>
+        <input type="date" id="date_created" name="date_created" value="{{ $car->date_created }}" disabled><br>
+
+        <a href="{{ route('admin_cars') }}">Back</a>
+    </form>
 </body>
+
 </html>

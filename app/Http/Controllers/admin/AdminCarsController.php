@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-
+use App\Models\Brand;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Company;
@@ -19,82 +19,138 @@ class AdminCarsController extends Controller
               return view('admin.manage_cars', ['cars'=> $cars]);
         }
 
-        // start Car section
-        public function viewCar(string $id)
+
+        public function createCar()
         {
-            $car = Car::find($id);
-            return view('admin.view.view_cars', ['car'=>$car]);
+            // $car = Car::find($id);
+            // return view('admin.view.view_cars', ['user'=>$car]);
+            // $car = Car::find();
+            $users = User::all();
+            $brands = Brand::all();
+            return view('admin.create.create_cars', ['users'=>$users, 'brands'=> $brands]);
+
         }
-        public function addCar(Request $request)
-        {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:8|confirmed',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-                'phone' => 'required|regex:/^07\d{8}$/',
-            ]);
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('user_images'), $imageName);
-            $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->image = $imageName;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-            $user->save();
-            return response()->json(["User" => $user]);
+        // public function storeCar (Request $request)
+        // {
+        //     $request->validate([
+        //         'name' => 'required|string|max:255',
+        //         'email' => 'required|email|unique:users,email',
+        //         'password' => 'required|string|min:8|confirmed',
+        //         'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        //         'phone' => 'required|regex:/^07\d{8}$/',
+        //     ]);
+        //     $imageName = time() . '.' . $request->image->extension();
+        //     $request->image->move(public_path('user_images'), $imageName);
+        //     $user = new User();
+        //     $user->name = $request->name;
+        //     $user->email = $request->email;
+        //     $user->image = $imageName;
+        //     $user->phone = $request->phone;
+        //     $user->password = Hash::make($request->password);
+        //     $user->save();
+        //     return response()->json(["User" => $user]);
+        // }
+        public function viewCar($id){
+            $car = Car::find($id);
+            $users = User::all();
+            $brands = Brand::all();
+            return view('admin.view.view_cars', ['car'=>$car, 'users'=>$users, 'brands'=> $brands]);
         }
         public function editCar($id){
             $car = Car::find($id);
-            return view('admin.edit.edit_car', ['car'=>$car]);
+            $users = User::all();
+            $brands = Brand::all();
+            return view('admin.edit.edit_car', ['car'=>$car, 'users'=>$users, 'brands'=> $brands]);
         }
-        public function updateCar(string $id, Request $request)
+        public function storeCar(Request $request)
         {
-            $car = Car::find($id);
-            $validatedData = $request->validate([
-                'user_id' => 'required|integer|exists:users,id',
-                'availability' => 'required|string|max:255',
-                'brand' => 'required|string|max:255',
-                'model' => 'required|string|max:255',
-                'body' => 'required|string|max:255',
-                'ac' => 'required|string|max:255',
-                'door' => 'required|integer|min:1',
-                'mileage' => 'required|integer|min:0',
-                'fuel_type' => 'required|string|max:255',
-                'make' => 'required|string|max:255',
-                'transmission' => 'required|string|max:255',
-                'drivetrian' => 'required|string|max:255',
-                'vin' => 'required|string|max:255',
-                'brake' => 'required|string|max:255',
-                'year' => 'required|integer|digits:4|min:1900|max:' . date('Y'),
-                'engine_hp' => 'required|integer|min:0',
-                'rating' => 'required|numeric|min:0|max:5',
-                // 'num_of_ratings' => 'required|integer|min:0',
-                'price_per_day' => 'required|numeric|min:0',
-            ], [
-                'user_id.required' => 'The user ID is required.',
-                'user_id.integer' => 'The user ID must be an integer.',
-                'user_id.exists' => 'The user ID does not exist in the database.',
-                'year.required' => 'The year is required.',
-                'year.integer' => 'The year must be an integer.',
-                'year.digits' => 'The year must be exactly 4 digits.',
-                'year.min' => 'The year must be after 1900.',
-                'year.max' => 'The year must not exceed the current year.',
-                'rating.min' => 'The rating must be at least 0.',
-                'rating.max' => 'The rating must not exceed 5.',
-                'price_per_day.required' => 'The price per day is required.',
-                'price_per_day.numeric' => 'The price per day must be a number.',
-            ]);
-            $car->update($validatedData);
+            // $request->validate([
+            //     'user_id' => 'required|',
+            //     'brand_id' => 'required|',
+            //     'model' => 'required|',
+            //     'body' => 'required|',
+            //     'ac' => 'required|',
+            //     'door' => 'required|',
+            //     'mileage' => 'required|',
+            //     'fuel_type' => 'required|',
+            //     'make' => 'required|string|',
+            //     'transmission' => 'required|',
+            //     'drivetrain' => 'required|',
+            //     'vin' => 'required|string|',
+            //     'brake' => 'required|',
+            //     'year' => 'required|',
+            //     'engine_hp' => 'required|',
+            //     'rating' => 'required|',
+            //     'num_of_ratings' => 'required|',
+            //     'price_per_day' => 'required|',
+            //     'date_created' => 'required|',
+            // ]);
+            // return $request->brand_id;
 
-            return redirect()->route('admin_index_tables');
+            Car::create([
+                'user_id' => $request->user_id,
+                'availability' => $request->availability,
+                // 'brand_id' => $request->brand_id,
+                'brand_id' => '5',
+                'model' => $request->model,
+                'body' => $request->body,
+                'ac' => $request->ac,
+                'door' => $request->door,
+                'mileage' => $request->mileage,
+                'fuel_type' => $request->fuel_type,
+                'make' => $request->make,
+                'transmission' => $request->transmission,
+                'drivetrian' => $request->drivetrian,
+                'vin' => $request->vin,
+                'brake' => $request->brake,
+                'year' => $request->year,
+                'engine_hp' => $request->engine_hp,
+                'rating' => $request->rating,
+                'num_of_ratings' => $request->num_of_ratings,
+                'price_per_day' => $request->price_per_day,
+                'date_created' => $request->date_created,
+            ]);
+
+            return redirect()->route('admin_cars')->with('success', 'Car updated successfully!');
         }
+    public function updateCar(Request $request, $id)
+    {
+
+        // Find the car by ID
+        $car = Car::findOrFail($id);
+
+        // Update the car details with the request data
+        $car->update([
+            'user_id' => $request->user_id,
+            'availability' => $request->availability,
+            'brand_id' => $request->brand_id,
+            'model' => $request->model,
+            'body' => $request->body,
+            'ac' => $request->ac,
+            'door' => $request->door,
+            'mileage' => $request->mileage,
+            'fuel_type' => $request->fuel_type,
+            'make' => $request->make,
+            'transmission' => $request->transmission,
+            'drivetrian' => $request->drivetrian,
+            'vin' => $request->vin,
+            'brake' => $request->brake,
+            'year' => $request->year,
+            'engine_hp' => $request->engine_hp,
+            'rating' => $request->rating,
+            'num_of_ratings' => $request->num_of_ratings,
+            'price_per_day' => $request->price_per_day,
+            'date_created' => $request->date_created,
+        ]);
+
+        // Redirect to the cars list with a success message
+        return redirect()->route('admin_cars')->with('success', 'Car updated successfully!');
+    }
         public function deleteCar(string $id)
         {
             $car = Car::find($id);
             $car->delete();
-            return redirect()->route('admin_index_tables');
+            return redirect()->route('admin_cars');
         }
 
 }
