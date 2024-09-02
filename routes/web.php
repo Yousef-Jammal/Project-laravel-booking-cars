@@ -35,7 +35,9 @@ use App\Http\Controllers\admin\AdminCompaniesController;
 use App\Http\Controllers\admin\AdminUserController;
 use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
 
-Route::prefix('admin')->group(function(){
+
+// Route::prefix('admin')->middleware('checkRole:1')->group(function() {
+Route::prefix('admin')->group(function() {
 
     // Route::get('/', [HomeController::class, 'dashboard']);
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
@@ -43,8 +45,6 @@ Route::prefix('admin')->group(function(){
     Route::get('users', [AdminUserController::class, 'index'])->name('admin_users');
     Route::get('cars', [AdminCarsController::class, 'index'])->name('admin_cars');
     Route::get('companies', [AdminCompaniesController::class, 'index'])->name('admin_companies');
-
-
 
     // users table
     Route::get('showUser/{id}', [AdminUserController::class, 'viewUser'])->name('admin_show_user');
@@ -54,24 +54,24 @@ Route::prefix('admin')->group(function(){
     Route::get('createUser', [AdminUserController::class, 'createUser'])->name('admin_create_user');
     Route::post('createUser', [AdminUserController::class, 'addUser'])->name('admin_store_user');
 
-
     // cars table
     Route::get('showCar/{id}', [AdminCarsController::class, 'viewCar'])->name('admin_show_car');
     Route::get('editCar/{id}', [AdminCarsController::class, 'editCar'])->name('admin_edit_car');
     Route::get('deleteCar/{id}', [AdminCarsController::class, 'deleteCar'])->name('admin_delete_car');
     Route::put('updateCar/{id}', [AdminCarsController::class, 'updateCar'])->name('admin_update_car');
-    Route::get('createCar', [AdminUserController::class, 'createCar'])->name('admin_create_car');
-    Route::post('createCar', [AdminUserController::class, 'storeCar'])->name('admin_store_Car');
+    Route::get('createCar', [AdminCarsController::class, 'createCar'])->name('admin_create_car');
+    Route::post('createCar', [AdminCarsController::class, 'storeCar'])->name('admin_store_car');
 
     // companies table
     Route::get('showCompany/{id}', [AdminCompaniesController::class, 'viewCompany'])->name('admin_show_company');
     Route::get('editCompany/{id}', [AdminCompaniesController::class, 'editCompany'])->name('admin_edit_company');
     Route::get('deleteCompany/{id}', [AdminCompaniesController::class, 'deleteCompany'])->name('admin_delete_company');
     Route::put('updateCompany/{id}', [AdminCompaniesController::class, 'updateCompany'])->name('admin_update_company');
-    Route::get('createCompany', [AdminUserController::class, 'createCompany'])->name('admin_create_company');
-    Route::post('createCompany', [AdminUserController::class, 'storeCompan'])->name('admin_store_Compan');
+    Route::get('createCompany', [AdminCompaniesController::class, 'createCompany'])->name('admin_create_company');
+    Route::post('createCompany', [AdminCompaniesController::class, 'storeCompany'])->name('admin_store_company');
 
 });
+
 
 
 Route::prefix('log_sign')->group(function () {

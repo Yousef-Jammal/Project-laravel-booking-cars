@@ -106,7 +106,7 @@ class AdminCompaniesController extends Controller
         {
             $company = Company::find($id);
             $company->delete();
-            return redirect()->route('admin_index_tables');
+            return redirect()->route('admin_companies');
             // return response()->json(["message" => "deleted user"]);
         }
 
