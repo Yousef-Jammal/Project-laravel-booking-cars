@@ -216,15 +216,13 @@ Route::post('/check-availability', [CarDetailsController::class, 'checkAvailabil
 Route::get('/carlist', [CarController::class, 'index']);
 Route::get('/search', [SearchController::class, 'searchCars']);
 Route::get('/filter', [SearchController::class, 'filterCars']);
-Route::get('/booking', function () {
-    return view('booking');
-})->name('booking');
+
 
 // fajer end//
 
 //khawara start
 
-Route::get('booking_c', [BookingController::class, 'getCompanyLocation']);
+Route::get('/booking_c', [BookingController::class, 'getCompanyLocation']);
 Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
 Route::get('about', function () {
     return view('about-us');
@@ -241,8 +239,14 @@ Route::get('privacy', function () {
 Route::get('contact', function () {
     return view('contact-us');
 })->name('contact');
+Route::get('invoice-details', function () {
+    return view('invoice-details');
+})->name('contact');
+
 Route::post('rental-session', [RentalController::class, 'storeRentalInSession'])->name('rental-session');
 
 //khawara end
-
+//invoice-details
 // fajer end//
+
+Route::post('/store_rental', [RentalController::class, 'storeRentalInDatabase']);

@@ -34,4 +34,16 @@ class RentalController extends Controller
         // return view('calendartest');
         // return details with success message
     }
+
+    public function storeRentalInDatabase(Request $request)
+    {
+        $rental = new Rental();
+        $rental->rent_start = $request->rent_start;
+        $rental->user_id = Auth::user()->id;
+        $rental->car_id = $request->car_id;
+        $rental->rent_end = $request->rent_end;
+        $rental->status_id = 1;
+        $rental->save();
+        return redirect()->action('App\Http\Controllers\HomeController@index');
+    }
 }

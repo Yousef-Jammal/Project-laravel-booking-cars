@@ -2,6 +2,7 @@
 @section('content')
 {{-- 11111111111111111111111111111111111111111111111111 --}}
 {{-- SECTION: Breadcrumb --}}
+@if(isset($data))
 <div id="pop-up-container">
     <div id="availability-popup">
         <div class="modal-content">
@@ -41,16 +42,15 @@
         </div>
     </div>
 </div>
+@endif
 <div class="breadcrumb-bar">
     <div class="container">
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">{{ $car->make }} {{ $car->model }}</h2>
+                <h2 class="breadcrumb-title">{{ $car->brand->name }} {{ $car->model }}</h2>
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Listings</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $car->make }} {{ $car->model }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $car->make }}</li>
                     </ol>
                 </nav>
             </div>
@@ -84,7 +84,7 @@
                                 <span>({{ number_format($car->rating, 1) }})</span>
                     </div>
                     <div class="camaro-info">
-                        <h3>{{ $car->make }} {{ $car->model }}</h3>
+                        <h3>{{ $car->brand->name }} {{ $car->model }} (Price Per Day : ${{$car->price_per_day}})</h3>
                     </div>
                 </div>
             </div>
@@ -419,7 +419,10 @@
                                 <li class="column-group-last">
                                     <div class="input-block mb-0">
                                         <div class="search-btn">
-                                            <button class="btn btn-primary check-available w-100" type="button" onclick="checkAvailability()">Check Price </button>
+                                            <button class="btn btn-secondary check-available w-100" type="button" onclick="checkAvailability()"
+                                                @if(!isset($data))
+                                                disabled
+                                                @endif>Check Price </button>
                                         </div>
                                     </div>
                                 </li>
@@ -515,7 +518,7 @@
         }
 
         function goToDetails() {
-            window.location.href = "{{ route('booking') }}";
+            window.location.href = "http://127.0.0.1:8000/booking_c";
         }
     </script>
 
