@@ -37,8 +37,8 @@ use App\Http\Controllers\admin\LossersController;
 use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
 
 
-// Route::prefix('admin')->middleware('checkRole:2')->group(function() {
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware('checkRole:1')->group(function() {
+// Route::prefix('admin')->group(function() {
 
     // Route::get('/', [HomeController::class, 'dashboard']);
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
