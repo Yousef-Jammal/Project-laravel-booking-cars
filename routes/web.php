@@ -33,10 +33,11 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminCarsController;
 use App\Http\Controllers\admin\AdminCompaniesController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\admin\LossersController;
 use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
 
 
-// Route::prefix('admin')->middleware('checkRole:1')->group(function() {
+// Route::prefix('admin')->middleware('checkRole:2')->group(function() {
 Route::prefix('admin')->group(function() {
 
     // Route::get('/', [HomeController::class, 'dashboard']);
@@ -47,6 +48,7 @@ Route::prefix('admin')->group(function() {
     Route::get('users', [AdminUserController::class, 'index'])->name('admin_users');
     Route::get('cars', [AdminCarsController::class, 'index'])->name('admin_cars');
     Route::get('companies', [AdminCompaniesController::class, 'index'])->name('admin_companies');
+    Route::get('admin_lossers', [LossersController::class, 'index'])->name('admin_lossers');
 
     // users table
     Route::get('showUser/{id}', [AdminUserController::class, 'viewUser'])->name('admin_show_user');
@@ -94,7 +96,7 @@ Route::prefix('home')->group(function () {
 
     Route::view('/viewCars-f', 'listing-list')->name('pruduct_list_from_home_with_filter');  // this node to handle from listing-list page
 
-    Route::post('/s', [HomeController::class, 'search_rentals'])->name('search_home'); //  I want this have more idea
+    Route::post('/search_home', [HomeController::class, 'search_home'])->name('search_home'); //  I want this have more idea
 
     Route::get('/{id}', [HomeController::class, 'go_to_pruduct_details'])->name('pruduct_details');
 

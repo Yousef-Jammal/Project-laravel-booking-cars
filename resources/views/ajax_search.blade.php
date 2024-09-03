@@ -5,7 +5,7 @@
     <div class="listing-item">
         <div class="listing-img">
 <a href="listing-details.html">
-    <img src="{{ asset('img/cars/car-01.jpg')}}" class="img-fluid" alt="Toyota">
+    <img src="{{ asset("car_images/". $car->images->first()->name)}}" class="img-fluid" alt="Toyota">
 </a>
 <div class="fav-item">
 <span class="featured-text">@php

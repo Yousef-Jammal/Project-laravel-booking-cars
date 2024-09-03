@@ -35,48 +35,39 @@
                 <ul class="align-items-center">
                     <li class="column-group-main">
                         <div class="input-block">
-                            <label>Pickup Location</label>
+                            <label>Year</label>
                             <div class="group-img">
-                                <input type="text" name="pickup_location" class="form-control" placeholder="Enter City, Airport, or Address">
-                                <span><i class="feather-map-pin"></i></span>
+                                <input type="number" name="year" class="form-control" placeholder="Year">
+                                {{-- <span><i class="feather-map-pin"></i></span> --}}
                             </div>
                         </div>
                     </li>
+
                     <li class="column-group-main">
                         <div class="input-block">
-                            <label>Pickup Date</label>
-                        </div>
-                        <div class="input-block-wrapp">
-                            <div class="input-block date-widget">
-                                <div class="group-img">
-                                    <input type="text" name="pickup_date_d" class="form-control datetimepicker" placeholder="04/11/2023">
-                                    <span><i class="feather-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="input-block time-widge">
-                                <div class="group-img">
-                                    <input type="text" name="pickup_date_h" class="form-control timepicker" placeholder="11:00 AM">
-                                    <span><i class="feather-clock"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="column-group-main">
-                        <div class="input-block">
-                            <label>Return Date</label>
+                            <label>Price per day</label>
                         </div>
                         <div class="input-block-wrapp">
                             <div class="input-block date-widge">
                                 <div class="group-img">
-                                    <input type="text" name="return_date_d" class="form-control datetimepicker" placeholder="04/11/2023">
-                                    <span><i class="feather-calendar"></i></span>
+                                    <input type="text" name="min" class="form-control " placeholder="Min">
+                                    {{-- <span><i class="feather-calendar"></i></span> --}}
                                 </div>
                             </div>
                             <div class="input-block time-widge">
                                 <div class="group-img">
-                                    <input type="text" name="return_date_h" class="form-control timepicker" placeholder="11:00 AM">
-                                    <span><i class="feather-clock"></i></span>
+                                    <input type="text" name="max" class="form-control " placeholder="Max">
+                                    {{-- <span><i class="feather-clock"></i></span> --}}
                                 </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="column-group-main">
+                        <div class="input-block">
+                            <label>Fuel type</label>
+                            <div class="group-img">
+                                <input type="text" name="fuel_type" class="form-control" placeholder="Fuel type">
+                                {{-- <span><i class="feather-map-pin"></i></span> --}}
                             </div>
                         </div>
                     </li>

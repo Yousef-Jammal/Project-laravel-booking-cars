@@ -43,6 +43,7 @@ class CompanyController extends Controller
 
     public function dashboard()
     {
+
         // Get the currently authenticated user's ID
         // $userId = Auth::id();
         $userId = 1;
@@ -59,27 +60,28 @@ class CompanyController extends Controller
             ->whereMonth('rent_start', now()->month)
             ->join('cars as c', 'rentals.car_id', '=', 'c.id') // Aliasing the cars table
             ->sum('c.price_per_day');
-
-        $customersThisYear = Rental::whereHas('car', function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        })
+            $customersThisYear = Rental::whereHas('car', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
             ->whereYear('rent_start', now()->year)
             ->distinct('user_id')
             ->count('user_id');
 
-        $recentRentals = Rental::whereHas('car', function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        })
+            $recentRentals = Rental::whereHas('car', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
             ->whereBetween('rent_start', [now()->startOfWeek(), now()->endOfWeek()])
             ->orderBy('rent_start', 'desc')
             ->take(5)
             ->get();
 
-        $totalCarsAvailable = Car::where('user_id', $userId)
+            $totalCarsAvailable = Car::where('user_id', $userId)
             ->where('availability', 'Available')
             ->count();
 
-        $company = Company::findOrFail($userId);
+            $company = Company::findOrFail($userId);
+            // $company = Company::select('*')->where('user_id', '=', $userId);
+            // return 'good';
 
         $cars = Car::where('user_id', $company->user_id)->get();
 
@@ -230,7 +232,7 @@ class CompanyController extends Controller
 
     public function requestsCar()
     {
-        
+
         $userId = auth()->user()->id;
         // $userId = 1;
         $cars = Car::where('user_id', $userId)

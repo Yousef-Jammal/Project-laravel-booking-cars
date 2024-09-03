@@ -110,7 +110,7 @@
 <li><a href="/home#frequently" >FAQ</a></li>
 <li><a href="/home#testimonials">Testimonials</a></li>
 <li><a href="/terms">Terms & Conditions</a></li>
-<li><a href="/privacy">Privacy Policy</a></li>  
+<li><a href="/privacy">Privacy Policy</a></li>
 <li><a href="/coming_soon">Coming Soon</a></li>
 </ul>
 </li> --}}
@@ -142,7 +142,7 @@
                     <ul class="nav header-navbar-rht">
 
                         @auth
-                        @if(Auth::user()->role->name == 'renter') {{-- Renter --}}
+                        @if(Auth::user()->role->name == 'user') {{-- Renter --}}
                         <li class="nav-item">
                             <a class="nav-link header-login" href="{{ route('user.user-info') }}">
                                 <span><i class="fa-regular fa-user"></i></span> Profile
@@ -421,7 +421,7 @@
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "../../../../Project-4-Ecommerce-WebsitePHP-MySql/api/newsletter_submit.php", true);
-            // true: Indicates that the request should be asynchronous, 
+            // true: Indicates that the request should be asynchronous,
             // the code will continue to run while the request is being processed.
 
             xhr.onload = function() {

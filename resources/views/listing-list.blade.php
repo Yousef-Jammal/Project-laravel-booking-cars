@@ -231,7 +231,7 @@
                                 <div class="blog-img">
                                     <a href="">
                                         @if($car->images->first() !== null)
-                                        <img src="car_images/{{ $car->images->first()->name }}" class="img-fluid" alt="car-image" height="200px" width="200px">
+                                        <img src='{{asset("car_images/". $car->images->first()->name )}}' class="img-fluid" alt="car-image" height="200px" width="200px">
                                         @endif
                                     </a>
                                 </div>

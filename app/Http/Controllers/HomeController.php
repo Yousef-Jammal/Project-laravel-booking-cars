@@ -15,6 +15,30 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function search_home(Request $request){
+        $brands = Brand::all();
+        $cars = Car::query();
+
+        if ($request->year) {
+            $cars->where('year', $request->year);
+        }
+
+        if ($request->min && $request->max) {
+            $cars->whereBetween('price_per_day', [$request->min, $request->max]);
+        } elseif ($request->min) {
+            $cars->where('price_per_day', '>=', $request->min);
+        } elseif ($request->max) {
+            $cars->where('price_per_day', '<=', $request->max);
+        }
+
+        if ($request->fuel_type) {
+            $cars->where('fuel_type', $request->fuel_type);
+        }
+        $cars = $cars->get();
+
+        return view('listing-list', compact('cars', 'brands'));
+
+    }
     public function index(){
         $cars =  Car::offset(0)->limit(6)->get();
         $count = DB::table('cars')
