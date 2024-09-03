@@ -145,8 +145,8 @@
         <label for="price_per_day">Price per Day:</label>
         <input type="number" step="0.01" id="price_per_day" name="price_per_day" value="{{ $car->price_per_day }}" disabled><br>
 
-        <label for="date_created">Date Created:</label>
-        <input type="date" id="date_created" name="date_created" value="{{ $car->date_created }}" disabled><br>
+        {{-- <label for="date_created">Date Created:</label>
+        <input type="date" id="date_created" name="date_created" value="{{ $car->date_created }}" disabled><br> --}}
 
         <a href="{{ route('admin_cars') }}">Back</a>
     </form>

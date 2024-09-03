@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('pageName', 'Cars Mangment')
 @section('content')
 <div class="container-fluid py-4">
     <div class="row">
@@ -34,7 +34,11 @@
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="{{ asset("img/team-2.jpg") }}" class="avatar avatar-sm me-3 border-radius-lg" alt="car">
+                                                @php
+                                                    $c1 = $car->images;
+                                                    $c2 = $c1[0];
+                                                @endphp
+                                                <img src="{{ asset("car_images/$c2->name") }}" class="avatar avatar-sm me-3 border-radius-lg" alt="car">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 @php

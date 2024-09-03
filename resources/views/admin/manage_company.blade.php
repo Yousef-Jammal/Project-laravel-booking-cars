@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('pageName', 'Companies Mangment')
 @section('content')
 
 <div class="container-fluid py-4">

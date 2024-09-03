@@ -15,6 +15,10 @@ use Illuminate\Validation\Rule;
 class AdminController extends Controller
 {
     // Start User functions
+    public function profile()
+    {
+        return view('admin.profile');
+    }
     public function index()
     {
         $usersCount = User::count();

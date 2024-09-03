@@ -1,92 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Company</title>
+    <title>Enhanced File Upload Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background-color: #f7f9fc;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
             padding: 20px;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
+
+        form {
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
         }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+
+        label {
             font-weight: bold;
-            color: #333;
+            margin-top: 10px;
         }
-        .form-group input {
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .form-group input[type="submit"] {
-            background-color: #5cb85c;
-            color: white;
+
+        button,
+        a {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
             border: none;
-            cursor: pointer;
-            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
-        .form-group input[type="submit"]:hover {
-            background-color: #4cae4c;
+
+        button:hover,
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        #preview {
+            display: none; /* Hidden by default */
+            max-width: 40px;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Edit Company</h1>
-        <form action="{{ route('admin_update_company', $company->id) }}" method="post">
-            @csrf
-            @method('PUT')
+    <form action="{{ route('admin_update_company', $compnaies->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <label for="user_id">Owner:</label>
+        <select name="user_id">
+            <option value=""  selected>Please Select a User</option>
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}" @if ($user->id == $compnaies->user_id ) selected @endif>{{ $user->name }}</option>
+            @endforeach
+        </select>
 
-            <!-- Uncomment and update if needed -->
-            <!-- <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $company->user->name }}">
-            </div> -->
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="{{ $compnaies->location }}" ><br>
 
-            <div class="form-group">
-                <label for="user_id">User ID:</label>
-                <input type="number" id="user_id" name="user_id" value="{{ $company->user_id }}" required>
-            </div>
-            <div class="form-group">
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="{{ $company->location }}" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" value="{{ $company->description }}" required>
-            </div>
-            <!-- Uncomment and update if needed -->
-            <!-- <div class="form-group">
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image">
-            </div> -->
 
-            <div class="form-group">
-                <input type="submit" value="Update">
-            </div>
-        </form>
-    </div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" value="{{ $compnaies->description }}" ><br>
+
+        <label for="rating">Rating:</label>
+        <input type="text" value="{{ $compnaies->rating }}" id="rating" name="rating" value="{{ $compnaies->description }}" ><br>
+
+        <label for="num_of_ratings">Number of ratings:</label>
+        <input type="text" value="{{ $compnaies->num_of_ratings }}" id="num_of_ratings" name="num_of_ratings" value="{{ $compnaies->description }}" ><br>
+
+        <button type="submit">Update</button>
+        <a href="{{ route('admin_companies') }}">Back</a>
+    </form>
+
+
 </body>
+
 </html>

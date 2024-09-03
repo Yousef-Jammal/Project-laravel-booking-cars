@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('pageName', 'Users Mangment')
 @section('content')
 <div class="row">
     <div class="col-12">

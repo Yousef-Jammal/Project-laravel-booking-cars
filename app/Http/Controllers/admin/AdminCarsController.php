@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Image;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Rental;
@@ -15,16 +16,15 @@ use Illuminate\Validation\Rule;
 class AdminCarsController extends Controller
 {
         public function index(){
-            $cars = Car::select('*')->orderby('id', 'ASC')->paginate(5);
+            $cars = Car::with('images')
+                        ->orderBy('id', 'ASC')
+                        ->paginate(5);
+
               return view('admin.manage_cars', ['cars'=> $cars]);
         }
 
-
         public function createCar()
         {
-            // $car = Car::find($id);
-            // return view('admin.view.view_cars', ['user'=>$car]);
-            // $car = Car::find();
             $users = User::all();
             $brands = Brand::all();
             return view('admin.create.create_cars', ['users'=>$users, 'brands'=> $brands]);
@@ -64,34 +64,22 @@ class AdminCarsController extends Controller
         }
         public function storeCar(Request $request)
         {
-            // $request->validate([
-            //     'user_id' => 'required|',
-            //     'brand_id' => 'required|',
-            //     'model' => 'required|',
-            //     'body' => 'required|',
-            //     'ac' => 'required|',
-            //     'door' => 'required|',
-            //     'mileage' => 'required|',
-            //     'fuel_type' => 'required|',
-            //     'make' => 'required|string|',
-            //     'transmission' => 'required|',
-            //     'drivetrain' => 'required|',
-            //     'vin' => 'required|string|',
-            //     'brake' => 'required|',
-            //     'year' => 'required|',
-            //     'engine_hp' => 'required|',
-            //     'rating' => 'required|',
-            //     'num_of_ratings' => 'required|',
-            //     'price_per_day' => 'required|',
-            //     'date_created' => 'required|',
-            // ]);
-            // return $request->brand_id;
+            // $imageName = time() . '.' . $request->file->extension();
+            $imageName = $request->file('file')->getClientOriginalName();
 
-            Car::create([
+            $file = $request->file('file');
+            $file->move(public_path('car_images'), $file->getClientOriginalName());
+
+            $maxId = Car::max('id');
+            $current = $maxId +2;
+
+
+
+
+            $car = Car::create([
                 'user_id' => $request->user_id,
                 'availability' => $request->availability,
-                // 'brand_id' => $request->brand_id,
-                'brand_id' => '5',
+                'brand_id' => $request->brand_id,
                 'model' => $request->model,
                 'body' => $request->body,
                 'ac' => $request->ac,
@@ -110,6 +98,12 @@ class AdminCarsController extends Controller
                 'price_per_day' => $request->price_per_day,
                 'date_created' => $request->date_created,
             ]);
+
+            Image::create([
+                'name' => $imageName,
+                'car_id' => $car->id,
+            ]);
+
 
             return redirect()->route('admin_cars')->with('success', 'Car updated successfully!');
         }
@@ -140,7 +134,7 @@ class AdminCarsController extends Controller
             'rating' => $request->rating,
             'num_of_ratings' => $request->num_of_ratings,
             'price_per_day' => $request->price_per_day,
-            'date_created' => $request->date_created,
+            // 'date_created' => $request->date_created,
         ]);
 
         // Redirect to the cars list with a success message

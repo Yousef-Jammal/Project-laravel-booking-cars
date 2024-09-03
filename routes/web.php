@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function() {
     // Route::get('/', [HomeController::class, 'dashboard']);
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
 
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin_profile');
+
     Route::get('users', [AdminUserController::class, 'index'])->name('admin_users');
     Route::get('cars', [AdminCarsController::class, 'index'])->name('admin_cars');
     Route::get('companies', [AdminCompaniesController::class, 'index'])->name('admin_companies');
@@ -63,8 +65,8 @@ Route::prefix('admin')->group(function() {
     Route::post('createCar', [AdminCarsController::class, 'storeCar'])->name('admin_store_car');
 
     // companies table
-    Route::get('showCompany/{id}', [AdminCompaniesController::class, 'viewCompany'])->name('admin_show_company');
-    Route::get('editCompany/{id}', [AdminCompaniesController::class, 'editCompany'])->name('admin_edit_company');
+    Route::get('showCompany/{id}', [AdminCompaniesController::class, 'viewCompnay'])->name('admin_show_company');
+    Route::get('editCompany/{id}', [AdminCompaniesController::class, 'editCompnay'])->name('admin_edit_company');
     Route::get('deleteCompany/{id}', [AdminCompaniesController::class, 'deleteCompany'])->name('admin_delete_company');
     Route::put('updateCompany/{id}', [AdminCompaniesController::class, 'updateCompany'])->name('admin_update_company');
     Route::get('createCompany', [AdminCompaniesController::class, 'createCompany'])->name('admin_create_company');

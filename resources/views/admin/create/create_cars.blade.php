@@ -29,7 +29,8 @@
 
         input[type="text"],
         input[type="number"],
-        input[type="date"] {
+        input[type="date"],
+        select {
             width: 100%;
             padding: 10px;
             margin: 5px 0 15px 0;
@@ -56,32 +57,20 @@
         a:hover {
             background-color: #0056b3;
         }
-        select {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;base64,...'); /* Custom arrow icon */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-}
+
+        #preview {
+            display: none; /* Hidden by default */
+            max-width: 40px;
+        }
     </style>
 </head>
 
 <body>
-    <form action="{{ route('admin_store_car') }}" method="POST">
+    <form action="{{ route('admin_store_car') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="user_id">User Name:</label>
-        <select name="user_id" >
+        <select name="user_id">
             <option value="" disabled selected>Please Select a User</option>
             @foreach ($users as $user)
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -89,10 +78,13 @@
         </select>
 
         <label for="availability">Availability:</label>
-        <input type="text" id="availability" name="availability"  required><br>
+        <select id="availability" name="availability" required>
+            <option value="available">Available</option>
+            <option value="not_available">Not Available</option>
+        </select>
 
-        <label for="brand_id">Brand ID:</label>
-        <select name="brand_id" >
+        <label for="brand_id">Brand:</label>
+        <select name="brand_id">
             <option value="" disabled selected>Please Select a Brand</option>
             @foreach ($brands as $brand)
                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -102,57 +94,175 @@
         <label for="model">Model:</label>
         <input type="text" id="model" name="model" required><br>
 
+
         <label for="body">Body:</label>
-        <input type="text" id="body" name="body" required><br>
+        <select id="body" name="body" required>
+            <option value="Sedan">Sedan</option>
+            <option value="Coupe">Coupe</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="SUV">SUV</option>
+            <option value="Convertible">Convertible</option>
+            <option value="Wagon">Wagon</option>
+            <option value="Pickup Truck">Pickup Truck</option>
+            <option value="Minivan">Minivan</option>
+            <option value="Crossover">Crossover</option>
+            <option value="Roadster">Roadster</option>
+            <option value="Van">Van</option>
+            <option value="Sports Car">Sports Car</option>
+            <option value="Luxury Car">Luxury Car</option>
+            <option value="Off-Road Vehicle">Off-Road Vehicle</option>
+            <option value="Compact">Compact</option>
+        </select>
+
 
         <label for="ac">AC:</label>
-        <input type="text" id="ac" name="ac" required><br>
+        <select id="ac" name="ac" required>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
 
         <label for="door">Door:</label>
-        <input type="number" id="door" name="door" required><br>
+        <select id="door" name="door" required>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
 
         <label for="mileage">Mileage:</label>
         <input type="number" id="mileage" name="mileage" required><br>
 
         <label for="fuel_type">Fuel Type:</label>
-        <input type="text" id="fuel_type" name="fuel_type" required><br>
+        <select id="fuel_type" name="fuel_type" required>
+            <option value="petrol">Petrol</option>
+            <option value="diesel">Diesel</option>
+            <option value="electric">Electric</option>
+            <option value="hybrid">Hybrid</option>
+        </select>
 
         <label for="make">Make:</label>
-        <input type="text" id="make" name="make" required><br>
+        <select id="make" name="make">
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Ford">Ford</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Tesla">Tesla</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="Audi">Audi</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Kia">Kia</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Subaru">Subaru</option>
+            <option value="Mazda">Mazda</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Jeep">Jeep</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Jaguar">Jaguar</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Volvo">Volvo</option>
+        </select>
 
         <label for="transmission">Transmission:</label>
-        <input type="text" id="transmission" name="transmission" required><br>
+        <select id="transmission" name="transmission">
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+            <option value="Semi-Automatic">Semi-Automatic</option>
+            <option value="CVT">CVT (Continuously Variable Transmission)</option>
+            <option value="Dual-Clutch Transmission">Dual-Clutch Transmission (DCT)</option>
+            <option value="Tiptronic">Tiptronic</option>
+            <option value="Electric Drive">Electric Drive</option>
+            <option value="Automated Manual Transmission">Automated Manual Transmission (AMT)</option>
+            <option value="Hybrid Transmission">Hybrid Transmission</option>
+            <option value="Direct Shift Gearbox">Direct Shift Gearbox (DSG)</option>
+        </select>
 
-        <label for="drivetrain">Drivetrain:</label>
-        <input type="text" id="drivetrain" name="drivetrian" required><br>
+
+        <label for="drivetrian">Drivetrian:</label>
+        <input type="text" id="drivetrian" name="drivetrian" required><br>
 
         <label for="vin">VIN:</label>
         <input type="text" id="vin" name="vin" required><br>
 
         <label for="brake">Brake:</label>
-        <input type="text" id="brake" name="brake" required><br>
+        <select id="brake" name="brake" required>
+            <option value="Disc">Disc</option>
+            <option value="Drum">Drum</option>
+            <option value="ABS (Anti-lock Braking System)">ABS (Anti-lock Braking System)</option>
+            <option value="Carbon Ceramic">Carbon Ceramic</option>
+            <option value="Hydraulic">Hydraulic</option>
+            <option value="Electric">Electric</option>
+            <option value="Air Brake">Air Brake</option>
+            <option value="Regenerative">Regenerative</option>
+            <option value="Magnetic">Magnetic</option>
+            <option value="Vacuum">Vacuum</option>
+        </select>
+
 
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" required><br>
+        <select id="year" name="year" required>
+            @for ($year = 1990; $year <= 2025; $year++)
+                <option value="{{ $year }}">{{ $year }}</option>
+            @endfor
+        </select>
 
         <label for="engine_hp">Engine HP:</label>
         <input type="number" id="engine_hp" name="engine_hp" required><br>
 
-        <label for="rating">Rating:</label>
-        <input type="number" step="0.01" id="rating" name="rating" required><br>
 
-        <label for="num_of_ratings">Number of Ratings:</label>
-        <input type="number" id="num_of_ratings" name="num_of_ratings" required><br>
+        <input value="0" type="hidden" id="rating" name="rating">
+        <input value="0" type="hidden" id="num_of_ratings" name="num_of_ratings" >
 
         <label for="price_per_day">Price per Day:</label>
         <input type="number" step="0.01" id="price_per_day" name="price_per_day" required><br>
 
-        <label for="date_created">Date Created:</label>
-        <input type="date" id="date_created" name="date_created" required><br>
+        @php
+            $dateNow = date('y-m-d');
+        @endphp
+        <input type="hidden" value="$dateNow " name="date_created">
+
+
+        <div class="form-group">
+            <label for="image" style="    background: #bcbcbc;
+    width: 120px;
+    height: 33px;
+    border-radius: 27px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;">Add Image</label>
+            <input style="visibility: hidden;" type="file" id="image" name="file" onchange="previewImage(event)">
+            <img id="preview" src="#" alt="Image Preview">
+        </div>
 
         <button type="submit">Create</button>
         <a href="{{ route('admin_cars') }}">Back</a>
     </form>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const preview = document.getElementById('preview');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        window.onload = function() {
+            const preview = document.getElementById('preview');
+            if (!preview.src || preview.src === '#') {
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 </html>
