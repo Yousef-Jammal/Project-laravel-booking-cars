@@ -137,6 +137,7 @@ use App\Http\Controllers\RentalController;
     Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
+
 Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
     Route::get('/company/user-info', [CompanyController::class, 'showUserInfo'])->name('company.user-info');
@@ -206,7 +207,7 @@ Route::post('/reviews/store', [CarDetailsController::class, 'storeReview'])->nam
 Route::get('/car/{id}/reviews', [CarDetailsController::class, 'showReviews'])->name('car.reviews');
 
 Route::get('/listing-details/{id}', [CarDetailsController::class, 'show'])->name('cardetails.show');
-
+// Route::get('/listing-details/{id}', [CarDetailsController::class, 'showCarDetailsImg']);
 Route::get('/car/{id}/features', [CarDetailsController::class, 'showFeatures'])->name('car.features');
 
 Route::get('/listing-details', function () {

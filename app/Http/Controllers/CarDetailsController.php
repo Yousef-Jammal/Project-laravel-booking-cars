@@ -3,19 +3,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
 
 class CarDetailsController extends Controller
 {
     public function show($id)
     {
         // استرجاع بيانات السيارة بناءً على المعرف (id)
-        $car = Car::findOrFail($id);
+        $car = Car::with('reviews')->findOrFail($id);
+
+        // حساب متوسط التقييم
+        $averageRating = $car->reviews->avg('rating');
 
         // تمرير البيانات إلى العرض
-        return view('listing-details', compact('car'));
+        return view('listing-details', compact('car', 'averageRating'));
     }
 
     public function showFeatures($id)
@@ -32,8 +35,11 @@ class CarDetailsController extends Controller
         // جلب السيارة مع المراجعات المرتبطة بها
         $car = Car::with('reviews')->findOrFail($id);
 
+        // حساب متوسط التقييم
+        $averageRating = $car->reviews->avg('rating');
+
         // تمرير بيانات السيارة مع المراجعات إلى العرض
-        return view('listing-details', compact('car'));
+        return view('listing-details', compact('car', 'averageRating'));
     }
 
     public function showOwnerDetails($id)
@@ -88,11 +94,8 @@ class CarDetailsController extends Controller
         ]);
     }
 
-
-
-
-public function submitReview(Request $request, $car_id)
-{
+    public function submitReview(Request $request, $car_id)
+    {
         // Validate the incoming request data
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
@@ -109,33 +112,30 @@ public function submitReview(Request $request, $car_id)
             'date' => now(),
         ]);
 
-        // Prepare the HTML for the new review (you may need to adjust this based on your view)
-        // $newReviewHtml = view('partials.review', [
-        //     'review' => [
-        //         'user' => Auth::user(),
-        //         'rating' => $request->input('rating'),
-        //         'content' => $request->input('content'),
-        //         'date' => now(),
-        //     ]
-        // ])->render();
+        // حساب متوسط التقييم بعد إضافة المراجعة الجديدة
+        $averageRating = $car->reviews()->avg('rating');
 
-        // Return a JSON response
-        // return response()->json([
-        //     'success' => true,
-        //     // 'newReviewHtml' => $newReviewHtml,
-        //     'reviewCount' => $car->reviews()->count(),
-        // ]);
-
-        return view('listing-details', compact('car'));
-
-
-}
+        // Return the updated view with the new review
+        return view('listing-details', compact('car', 'averageRating'));
+    }
 
     public function showCarDetailsImg($carId)
+    {
+        $carimages = image::find($carId);
+
+        return view('listing-details', compact('carimages'));
+    }
+    public function calculateAverageRating($carId)
 {
-    $car = Car::with('images')->findOrFail($carId);
+    // استرجاع السيارة بناءً على المعرف (id)
+    $car = Car::findOrFail($carId);
 
-    return view('listing-details', compact('car'));
+    // حساب متوسط التقييم لهذه السيارة من جدول التقييمات
+    $averageRating = $car->reviews()->avg('rating');
+
+    // إرجاع متوسط التقييم
+    return $averageRating;
 }
 
 }
+

@@ -1,5 +1,6 @@
 @extends('masterPage')
 @section('content')
+
 {{-- 11111111111111111111111111111111111111111111111111 --}}
 {{-- SECTION: Breadcrumb --}}
 @if(isset($data))
@@ -99,20 +100,28 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="detail-product">
-                    <div class="slider detail-bigimg">
+
+                    <div class="slider">
                         @foreach($car->images as $image)
-                        <div class="product-img">
-                            <img src='{{  asset("/car_images/" . $image->name) }}' alt="Slider">
+                        <div class="slide">
+                            <img src='{{ asset("/car_images/" . $image->name) }}' alt="Slider">
                         </div>
                         @endforeach
+                        <div class="controls">
+                            <button class="prev" onclick="prevSlide()">&#10094;</button>
+                            <button class="next" onclick="nextSlide()">&#10095;</button>
+                        </div>
                     </div>
-                    <div class="slider slider-nav-thumbnails">
+
+
+
+                    {{-- <div class="slider slider-nav-thumbnails">
                         @foreach($car->images as $image)
                         <div>
                             <img src='{{  asset("/car_images/" . $image->name) }}' alt="product image">
                         </div>
                         @endforeach
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="review-sec specification-card">
                     <div class="review-header">
@@ -262,22 +271,29 @@
                         <div class="reviewbox-list-rating">
                             <p>
                                 @php
-                                $averageRating = $car->reviews->avg('rating');
+                                $averageRating = $car->reviews->avg('pivot.rating');
+                                $wholeStars = floor($averageRating); // عدد النجوم الممتلئة
+                                $halfStar = ($averageRating - $wholeStars) >= 0.5; // نجمة نصف ممتلئة
+                                $emptyStars = 5 - $wholeStars - ($halfStar ? 1 : 0); // عدد النجوم الفارغة
                                 @endphp
 
-                                @for($i = 0; $i < floor($averageRating); $i++)
+                                @for($i = 0; $i < $wholeStars; $i++)
                                     <i class="fas fa-star filled"></i>
-                                    @endfor
-                                    @if($averageRating - floor($averageRating) >= 0.5)
+                                @endfor
+
+                                @if($halfStar)
                                     <i class="fas fa-star-half-alt filled"></i>
-                                    @endif
-                                    @for($i = 0; $i < (5 - ceil($averageRating)); $i++)
-                                        <i class="fas fa-star"></i>
-                                        @endfor
-                                        <span> ({{ number_format($averageRating, 1) }} out of 5)</span>
+                                @endif
+
+                                @for($i = 0; $i < $emptyStars; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+
+                                <span> ({{ number_format($averageRating, 1) }} out of 5)</span>
                             </p>
                         </div>
                     </div>
+
 
                     <!-- عرض التقييمات التفصيلية -->
                     @foreach($car->reviews as $review)
@@ -484,28 +500,21 @@
             </div>
         </div>
     </div>
-
     <script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('plugins/aos/aos.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('plugins/moment/moment.min.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('plugins/slick/slick.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('js/owl.carousel.min.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('js/backToTop.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('plugins/theia-sticky-sidebar/ResizeSensor.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
     <script src="{{ asset('plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
-
     <script src="{{ asset('js/script.js') }}" type="1fd1520c2fe94050b14d329a-text/javascript"></script>
     <script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="1fd1520c2fe94050b14d329a-|49" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script>
         function closePopup() {
@@ -514,7 +523,6 @@
 
         function checkAvailability() {
             document.getElementById('pop-up-container').style.display = 'flex';
-
         }
 
         function goToDetails() {
@@ -537,9 +545,7 @@
                 success: function(response) {
                     if (response.success) {
                         $('.review-sec.listing-review').append(response.newReviewHtml);
-                        $('.review-header h4 span').text((`$ {
-                            response.reviewCount
-                        }`));
+                        $('.review-header h4 span').text(`${response.reviewCount}`);
                         form.find('textarea').val('');
                     }
                 },
@@ -549,4 +555,29 @@
             });
         });
     </script>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Initialize the slider
+    showSlide(currentSlide);
+</script>
+
     @endsection
