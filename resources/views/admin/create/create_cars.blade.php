@@ -218,6 +218,7 @@
 
         <input value="0" type="hidden" id="rating" name="rating">
         <input value="0" type="hidden" id="num_of_ratings" name="num_of_ratings" >
+        <input value="accepted" type="hidden" id="status" name="status" >
 
         <label for="price_per_day">Price per Day:</label>
         <input type="number" step="0.01" id="price_per_day" name="price_per_day" required><br>
@@ -225,7 +226,7 @@
         @php
             $dateNow = date('y-m-d');
         @endphp
-        <input type="hidden" value="$dateNow " name="date_created">
+        <input type="hidden" value="{{ $dateNow }}" name="date_created">
 
 
         <div class="form-group">

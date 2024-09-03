@@ -31,6 +31,11 @@
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
     <link rel="stylesheet" href="{{ asset('css/Aseelstyle.css')}}">
+    <style>
+        .breadcrumb-item+.breadcrumb-item::before {
+            content: none;
+        }
+    </style>
 
 </head>
 
@@ -148,7 +153,7 @@
                                 <span><i class="fa-regular fa-user"></i></span> Profile
                             </a>
                         </li>
-                        @elseif(Auth::user()->role->name == 'company') {{-- Company --}}
+                        @elseif(Auth::user()->role->name == 'renter') {{-- Company --}}
                         <li class="nav-item">
                             <a class="nav-link header-login" href="{{ route('company.dashboard') }}">
                                 <span><i class="fa-regular fa-user"></i></span> Dashboard

@@ -28,7 +28,9 @@ class Car extends Model
         'rating',
         'price_per_day',
         'user_id',
-        'num_of_ratings'
+        'num_of_ratings',
+        'status',
+        'date_created',
     ];
     public $timestamps = false;
 

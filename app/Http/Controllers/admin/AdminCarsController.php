@@ -87,6 +87,7 @@ class AdminCarsController extends Controller
                 'mileage' => $request->mileage,
                 'fuel_type' => $request->fuel_type,
                 'make' => $request->make,
+                'date_created' => $request->date_created,
                 'transmission' => $request->transmission,
                 'drivetrian' => $request->drivetrian,
                 'vin' => $request->vin,
@@ -96,7 +97,7 @@ class AdminCarsController extends Controller
                 'rating' => $request->rating,
                 'num_of_ratings' => $request->num_of_ratings,
                 'price_per_day' => $request->price_per_day,
-                'date_created' => $request->date_created,
+                'status' => $request->status,
             ]);
 
             Image::create([
@@ -134,6 +135,7 @@ class AdminCarsController extends Controller
             'rating' => $request->rating,
             'num_of_ratings' => $request->num_of_ratings,
             'price_per_day' => $request->price_per_day,
+
             // 'date_created' => $request->date_created,
         ]);
 
