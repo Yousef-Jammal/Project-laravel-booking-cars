@@ -71,29 +71,27 @@ class UserController extends Controller
 
     public function rentalHistoryCenter()
     {
-        $userId = Auth::id();
-        $user = User::find($userId);        $userId = 1; // Assuming you want to filter by this user ID
 
-        // Fetch the status IDs for "Confirmed" and "Cancelled"
-        $confirmedStatus = Status::where('name', 'Confirmed')->first();
-        $cancelledStatus = Status::where('name', 'Cancelled')->first();
+    $userId = Auth::id();
+    $user = User::find($userId); // Get the authenticated user
 
-        // Ensure the statuses exist
-        if (!$confirmedStatus || !$cancelledStatus) {
-            return redirect()->back()->with('error', 'Status not found.');
-        }
+    // Fetch the rentals for this user
+    $rentals = Rental::whereHas('car', function ($query) use ($userId) {
+        $query->where('user_id', $userId);
+    })->with(['car.images', 'user', 'status'])->get();
 
-        // Get the rentals for the cars owned by the authenticated user, filtered by status
-        $rentals = Rental::whereHas('car', function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        })->whereIn('status_id', [$confirmedStatus->id, $cancelledStatus->id])
-            ->with(['car.images', 'user', 'status'])
-            ->get();
+    return view('users.rental-history-center', compact('user', 'rentals'));
+ }
+// Method to show the "Become a Lessor" page
+public function becomeLessor()
+{
+    // Retrieve the currently authenticated user
+    $user = Auth::user();
 
-        $statuses = Status::all(); // Get all available statuses
+    // Pass the user data to the view
+    return view('users.become-lessor', compact('user'));
+}
 
-        return view('users.rental-history-center', compact('user', 'rentals', 'statuses'));
-    }
     public function rentalRequestCenter()
     {
         $userId = Auth::id();
@@ -116,7 +114,7 @@ class UserController extends Controller
 
         $statuses = Status::all(); // Get all available statuses
 
-        return view('users.rental-history-center', compact('user', 'rentals', 'statuses'));
+        return view('users.rental-request-center', compact('user', 'rentals', 'statuses'));
     }
 
 }

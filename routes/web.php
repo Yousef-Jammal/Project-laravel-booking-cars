@@ -23,6 +23,12 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
+
+
+Route::get('/homeRami', function () {
+    return 'home';
+})->name('home');
+
 Route::post('/check-availability', [CarDetailsController::class, 'checkAvailability'])->name('check.availability');
 Route::get('/listing-owner/{id}', [CarDetailsController::class, 'showOwnerDetails'])->name('listing.owner');
 
@@ -169,8 +175,11 @@ use App\Http\Controllers\UserController;
 
 Route::get('/user/user-info', [UserController::class, 'showUserInfo'])->name('user.user-info');
 Route::post('/user/user-info', [UserController::class, 'updateUserInfo'])->name('user.user-info.update');
-Route::get('/user/rental-history-center', [UserController::class, 'rentalHistoryCenter'])->name('user.rental-history-center');
 Route::get('/user/rental-request-center', [UserController::class, 'rentalRequestCenter'])->name('user.rental-request-center');
+Route::get('/user/rental-history-center', [UserController::class, 'rentalHistoryCenter'])->name('user.rental-history-center');
+Route::get('/user/become-lessor', [UserController::class, 'becomeLessor'])->name('user.become-lessor');
+
+Route::post('/user/submit-become-lessor', [UserController::class, 'submitBecomeLessor'])->name('user.submit-become-lessor');
 
 
 // // FOR ASEEL USES
@@ -252,5 +261,3 @@ Route::post('rental-session', [RentalController::class, 'storeRentalInSession'])
 //khawara end
 //invoice-details
 // fajer end//
-
-Route::post('/store_rental', [RentalController::class, 'storeRentalInDatabase']);
