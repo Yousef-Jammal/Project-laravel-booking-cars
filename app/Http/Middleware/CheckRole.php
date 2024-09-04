@@ -18,16 +18,17 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role_id)
     {
-        // تحقق إذا كان المستخدم مسجل الدخول
-        if (Auth::check()) {
-            // تحقق من role_id للمستخدم
-            if (Auth::user()->role_id == $role_id) {
-                return $next($request);
-            }
+
+        // if (Auth::check()) {
+        //     if (Auth::user()->role_id == $role_id) {
+        //         return $next($request);
+        //     }
+        // }
+
+        if(Auth::user()->role->name == 'user'){
+            return redirect()->route('home_index');
+        }elseif(Auth::user()->role->name == 'admin'){
+            return $next($request);
         }
-
-        // إذا لم يكن المستخدم مصرحًا له
-
-        return redirect('/home')->with('error', 'ليس لديك الصلاحية للدخول إلى هذه الصفحة.');
     }
 }
