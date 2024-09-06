@@ -233,9 +233,9 @@
                                         @php
                                         $car_image = 'default.png';
                                         if ($car->images->first()) {
-                                            if ($car->images->first()->name) {
-                                                $car_image = $car->images->first()->name;
-                                            }
+                                        if ($car->images->first()->name) {
+                                        $car_image = $car->images->first()->name;
+                                        }
                                         }
                                         @endphp
                                         <img src='{{ asset("car_images/".$car_image)}}' class="img-fluid" alt="Toyota">
@@ -254,7 +254,7 @@
                                 <div class="listing-content">
                                     <div class="listing-features">
                                         <a href="javascript:void(0)" class="author-img">
-                                            <img src="{{ asset('img/profiles/avatar-0.jpg')}}" alt="author">
+                                            <img src='{{ asset("user_images/".$car->user->image)}}' alt="author">
                                         </a>
                                         <h3 class="listing-title">
                                             <a href="listing-details.html"> @php

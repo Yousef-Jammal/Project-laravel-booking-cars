@@ -229,7 +229,7 @@
                         <div class="card">
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
-                                    <a href="">
+                                    <a href="{{route('cardetails.show',$car->id)}}">
                                         @if($car->images->first() !== null)
                                         <img src='{{asset("car_images/". $car->images->first()->name )}}' class="img-fluid" alt="car-image" height="200px" width="200px">
                                         @endif
@@ -239,7 +239,7 @@
                                     <div class="card-body">
                                         <div class="blog-list-head d-flex">
                                             <div class="blog-list-title">
-                                                <h3><a href="">{{ $car->brand->name }}</a></h3>
+                                                <h3><a href="{{route('cardetails.show',$car->id)}}">{{ $car->brand->name }}</a></h3>
                                                 <h6>Model : <span>{{ $car->model }}</span></h6>
                                             </div>
                                             <div class="blog-list-rate">

@@ -7,6 +7,7 @@ use App\Models\Rental;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class RentalController extends Controller
 {
@@ -19,6 +20,15 @@ class RentalController extends Controller
 
         $startDate = Carbon::parse($rent_start);
         $endDate = Carbon::parse($rent_end);
+
+        $date_overlaps = Rental::where('car_id', $car->id)
+        ->where('rent_start', '>=', $startDate)
+        ->where('rent_end', '<=', $endDate)
+        ->exists();
+
+        if ($date_overlaps) {
+            return redirect()->route('show_calendarsss', ['id' => $car->id])->with('errorMsg', 'Data saved successfully!');
+        }
 
         // Calculate the difference in days, including both start and end dates
         $numberOfDays = $startDate->diffInDays($endDate) + 1;

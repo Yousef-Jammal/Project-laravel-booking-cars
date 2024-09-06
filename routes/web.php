@@ -237,7 +237,7 @@ Route::get('/filter', [SearchController::class, 'filterCars']);
 //khawara start
 
 Route::get('/booking_c', [BookingController::class, 'getCompanyLocation']);
-Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal']);
+Route::get('/show_calendar/{id}', [SearchController::class, 'calendarModal'])->name('show_calendarsss');
 Route::get('about', function () {
     return view('about-us');
 })->name('about');
