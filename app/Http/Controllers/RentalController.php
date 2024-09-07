@@ -26,8 +26,17 @@ class RentalController extends Controller
         ->where('rent_end', '<=', $endDate)
         ->exists();
 
+        $now = Carbon::today();
+        if ($now->gt($startDate)) {
+            return redirect()->route('show_calendarsss', ['id' => $car->id])->with('errorMsg', 'You Picked The Start Date In The Past');
+        }
+
+        if ($startDate->gt($endDate)) {
+            return redirect()->route('show_calendarsss', ['id' => $car->id])->with('errorMsg', 'You Picked The Start Date Before The End Date');
+        }
+
         if ($date_overlaps) {
-            return redirect()->route('show_calendarsss', ['id' => $car->id])->with('errorMsg', 'Data saved successfully!');
+            return redirect()->route('show_calendarsss', ['id' => $car->id])->with('errorMsg', 'You Picked An Overlapping Date');
         }
 
         // Calculate the difference in days, including both start and end dates

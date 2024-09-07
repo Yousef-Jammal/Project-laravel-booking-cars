@@ -144,7 +144,14 @@
 <body>
     <div class="modal">
         <div class="modal-content">
-            <a href="javascript:history.back()" class="back-button">Back</a>
+            <a href="javascript:void(0)" class="back-button" id="back-button">Back</a>
+
+            <script>
+                document.getElementById("back-button").addEventListener('click', function() {
+                    var carId = document.querySelector("#car_id").value;
+                    window.location.href = `http://127.0.0.1:8000/listing-details/${carId}`;
+                })
+            </script>
             <div class="modal-title">Choose Dates</div>
             <form action="{{route('rental-session')}}" method="post" autocomplete="off">
                 @csrf
@@ -195,12 +202,13 @@
         });
     </script>
     @if(session('errorMsg'))
+    <span style="display: none;" id="errorMsg">{{session('errorMsg')}}</span>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "You Picked An Overlapping Date",
+            text: `${document.querySelector("#errorMsg").textContent}`,
             footer: 'Please select a date range that is available',
             'confirmButtonColor': '#FFA633'
         });
