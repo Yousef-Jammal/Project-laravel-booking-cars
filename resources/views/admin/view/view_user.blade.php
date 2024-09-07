@@ -39,8 +39,8 @@
         .user-info p {
             margin: 0;
             padding: 8px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
+            /* background-color: #f4f4f4; */
+            /* border: 1px solid #ddd; */
             border-radius: 4px;
             color: #333;
         }
@@ -52,7 +52,7 @@
         }
 
         .back-button {
-            background-color: #5cb85c;
+            background-color: #ffa736;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -63,18 +63,24 @@
         }
 
         .back-button:hover {
-            background-color: #4cae4c;
+            background-color: #ff9c1c;
+            color: #fff;
+        }
+        h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>View User</h1>
-        <div class="user-info">
-            <label for="name">Name:</label>
-            <p id="name">{{ $user->name }}</p>
-        </div>
-        <div class="user-info">
+@endsection
+@section('content')
+<h1>View User</h1>
+<div class="container">
+    <div class="user-info">
+        <label for="name">Name:</label>
+        <p id="name">{{ $user->name }}</p>
+    </div>
+    <div class="user-info">
             <label for="email">Email:</label>
             <p id="email">{{ $user->email }}</p>
         </div>
@@ -86,7 +92,6 @@
             <label for="image">Image:</label>
             <img id="image" src="{{ asset('/user_images/' . $user->image) }}" alt="User Image">
         </div>
-        <a href="{{ route('admin_users') }}" class="back-button">Back to Users</a>
+        <a href="{{ route('admin_users') }}" class="back-button">Back</a>
     </div>
-</body>
-</html>
+    @endsection

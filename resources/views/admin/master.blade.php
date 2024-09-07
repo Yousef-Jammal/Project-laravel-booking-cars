@@ -1,3 +1,7 @@
+@php
+$id = Auth::user()->id;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +89,7 @@
               <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-8">Account pages</h6>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark " href="{{ route('admin_profile') }}">
+              <a class="nav-link text-dark " href="{{ route('admin_profile', $id) }}">
                 <div class="text-dark text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">person</i>
                 </div>
@@ -121,7 +125,8 @@
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                   <li class="nav-item d-flex align-items-center">
-                    <a href="{{ route('admin_profile') }}" class="nav-link text-body font-weight-bold px-0">
+
+                    <a href="{{ route('admin_profile', $id) }}" class="nav-link text-body font-weight-bold px-0">
 
                       <i class="fa fa-user me-sm-1" style="font-size: large;
                                                             font-size: large;

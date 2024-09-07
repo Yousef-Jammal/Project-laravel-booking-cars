@@ -9,7 +9,7 @@
             padding: 20px;
         }
 
-        form {
+        .my_div {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -65,27 +65,38 @@
             font-size: 24px !important;
             color: #333 !important;
         }
+        .my_div hr{
+            background-color: black;
+            height: 1px !important;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+
+        }
     </style>
 @endsection
 @section('content')
 <h1>View company</h1>
-<form>
-        <label for="user_id">Owner:</label>
-        <input type="text" id="user_id" name="user_id" value="{{ $compnaies->user->name }}" disabled><br>
-
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" value="{{ $compnaies->location }}" disabled><br>
+<div class="my_div">
+    <label for="user_id">Owner:</label>
+    <p id="user_id">{{ $compnaies->user->name }}</p><hr style="line-height: 1.6!important;">
 
 
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" value="{{ $compnaies->description }}" disabled><br>
+    <label for="location">Location:</label>
+    <p id="location">{{ $compnaies->location }}</p><hr style="line-height: 1.6!important;">
 
-        <label for="rating">Rating:</label>
-        <input type="text" value="{{ $compnaies->rating }}" id="rating" name="rating" value="{{ $compnaies->description }}" disabled><br>
 
-        <label for="num_of_ratings">Number of ratings:</label>
-        <input type="text" value="{{ $compnaies->num_of_ratings }}" id="num_of_ratings" name="num_of_ratings" value="{{ $compnaies->description }}" disabled><br>
+    <label for="description">Description:</label>
+    <p id="description">{{ $compnaies->description }}</p><hr style="line-height: 1.6!important;">
 
-        <a class="my_a_form" href="{{ route('admin_companies') }}">Back</a>
-    </form>
+
+    <label for="rating">Rating:</label>
+    <p id="rating">{{ $compnaies->rating }}</p><hr style="line-height: 1.6!important;">
+
+    <label for="num_of_ratings">Number of ratings:</label>
+    <p id="num_of_ratings">{{ $compnaies->num_of_ratings }}</p><hr style="line-height: 1.6!important;">
+
+    <a class="my_a_form" href="{{ route('admin_companies') }}">Back</a>
+</div>
+
 @endsection

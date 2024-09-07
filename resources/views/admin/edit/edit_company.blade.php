@@ -34,8 +34,8 @@
             border-radius: 4px;
         }
 
-        button,
-        a {
+        .my_btn_form,
+        .my_a_form {
             display: inline-block;
             text-align: center;
             padding: 10px 20px;
@@ -44,20 +44,28 @@
             border-radius: 4px;
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #ffa736 !important;
             border: none;
             transition: background-color 0.3s ease;
         }
 
-        button:hover,
-        a:hover {
-            background-color: #0056b3;
+
+        .my_btn_form:hover,
+        .my_a_form:hover {
+            background-color: #f99c23 !important;
+            color: #fff;
         }
 
         #preview {
             display: none; /* Hidden by default */
             max-width: 40px;
         }
+        h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
+        }
+
         </style>
 @endsection
 
@@ -87,8 +95,9 @@
         <label for="num_of_ratings">Number of ratings:</label>
         <input type="text" value="{{ $compnaies->num_of_ratings }}" id="num_of_ratings" name="num_of_ratings" value="{{ $compnaies->description }}" ><br>
 
-        <button type="submit">Update</button>
-        <a href="{{ route('admin_companies') }}">Back</a>
+        <button class="my_btn_form" type="submit">Update</button>
+        <a class="my_a_form" href="{{ route('admin_companies') }}">Back</a>
+
     </form>
 
 @endsection

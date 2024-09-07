@@ -29,7 +29,7 @@
         height: 100px;
         border-radius: 50%;
         margin-right: 20px;
-        border: 4px solid #ff6600; /* Orange border */
+        border: 4px solid #ff660079; /* Orange border */
     }
     .profile-header h1 {
         margin: 0;
@@ -84,11 +84,11 @@
 
 <div class="profile-container">
     <div class="profile-header">
-        <img src="profile-picture.jpg" alt="Profile Picture">
+        <img src="{{ asset('user_images/'. $user->image) }}">
         <div>
-            <h1 id="user-name">John Doe</h1>
-            <p id="user-email">john.doe@example.com</p>
-            <p id="user-phone">+123456789</p>
+            <h1 id="user-name">{{$user->name}}</h1>
+            <p id="user-email">{{ $user->email }}</p>
+            <p id="user-phone">{{ $user->phone }}</p>
         </div>
     </div>
     <div class="profile-content">
@@ -96,38 +96,9 @@
             <label for="bio">Bio:</label>
             <textarea id="bio" rows="4">Lorem ipsum dolor sit amet.</textarea>
         </div>
-        <div class="form-group">
-            <label for="location">Location:</label>
-            <select id="location">
-                <option value="ny">New York</option>
-                <option value="sf">San Francisco</option>
-                <option value="la">Los Angeles</option>
-            </select>
-        </div>
         <button id="update-button">Update Profile</button>
     </div>
 </div>
 
 @endsection
 
-@section('admin_scripts')
-<script>
-    // JS Script
-    document.getElementById('update-button').addEventListener('click', function() {
-        alert('Profile updated!');
-    });
-
-    // Example function to populate profile data dynamically
-    function loadProfileData() {
-        // Simulate loading data
-        document.getElementById('user-name').textContent = 'Jane Doe';
-        document.getElementById('user-email').textContent = 'jane.doe@example.com';
-        document.getElementById('user-phone').textContent = '+987654321';
-        document.getElementById('bio').value = 'Updated bio text.';
-        document.getElementById('location').value = 'sf';
-    }
-
-    // Call function to load profile data
-    loadProfileData();
-</script>
-@endsection

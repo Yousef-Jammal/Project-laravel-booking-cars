@@ -49,7 +49,7 @@ Route::prefix('admin')->middleware('checkRole:1')->group(function() {
     // Route::get('/', [HomeController::class, 'dashboard']);
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
 
-    Route::get('/profile', [AdminController::class, 'profile'])->name('admin_profile');
+    Route::get('/profile/{id}', [AdminController::class, 'profile'])->name('admin_profile');
 
     Route::get('users', [AdminUserController::class, 'index'])->name('admin_users');
     Route::get('cars', [AdminCarsController::class, 'index'])->name('admin_cars');
@@ -88,6 +88,7 @@ Route::prefix('log_sign')->group(function () {
 
     Route::get('/login', [AuthController::class, 'showLoginForm']);
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
