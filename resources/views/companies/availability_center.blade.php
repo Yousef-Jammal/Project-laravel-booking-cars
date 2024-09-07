@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container">
         <div class="dashboard-nav">
             <ul class="nav">
@@ -44,13 +44,13 @@
 
     <div class="container mt-5">
         <h2>Availability Control Center</h2>
-        
+
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
-        
+
         @if(session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -172,5 +172,7 @@
 
 
             </div>
+<br>
+<br>
 
 @endsection
