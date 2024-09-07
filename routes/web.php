@@ -180,7 +180,7 @@ Route::get('/user/rental-request-center', [UserController::class, 'rentalRequest
 Route::get('/user/rental-history-center', [UserController::class, 'rentalHistoryCenter'])->name('user.rental-history-center');
 Route::get('/user/become-lessor', [UserController::class, 'becomeLessor'])->name('user.become-lessor');
 
-Route::post('/user/submit-become-lessor', [UserController::class, 'submitBecomeLessor'])->name('user.submit-become-lessor');
+Route::post('/user/submit-become-lessor/{id}', [UserController::class, 'submitBecomeLessor'])->name('user.submit-become-lessor');
 
 
 // // FOR ASEEL USES

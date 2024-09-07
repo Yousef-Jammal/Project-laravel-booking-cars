@@ -1,29 +1,30 @@
 @extends('admin.master')
 @section('pageName', 'Users Mangment')
 @section('content')
-<div class="row">
-    <div class="col-12">
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
       <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" style="background-image: linear-gradient(195deg, #ffa633 0%, #ffa633 100%)">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h6 class="text-white text-capitalize ps-3">Losser table</h6>
-                {{-- <a href="{{ route('admin_create_user') }}" class="btn btn-beautiful" style="margin-right: 20px; color: #fff;">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" style="background-image: linear-gradient(195deg, #ffa633 0%, #ffa633 100%)">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <h6 class="text-white text-capitalize ps-3">Losser table</h6>
+                      {{-- <a href="{{ route('admin_create_user') }}" class="btn btn-beautiful" style="margin-right: 20px; color: #fff;">
                     Add User
                 </a> --}}
             </div>
-          </div>
         </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive p-0">
+    </div>
+    <div class="card-body px-0 pb-2" style="height: 435px">
+        <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Users</th>
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Users</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                 </tr>
-              </thead>
-              <tbody>
+            </thead>
+            <tbody>
                 <tr>
                     <td>
                         <div class="d-flex px-2 py-1">
@@ -34,29 +35,30 @@
                     </td>
 
 
-                  <td class="align-middle" style="text-align: center">
-                    <label>
-                        <input type="radio" name="status" value="accept" class="text-secondary font-weight-bold text-xs" style="margin: 0 3px 0;">
-                        Accept
-                    </label>
-                    <label>
-                        <input type="radio" name="status" value="not_accept" class="text-secondary font-weight-bold text-xs" style="margin: 0 3px 0;">
-                        Not Accept
-                    </label>
+                    <td class="align-middle" style="text-align: center">
+                        <label>
+                            <input type="radio" name="status" value="accept" class="text-secondary font-weight-bold text-xs" style="margin: 0 3px 0;">
+                            Accept
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="not_accept" class="text-secondary font-weight-bold text-xs" style="margin: 0 3px 0;">
+                            Not Accept
+                        </label>
                 </td>
 
 
-                </tr>
+            </tr>
               </tbody>
             </table>
             <div style="display: flex; justify-content: center; align-items: center; padding: 10px 0">
                 {{-- {{$users->links()}} --}}
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
 
 @endsection
 

@@ -71,5 +71,11 @@ class User extends Authenticatable
         return $this->hasOne(Company::class);
     }
 
+    public function notifications()
+    {
+        return $this->belongsTo(Notifications::class);
+    }
+
+
     public $timestamps = false;
 }

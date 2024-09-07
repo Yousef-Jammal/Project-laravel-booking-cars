@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View User</title>
+@extends('admin.master')
+@section('pageName', 'Users Mangment')
+
+@section('admin_style')
     <style>
         body {
             font-family: Arial, sans-serif;

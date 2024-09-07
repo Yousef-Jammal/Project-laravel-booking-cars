@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.master')
+@section('pageName', 'View car')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced File Upload Section</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+@section('admin_style')
+        <style>
         body {
             background-color: #f7f9fc;
             font-family: Arial, sans-serif;
@@ -14,14 +10,15 @@
         }
 
         form {
+            width: 90%;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
+            /* max-width: 600px;
+            margin: auto; */
+            width: 99% !important;
         }
-
         label {
             font-weight: bold;
             margin-top: 10px;
@@ -37,8 +34,9 @@
             border-radius: 4px;
         }
 
-        button,
-        a {
+
+        .my_btn_form,
+        .my_a_form {
             display: inline-block;
             text-align: center;
             padding: 10px 20px;
@@ -47,109 +45,190 @@
             border-radius: 4px;
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #ffa736 !important;
             border: none;
             transition: background-color 0.3s ease;
         }
 
-        button:hover,
-        a:hover {
-            background-color: #0056b3;
+
+        .my_btn_form:hover,
+        .my_a_form:hover {
+            background-color: #f99c23 !important;
+            color: #fff;
+        }
+        h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
         }
         select {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;base64,...'); /* Custom arrow icon */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-}
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;base64,...'); /* Custom arrow icon */
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+        form p{
+            margin-left: 20px;
+            font-weight: 600;
+            color: black;
+        }
+        .car-details-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    p {
+        margin: 0;
+        color: #555;
+    }
+
+    a.my_a_form {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #ff6b35;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    a.my_a_form:hover {
+        background-color: #ff5100;
+    }
     </style>
-</head>
+@endsection
+@section('content')
+<h1>View car</h1>
+<div class="car-details-container">
+    <div class="detail-item">
+        <label for="user_id">User Name:</label>
+        <p id="user_id">{{ $car->user->name }}</p>
+    </div>
 
-<body>
-    <form action="{{ route('admin_update_car', $car->id) }}" method="POST">
-        @method('PUT')
-        @csrf
-        <label for="user_id" >User Name:</label>
-        <input id="user_id" type="text" value="{{ $car->user->name }}" disabled>
-
-
+    <div class="detail-item">
         <label for="availability">Availability:</label>
-        <input type="text" id="availability" name="availability" value="{{ $car->availability }}" disabled>
-        <br>
+        <p id="availability">{{ $car->availability }}</p>
+    </div>
 
+    <div class="detail-item">
+        <label for="brand_id">Brand:</label>
+        <p id="brand_id">{{ $car->brand->name }}</p>
+    </div>
 
-
-        <label for="brand_id">Brand ID:</label>
-        <input id="brand_id" type="text" value="{{ $car->brand->name }}" disabled>
-
-
-
-
-
+    <div class="detail-item">
         <label for="model">Model:</label>
-        <input type="text" id="model" name="model" value="{{ $car->model }}" disabled><br>
+        <p id="model">{{ $car->model }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="body">Body:</label>
-        <input type="text" id="body" name="body" value="{{ $car->body }}" disabled><br>
+        <p id="body">{{ $car->body }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="ac">AC:</label>
-        <input type="text" id="ac" name="ac" value="{{ $car->ac }}" disabled><br>
+        <p id="ac">{{ $car->ac }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="door">Door:</label>
-        <input type="number" id="door" name="door" value="{{ $car->door }}" disabled><br>
+        <p id="door">{{ $car->door }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="mileage">Mileage:</label>
-        <input type="number" id="mileage" name="mileage" value="{{ $car->mileage }}" disabled><br>
+        <p id="mileage">{{ $car->mileage }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="fuel_type">Fuel Type:</label>
-        <input type="text" id="fuel_type" name="fuel_type" value="{{ $car->fuel_type }}" disabled><br>
+        <p id="fuel_type">{{ $car->fuel_type }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="make">Make:</label>
-        <input type="text" id="make" name="make" value="{{ $car->make }}" disabled><br>
+        <p id="make">{{ $car->make }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="transmission">Transmission:</label>
-        <input type="text" id="transmission" name="transmission" value="{{ $car->transmission }}" disabled><br>
+        <p id="transmission">{{ $car->transmission }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="drivetrain">Drivetrain:</label>
-        <input type="text" id="drivetrain" name="drivetrian" value="{{ $car->drivetrian }}" disabled><br>
+        <p id="drivetrain">{{ $car->drivetrain }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="vin">VIN:</label>
-        <input type="text" id="vin" name="vin" value="{{ $car->vin }}" disabled><br>
+        <p id="vin">{{ $car->vin }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="brake">Brake:</label>
-        <input type="text" id="brake" name="brake" value="{{ $car->brake }}" disabled><br>
+        <p id="brake">{{ $car->brake }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" value="{{ $car->year }}" disabled><br>
+        <p id="year">{{ $car->year }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="engine_hp">Engine HP:</label>
-        <input type="number" id="engine_hp" name="engine_hp" value="{{ $car->engine_hp }}" disabled><br>
+        <p id="engine_hp">{{ $car->engine_hp }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="rating">Rating:</label>
-        <input type="number" step="0.01" id="rating" name="rating" value="{{ $car->rating }}" disabled><br>
+        <p id="rating">{{ $car->rating }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="num_of_ratings">Number of Ratings:</label>
-        <input type="number" id="num_of_ratings" name="num_of_ratings" value="{{ $car->num_of_ratings }}" disabled><br>
+        <p id="num_of_ratings">{{ $car->num_of_ratings }}</p>
+    </div>
 
+    <div class="detail-item">
         <label for="price_per_day">Price per Day:</label>
-        <input type="number" step="0.01" id="price_per_day" name="price_per_day" value="{{ $car->price_per_day }}" disabled><br>
+        <p id="price_per_day">{{ $car->price_per_day }}</p>
+    </div>
 
-        {{-- <label for="date_created">Date Created:</label>
-        <input type="date" id="date_created" name="date_created" value="{{ $car->date_created }}" disabled><br> --}}
+    <a class="my_a_form" href="{{ route('admin_cars') }}">Back</a>
+</div>
 
-        <a href="{{ route('admin_cars') }}">Back</a>
-    </form>
-</body>
 
-</html>
+@endsection

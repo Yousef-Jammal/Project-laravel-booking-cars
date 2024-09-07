@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.master')
+@section('pageName', 'Users Mangment')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced File Upload Section</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+@section('admin_style')
+<style>
         body {
             background-color: #f7f9fc;
             font-family: Arial, sans-serif;
@@ -73,17 +69,16 @@
     background-position: right 10px center;
     background-size: 12px;
 }
-    </style>
-</head>
-
-<body>
+</style>
+@endsection
+@section('content')
     <form action="{{ route('admin_update_car', $car->id) }}" method="POST">
         @method('PUT')
         @csrf
         <label for="user_id">User Name:</label>
-<select name="user_id" id="">
-    <option value="" disabled selected>Please Select a User</option>
-    @foreach ($users as $user)
+        <select name="user_id" id="">
+            <option value="" disabled selected>Please Select a User</option>
+            @foreach ($users as $user)
         <option value="{{ $user->id }}" @if ($user->id == $car->user_id) selected @endif>{{ $user->name }}</option>
     @endforeach
 </select>
@@ -95,7 +90,7 @@
 <select name="brand_id" id="">
     <option value="" disabled selected>Please Select a Brand</option>
     @foreach ($brands as $brand)
-        <option value="{{ $brand->id }}" @if ($brand->id == $car->brand_id) selected @endif>{{ $brand->name }}</option>
+    <option value="{{ $brand->id }}" @if ($brand->id == $car->brand_id) selected @endif>{{ $brand->name }}</option>
     @endforeach
 </select>
 
@@ -157,6 +152,4 @@
         <button type="submit">Update</button>
         <a href="{{ route('admin_cars') }}">Back</a>
     </form>
-</body>
-
-</html>
+@endsection
