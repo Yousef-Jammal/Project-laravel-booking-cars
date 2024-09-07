@@ -129,7 +129,7 @@ class SearchController extends Controller
         return response()->json(["dates_array" => $disabled_dates]);
     }
 
-    public function calendarModal(string $id)
+    public function calendarModal()
     {
         if (Auth::user()) {
             return view('calendartest');

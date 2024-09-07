@@ -194,6 +194,18 @@
             });
         });
     </script>
+    @if(session('errorMsg'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You Picked An Overlapping Date",
+            footer: 'Please select a date range that is available',
+            'confirmButtonColor': '#FFA633'
+        });
+    </script>
+    @endif
 </body>
 
 </html>
