@@ -98,7 +98,7 @@ margin-bottom: 2%;}
 
         <button type="submit" class="btn btn-primary mt-4">Save Changes</button>
     </form>
-
+<br>
     <script>
         (() => {
             'use strict';

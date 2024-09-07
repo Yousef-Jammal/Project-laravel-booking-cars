@@ -257,7 +257,7 @@
                                             <img src='{{ asset("user_images/".$car->user->image)}}' alt="author">
                                         </a>
                                         <h3 class="listing-title">
-                                            <a href="listing-details.html"> @php
+                                            <a href="{{route('cardetails.show',$car->id)}}"> @php
                                                 echo json_decode($car->brand, true)['name'];
                                                 @endphp {{ $car->model }} {{ $car->year }}</a>
                                         </h3>

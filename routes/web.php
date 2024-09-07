@@ -43,8 +43,8 @@ use App\Http\Controllers\admin\LossersController;
 use Symfony\Component\HttpKernel\Debug\ErrorHandlerConfigurator;
 
 
-Route::prefix('admin')->middleware('checkRole:1')->group(function() {
-// Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware('checkRole:1')->group(function () {
+    // Route::prefix('admin')->group(function() {
 
     // Route::get('/', [HomeController::class, 'dashboard']);
     Route::get('/', [AdminController::class, 'index'])->name('admin_index');
@@ -79,7 +79,6 @@ Route::prefix('admin')->middleware('checkRole:1')->group(function() {
     Route::put('updateCompany/{id}', [AdminCompaniesController::class, 'updateCompany'])->name('admin_update_company');
     Route::get('createCompany', [AdminCompaniesController::class, 'createCompany'])->name('admin_create_company');
     Route::post('createCompany', [AdminCompaniesController::class, 'storeCompany'])->name('admin_store_company');
-
 });
 
 
@@ -140,35 +139,33 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\RentalController;
 
 // Route::middleware(['auth', 'company'])->group(function () {
-    Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
+Route::get('/company/{id}/cars', [CompanyController::class, 'showCars'])->name('company.cars');
 Route::get('/cars/{id}', [CompanyController::class, 'showCarDetails'])->name('car.details');
 
 
 Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company.dashboard');
 
-    Route::get('/company/user-info', [CompanyController::class, 'showUserInfo'])->name('company.user-info');
-    Route::post('/company/user-info', [CompanyController::class, 'updateUserInfo'])->name('company.user-info.update');
-    Route::get('/company/rental-control-center', [CompanyController::class, 'rentalControlCenter'])->name('company.rental-control-center');
-    Route::patch('/company/rental-control-center/{rentalId}', [CompanyController::class, 'updateRentalStatus'])->name('company.update-rental-status');
+Route::get('/company/user-info', [CompanyController::class, 'showUserInfo'])->name('company.user-info');
+Route::post('/company/user-info', [CompanyController::class, 'updateUserInfo'])->name('company.user-info.update');
+Route::get('/company/rental-control-center', [CompanyController::class, 'rentalControlCenter'])->name('company.rental-control-center');
+Route::patch('/company/rental-control-center/{rentalId}', [CompanyController::class, 'updateRentalStatus'])->name('company.update-rental-status');
 
 Route::get('/company/carControlCenter', [CompanyController::class, 'carControlCenter'])->name('company.carControlCenter');
-    Route::get('/company/carControlCenter/create', [CompanyController::class, 'createCar'])->name('company.createCar');
+Route::get('/company/carControlCenter/create', [CompanyController::class, 'createCar'])->name('company.createCar');
 Route::get('/company/requestsCar', [CompanyController::class, 'requestsCar'])->name('company.requestsCar');
 
 
-    Route::get('/company/cars/{id}/edit', [CompanyController::class, 'editCar'])->name('company.editCar');
-    Route::put('/company/cars/{id}', [CompanyController::class, 'updateCar'])->name('company.updateCar');
+Route::get('/company/cars/{id}/edit', [CompanyController::class, 'editCar'])->name('company.editCar');
+Route::put('/company/cars/{id}', [CompanyController::class, 'updateCar'])->name('company.updateCar');
 
-    Route::get('/company-listing-details/{id}', [CompanyController::class, 'showCar'])->name('company.listing-details');
-    Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
+Route::get('/company-listing-details/{id}', [CompanyController::class, 'showCar'])->name('company.listing-details');
+Route::delete('/company/cars/{id}', [CompanyController::class, 'deleteCar'])->name('company.deleteCar');
 
-    Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
+Route::post('/company/store_car', [CompanyController::class, 'storeCar'])->name('company.store_car');
 
 
 Route::get('/company/availability_center', [CompanyController::class, 'availabilityCenter'])->name('company.availabilityCenter');
 Route::patch('/company/update-availability-status/{car}', [CompanyController::class, 'updateAvailabilityStatus'])->name('company.update-availability-status');
-
-
 // });
 
 use App\Http\Controllers\UserController;

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Company;
@@ -73,25 +75,30 @@ class UserController extends Controller
     public function rentalHistoryCenter()
     {
 
-    $userId = Auth::id();
-    $user = User::find($userId); // Get the authenticated user
+        $userId = Auth::id();
+        $user = User::find($userId); // Get the authenticated user
+        // Get the confirmed and cancelled status IDs
+        $confirmedStatusIds = Status::where('name', 'Confirmed')
+            ->orWhere('name', 'Cancelled')
+            ->pluck('id');  // Extract the IDs of the statuses
 
-    // Fetch the rentals for this user
-    $rentals = Rental::whereHas('car', function ($query) use ($userId) {
-        $query->where('user_id', $userId);
-    })->with(['car.images', 'user', 'status'])->get();
+        // Fetch the rentals for this user
+        $rentals = Rental::where('user_id', $userId)  // Fetch rentals where the logged-in user is the renter
+            ->whereIn('status_id', $confirmedStatusIds)  // Filter by confirmed and cancelled status
+            ->with(['car.images', 'user', 'status'])  // Eager load related data
+            ->get();
 
-    return view('users.rental-history-center', compact('user', 'rentals'));
- }
-// Method to show the "Become a Lessor" page
-public function becomeLessor()
-{
-    // Retrieve the currently authenticated user
-    $user = Auth::user();
+        return view('users.rental-history-center', compact('user', 'rentals'));
+    }
+    // Method to show the "Become a Lessor" page
+    public function becomeLessor()
+    {
+        // Retrieve the currently authenticated user
+        $user = Auth::user();
 
-    // Pass the user data to the view
-    return view('users.become-lessor', compact('user'));
-}
+        // Pass the user data to the view
+        return view('users.become-lessor', compact('user'));
+    }
 
     public function rentalRequestCenter()
     {
@@ -102,16 +109,16 @@ public function becomeLessor()
         $confirmedStatus = Status::where('name', 'Pending')->first();
 
         // Ensure the statuses exist
-        if (!$confirmedStatus ) {
+        if (!$confirmedStatus) {
             return redirect()->back()->with('error', 'Status not found.');
         }
 
         // Get the rentals for the cars owned by the authenticated user, filtered by status
-        $rentals = Rental::whereHas('car', function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        })->whereIn('status_id', [$confirmedStatus->id])
-            ->with(['car.images', 'user', 'status'])
+        $rentals = Rental::where('user_id', $userId)  // Fetch rentals where the logged-in user is the renter
+            ->whereIn('status_id', [$confirmedStatus->id])  // Filter by confirmed status
+            ->with(['car.images', 'user', 'status'])  // Eager load related data
             ->get();
+        // dd($rentals);
 
         $statuses = Status::all(); // Get all available statuses
 
@@ -124,11 +131,10 @@ public function becomeLessor()
 
         // users_id_photos
         $data = [
-            'user_description' =>$request->user_description,
-            'Personal_ID_photo' =>$request->Personal_ID_photo
+            'user_description' => $request->user_description,
+            'Personal_ID_photo' => $request->Personal_ID_photo
         ];
         RentalRequest::create($data);
         return redirect()->route('');
-
     }
 }

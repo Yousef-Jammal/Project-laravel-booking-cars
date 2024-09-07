@@ -42,5 +42,7 @@
         <button type="submit" class="btn btn-primary mt-4">Submit</button>
     </form>
 </div>
+<br>
+<br>
 
 @endsection

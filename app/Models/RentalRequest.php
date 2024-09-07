@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RentalRequest extends Model
 {
     use HasFactory;
+    protected $table = 'renter_request';
 
     protected $fillable = [
         'user_id',

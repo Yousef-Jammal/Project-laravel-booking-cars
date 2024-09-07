@@ -8,7 +8,7 @@
     <h2 class="breadcrumb-title">{{ $company->user->name }} Cars </h2>
     <nav aria-label="breadcrumb" class="page-breadcrumb">
     <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>    
+    <li class="breadcrumb-item"><a href="index-2.html">Home/</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{ $company->user->name }} User Information
     </li>
     </ol>
@@ -69,8 +69,8 @@
                 </div>
                 <form class="carCreateAseel" method="POST" action="{{ route('company.store_car') }}" enctype="multipart/form-data">
                     @csrf
-                    
-                
+
+
                     <!-- Step 1: Car Basic Details -->
                     <div id="step-1" class="form-step active">
                         <div class="card">
@@ -196,7 +196,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <!-- Step 2: Car Features -->
 <div id="step-2" class="form-step">
     <div class="card">
@@ -235,7 +235,7 @@
     </div>
 </div>
 
-               
+
 
  <!-- Step 3: Car Images -->
     <div id="step-3" class="form-step">
@@ -277,13 +277,13 @@
             <button type="button" class="btn btn-primary next-step mt-3">Next</button>
 
         {{-- <button type="submit" class="btn btn-success mt-3">Submit</button> --}}
-    
+
         </div>
     </div>
     </div>
 
 
-    
+
  <!-- Step 4: Car Images -->
     <div id="step-4" class="form-step">
     <div class="card">
@@ -307,7 +307,7 @@
         </button>
 
         <button type="submit" class="btn btn-success mt-3">Submit</button>
-    
+
         </div>
     </div>
     </div>
@@ -315,7 +315,7 @@
 
 
                 </form>
-                
+
             </div>
         </div>
     </div>
@@ -326,9 +326,9 @@
         const prevSteps = document.querySelectorAll('.prev-step');
         const steps = document.querySelectorAll('.form-step');
         const indicators = document.querySelectorAll('.step-indicator');
-    
+
         let currentStep = 0;
-    
+
         nextSteps.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < steps.length - 1) {
@@ -340,7 +340,7 @@
                 }
             });
         });
-    
+
         prevSteps.forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep > 0) {
@@ -353,7 +353,7 @@
             });
         });
     });
-    
+
 </script>
 
 
@@ -498,5 +498,7 @@
         container.appendChild(newInputDiv);
     });
 </script>
+<br>
+<br>
 
 @endsection
