@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.master')
+@section('pageName', 'Users Mangment')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced File Upload Section</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+@section('admin_style')
     <style>
         body {
             background-color: #f7f9fc;
@@ -62,10 +58,11 @@
             display: none; /* Hidden by default */
             max-width: 40px;
         }
-    </style>
-</head>
+        </style>
+@endsection
 
-<body>
+@section('content')
+<h1>Edit company</h1>
     <form action="{{ route('admin_update_company', $compnaies->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -94,7 +91,4 @@
         <a href="{{ route('admin_companies') }}">Back</a>
     </form>
 
-
-</body>
-
-</html>
+@endsection

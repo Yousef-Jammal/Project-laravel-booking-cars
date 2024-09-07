@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\Status;
 use App\Models\Brand;
+use App\Models\RentalRequest;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Storage;
@@ -117,4 +118,17 @@ public function becomeLessor()
         return view('users.rental-request-center', compact('user', 'rentals', 'statuses'));
     }
 
+
+    public function submitBecomeLessor(Request $request, $id)
+    {
+
+        // users_id_photos
+        $data = [
+            'user_description' =>$request->user_description,
+            'Personal_ID_photo' =>$request->Personal_ID_photo
+        ];
+        RentalRequest::create($data);
+        return redirect()->route('');
+
+    }
 }

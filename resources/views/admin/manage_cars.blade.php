@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-0 pb-2">
+                <div class="card-body px-0 pb-2" style="height: 413px">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
                             <thead>
@@ -35,10 +35,14 @@
                                         <div class="d-flex px-2 py-1">
                                             <div>
                                                 @php
-                                                    $c1 = $car->images;
-                                                    $c2 = $c1[0];
+                                                    $car_image = 'default.png';
+                                                    if ($car->images->first()) {
+                                                        if ($car->images->first()->name) {
+                                                            $car_image = $car->images->first()->name;
+                                                        }
+                                                    }
                                                 @endphp
-                                                <img src="{{ asset("car_images/$c2->name") }}" class="avatar avatar-sm me-3 border-radius-lg" alt="car">
+                                                <img src="{{ asset("car_images/$car_image") }}" class="avatar avatar-sm me-3 border-radius-lg" alt="car">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 @php
@@ -95,15 +99,16 @@
 
 @section('admin_style')
 <style>
-    .btn-beautiful {
-        background-image: linear-gradient(45deg, #ff6a00, #ee0979);
+.btn-beautiful {
+        /* background-image: linear-gradient(45deg, #ff6a00, #ee0979); */
+        background-image: linear-gradient(45deg, rgb(243 109 13), rgb(255 176 82));
         color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 25px;
         text-transform: uppercase;
         font-weight: bold;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1), 1px 1px 5px #ffffff29;
         transition: all 0.3s ease-in-out;
         position: relative;
         overflow: hidden;
@@ -141,11 +146,13 @@
 @section('admin_scripts')
 <script>
     document.querySelector('.btn-beautiful').addEventListener('mouseover', function() {
-        this.style.backgroundImage = 'linear-gradient(45deg, #ee0979, #ff6a00)';
+        // this.style.backgroundImage = 'linear-gradient(45deg, #ee0979, #ff6a00)';
+        this.style.backgroundImage = 'linear-gradient(45deg, rgb(243 109 13), rgb(255 176 82))';
     });
 
     document.querySelector('.btn-beautiful').addEventListener('mouseout', function() {
-        this.style.backgroundImage = 'linear-gradient(45deg, #ff6a00, #ee0979)';
+        // this.style.backgroundImage = 'linear-gradient(45deg, #ff6a00, #ee0979)';
+        this.style.backgroundImage = 'linear-gradient(45deg, rgb(243 109 13), rgb(255 176 82))';
     });
 </script>
 @endsection

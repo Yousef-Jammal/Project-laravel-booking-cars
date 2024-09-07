@@ -1,32 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.master')
+@section('pageName', 'Creatr car')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced File Upload Section</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+@section('admin_style')
+<style>
         body {
             background-color: #f7f9fc;
             font-family: Arial, sans-serif;
             padding: 20px;
         }
-
+        h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
+        }
         form {
+            width: 90%;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
+            /* max-width: 600px;
+            margin: auto; */
+            width: 99% !important;
         }
 
         label {
             font-weight: bold;
             margin-top: 10px;
         }
-
+        form
         input[type="text"],
         input[type="number"],
         input[type="date"],
@@ -38,8 +40,9 @@
             border-radius: 4px;
         }
 
-        button,
-        a {
+
+        .my_btn_form,
+        .my_a_form {
             display: inline-block;
             text-align: center;
             padding: 10px 20px;
@@ -48,14 +51,16 @@
             border-radius: 4px;
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #ffa736 !important;
             border: none;
             transition: background-color 0.3s ease;
         }
 
-        button:hover,
-        a:hover {
-            background-color: #0056b3;
+
+        .my_btn_form:hover,
+        .my_a_form:hover {
+            background-color: #f99c23 !important;
+            color: #fff;
         }
 
         #preview {
@@ -63,39 +68,40 @@
             max-width: 40px;
         }
     </style>
-</head>
+@endsection
 
-<body>
-    <form action="{{ route('admin_store_car') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+@section('content')
+<h1>Create car</h1>
+<form action="{{ route('admin_store_car') }}" method="POST" enctype="multipart/form-data">
+    @csrf
 
-        <label for="user_id">User Name:</label>
-        <select name="user_id">
-            <option value="" disabled selected>Please Select a User</option>
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-            @endforeach
-        </select>
+    <label for="user_id">User Name:</label>
+    <select name="user_id">
+        <option value="" disabled selected>Please Select a User</option>
+        @foreach ($users as $user)
+        <option value="{{ $user->id }}">{{ $user->name }}</option>
+        @endforeach
+    </select>
 
-        <label for="availability">Availability:</label>
-        <select id="availability" name="availability" required>
-            <option value="available">Available</option>
-            <option value="not_available">Not Available</option>
-        </select>
+    <label for="availability">Availability:</label>
+    <select id="availability" name="availability" required>
+        <option value="available">Available</option>
+        <option value="not_available">Not Available</option>
+    </select>
 
-        <label for="brand_id">Brand:</label>
-        <select name="brand_id">
-            <option value="" disabled selected>Please Select a Brand</option>
-            @foreach ($brands as $brand)
-                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-            @endforeach
-        </select>
+    <label for="brand_id">Brand:</label>
+    <select name="brand_id">
+        <option value="" disabled selected>Please Select a Brand</option>
+        @foreach ($brands as $brand)
+        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+        @endforeach
+    </select>
 
-        <label for="model">Model:</label>
-        <input type="text" id="model" name="model" required><br>
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model" required><br>
 
 
-        <label for="body">Body:</label>
+    <label for="body">Body:</label>
         <select id="body" name="body" required>
             <option value="Sedan">Sedan</option>
             <option value="Coupe">Coupe</option>
@@ -208,7 +214,7 @@
         <label for="year">Year:</label>
         <select id="year" name="year" required>
             @for ($year = 1990; $year <= 2025; $year++)
-                <option value="{{ $year }}">{{ $year }}</option>
+            <option value="{{ $year }}">{{ $year }}</option>
             @endfor
         </select>
 
@@ -225,27 +231,33 @@
 
         @php
             $dateNow = date('y-m-d');
-        @endphp
+            @endphp
         <input type="hidden" value="{{ $dateNow }}" name="date_created">
 
 
         <div class="form-group">
-            <label for="image" style="    background: #bcbcbc;
-    width: 120px;
-    height: 33px;
-    border-radius: 27px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    align-items: center;">Add Image</label>
+            <label for="image" style="background: #bcbcbc;
+                                        width: 120px;
+                                        height: 33px;
+                                        border-radius: 27px;
+                                        display: flex;
+                                        justify-content: center;
+                                        cursor: pointer;
+                                        align-items: center;
+            ">Add Image</label>
+
             <input style="visibility: hidden;" type="file" id="image" name="file" onchange="previewImage(event)">
             <img id="preview" src="#" alt="Image Preview">
         </div>
 
-        <button type="submit">Create</button>
-        <a href="{{ route('admin_cars') }}">Back</a>
+        <button class="my_btn_form" type="submit">Create</button>
+        <a class="my_a_form" href="{{ route('admin_cars') }}">Back</a>
     </form>
+    @endsection
 
+
+
+    @section('admin_scripts')
     <script>
         function previewImage(event) {
             const reader = new FileReader();
@@ -263,7 +275,5 @@
                 preview.style.display = 'none';
             }
         }
-    </script>
-</body>
-
-</html>
+        </script>
+@endsection

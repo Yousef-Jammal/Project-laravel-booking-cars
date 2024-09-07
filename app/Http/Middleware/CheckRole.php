@@ -19,16 +19,17 @@ class CheckRole
     public function handle(Request $request, Closure $next, $role_id)
     {
 
-        // if (Auth::check()) {
-        //     if (Auth::user()->role_id == $role_id) {
-        //         return $next($request);
-        //     }
-        // }
+        if (Auth::check()) {
+            //     if (Auth::user()->role_id == $role_id) {
+            //         return $next($request);
+            //     }
 
-        if(Auth::user()->role->name == 'user'){
-            return redirect()->route('home_index');
-        }elseif(Auth::user()->role->name == 'admin'){
-            return $next($request);
+            if(Auth::user()->role->name == 'user'){
+                return redirect()->route('home_index');
+            }elseif(Auth::user()->role->name == 'admin'){
+                return $next($request);
+            }
         }
+        return redirect()->route('home_index');
     }
 }

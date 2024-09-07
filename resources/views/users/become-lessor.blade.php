@@ -22,16 +22,21 @@
 <div class="container mt-5">
     <h2>Become a Lessor</h2>
 
-    <form action="{{ route('user.submit-become-lessor') }}" method="POST">
+
+    @php
+        $id =Auth::user()->id ;
+    @endphp
+    <form action="{{ route('user.submit-become-lessor', $id ) }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="car_description">Car Description</label>
-            <textarea class="form-control" id="car_description" name="car_description" rows="4" required></textarea>
+            <label for="description">Description about you:</label>
+            <input type="text" class="form-control" id="description" name="user_description" required>
         </div>
 
+
         <div class="form-group mt-3">
-            <label for="car_image">Car Image</label>
-            <input type="file" class="form-control-file" id="car_image" name="car_image" required>
+            <label for="car_image">Personal ID photo :</label>
+            <input type="file" class="form-control-file" id="car_image" name="Personal_ID_photo" required>
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Submit</button>

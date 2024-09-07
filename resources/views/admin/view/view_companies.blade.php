@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.master')
+@section('pageName', 'View company')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced File Upload Section</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+@section('admin_style')
+<style>
         body {
             background-color: #f7f9fc;
             font-family: Arial, sans-serif;
@@ -38,8 +34,8 @@
             border-radius: 4px;
         }
 
-        button,
-        a {
+        .my_btn_form,
+        .my_a_form {
             display: inline-block;
             text-align: center;
             padding: 10px 20px;
@@ -48,34 +44,32 @@
             border-radius: 4px;
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #ffa736 !important;
             border: none;
             transition: background-color 0.3s ease;
         }
 
-        button:hover,
-        a:hover {
-            background-color: #0056b3;
+
+        .my_btn_form:hover,
+        .my_a_form:hover {
+            background-color: #f99c23 !important;
+            color: #fff;
         }
 
         #preview {
             display: none; /* Hidden by default */
             max-width: 40px;
         }
+        h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
+        }
     </style>
-</head>
-
-<body>
-    <form action="{{ route('admin_store_company') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-
-        {{-- <label for="user_id">User Name:</label>
-        <select name="user_id">
-            <option value="" disabled selected>Please Select a User</option>
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
-            @endforeach
-        </select> --}}
+@endsection
+@section('content')
+<h1>View company</h1>
+<form>
         <label for="user_id">Owner:</label>
         <input type="text" id="user_id" name="user_id" value="{{ $compnaies->user->name }}" disabled><br>
 
@@ -92,10 +86,6 @@
         <label for="num_of_ratings">Number of ratings:</label>
         <input type="text" value="{{ $compnaies->num_of_ratings }}" id="num_of_ratings" name="num_of_ratings" value="{{ $compnaies->description }}" disabled><br>
 
-        <a href="{{ route('admin_companies') }}">Back</a>
+        <a class="my_a_form" href="{{ route('admin_companies') }}">Back</a>
     </form>
-
-
-</body>
-
-</html>
+@endsection

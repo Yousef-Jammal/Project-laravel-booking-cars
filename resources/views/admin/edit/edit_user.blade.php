@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User</title>
-    <style>
+@extends('admin.master')
+@section('pageName', 'Users Mangment')
+
+@section('admin_style')
+<style>
         .form-group input[type="file"] {
             padding: 10px;
             background-color: #f4f4f4;
@@ -109,28 +106,28 @@
 
         }
     </style>
-</head>
-<body>
-    <div class="container">
+@endsection
+@section('content')
+<div class="container">
 
-        <a href="{{ route('admin_users') }}" class="form-group_a">Back</a>
-        <h1>Edit User</h1>
-        <form action="{{ route('admin_update_user', $user->id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $user->name }}" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="number" id="phone" name="phone" value="{{ $user->phone }}" required>
-            </div>
-            <div class="form-group">
+    <a href="{{ route('admin_users') }}" class="form-group_a">Back</a>
+    <h1>Edit User</h1>
+    <form action="{{ route('admin_update_user', $user->id) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ $user->email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="number" id="phone" name="phone" value="{{ $user->phone }}" required>
+        </div>
+        <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
                 {{-- <input type="password" id="password" name="password" value="{{ $user->password }}" required> --}}
@@ -146,11 +143,13 @@
             </div>
         </form>
     </div>
+@endsection
 
-    <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function(){
+@section('admin_scripts')
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
                 var output = document.getElementById('preview-image');
                 output.src = reader.result;
             };
@@ -168,6 +167,5 @@
                 passwordToggle.textContent = 'Show';
             }
         }
-    </script>
-</body>
-</html>
+        </script>
+@endsection
