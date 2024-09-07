@@ -34,7 +34,7 @@ class AuthController extends Controller
             $data = json_decode($user->role, true); // Decodes into an associative array
 
             $role_id = $data['id']; // Accessing the 'id' value
-            if ($role_id == '1') {
+            if ($role_id == '2') {
                 return redirect()->route('admin_index');
             } else {
                 return redirect()->route('home_index');

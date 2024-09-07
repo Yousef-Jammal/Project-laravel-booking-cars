@@ -14,7 +14,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 1180px;
             margin: auto;
         }
 
@@ -33,8 +33,8 @@
             border-radius: 4px;
         }
 
-        button,
-        a {
+        .my_btn_form,
+        .my_a_form {
             display: inline-block;
             text-align: center;
             padding: 10px 20px;
@@ -43,14 +43,16 @@
             border-radius: 4px;
             text-decoration: none;
             color: #fff;
-            background-color: #007bff;
+            background-color: #ffa736 !important;
             border: none;
             transition: background-color 0.3s ease;
         }
 
-        button:hover,
-        a:hover {
-            background-color: #0056b3;
+
+        .my_btn_form:hover,
+        .my_a_form:hover {
+            background-color: #f99c23 !important;
+            color: #fff;
         }
         select {
     width: 100%;
@@ -69,9 +71,15 @@
     background-position: right 10px center;
     background-size: 12px;
 }
+h1{
+            margin-bottom: 20px !important;
+            font-size: 24px !important;
+            color: #333 !important;
+        }
 </style>
 @endsection
 @section('content')
+<h1>Update car</h1>
     <form action="{{ route('admin_update_car', $car->id) }}" method="POST">
         @method('PUT')
         @csrf
@@ -146,10 +154,7 @@
         <label for="price_per_day">Price per Day:</label>
         <input type="number" step="0.01" id="price_per_day" name="price_per_day" value="{{ $car->price_per_day }}" required><br>
 
-        {{-- <label for="date_created">Date Created:</label>
-        <input type="date" id="date_created" name="date_created" value="{{ $car->date_created }}" required><br> --}}
-
-        <button type="submit">Update</button>
-        <a href="{{ route('admin_cars') }}">Back</a>
+        <button class="my_btn_form" type="submit">Update</button>
+        <a class="my_a_form" href="{{ route('admin_cars') }}">Back</a>
     </form>
 @endsection

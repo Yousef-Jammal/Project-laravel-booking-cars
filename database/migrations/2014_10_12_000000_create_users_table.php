@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('role_id')->default(1);
             $table->rememberToken();
-            $table->string('image')->nullable();
+            $table->string('image')->default('default.jpg');
             $table->text('phone'); // for store 0
             $table->date('date_created');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');

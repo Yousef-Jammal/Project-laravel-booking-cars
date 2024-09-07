@@ -15,9 +15,10 @@ use Illuminate\Validation\Rule;
 class AdminController extends Controller
 {
     // Start User functions
-    public function profile()
+    public function profile($id)
     {
-        return view('admin.profile');
+        $user = User::find($id);
+        return view('admin.profile', ['user' => $user]);
     }
     public function index()
     {
