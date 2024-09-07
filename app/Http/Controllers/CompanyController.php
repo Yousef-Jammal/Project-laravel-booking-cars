@@ -45,8 +45,8 @@ class CompanyController extends Controller
     {
 
         // Get the currently authenticated user's ID
-        // $userId = Auth::id();
-        $userId = 1;
+        $userId = Auth::id();
+        // $userId = 1;
         $dealsWeek = Rental::whereHas('car', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
@@ -520,8 +520,8 @@ class CompanyController extends Controller
 
     public function availabilityCenter()
     {
-        // $userId = auth()->user()->id;
-        $userId = 1;
+        $userId = auth()->user()->id;
+        // $userId = 1;
         $cars = Car::where('user_id', $userId)->with('images', 'features')->get();
         $times_rented = [];
         $total_profit = [];
