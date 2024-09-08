@@ -94,10 +94,10 @@ class UserController extends Controller
     public function becomeLessor()
     {
         // Retrieve the currently authenticated user
-        $user = Auth::user();
+        $users = Auth::user();
 
         // Pass the user data to the view
-        return view('users.become-lessor', compact('user'));
+        return view('users.become-lessor', compact('users'));
     }
 
     public function rentalRequestCenter()
@@ -128,13 +128,37 @@ class UserController extends Controller
 
     public function submitBecomeLessor(Request $request, $id)
     {
+        $request->validate([
+            'user_description' => 'required|',
+            'company_description' => 'required|',
+            'company_location' => 'required|',
+            'personal_id_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ]);
 
-        // users_id_photos
-        $data = [
+        if ($request->hasFile('personal_id_photo')) {
+            $file = $request->file('personal_id_photo');
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('user_id_image'), $imageName);
+            // $imageName = time() . '.' . $request->personal_id_photo->extension();
+            // $request->image->move(public_path('user_id_image'), $imageName);
+        } else {
+            $imageName = 'default.png';
+        }
+
+        RentalRequest::create([
+            'user_id'=> $id,
             'user_description' => $request->user_description,
-            'Personal_ID_photo' => $request->Personal_ID_photo
-        ];
-        RentalRequest::create($data);
-        return redirect()->route('');
+            'user_id_image' => $imageName,
+            'request_status' => 'pindding',
+        ]);
+        Company::create([
+            'user_id'=> $id,
+            'rating'=> '0',
+            'description'=> $request->company_description,
+            'location'=> $request->company_location,
+            'num_of_ratings'=> '0',
+            'status'=> '0',
+        ]);
+        return redirect()->route('home_index');
     }
 }

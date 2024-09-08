@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('num_of_ratings')->default(0);
             $table->string('description');
             $table->string('location');
+            $table->integer('status')->default(1);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

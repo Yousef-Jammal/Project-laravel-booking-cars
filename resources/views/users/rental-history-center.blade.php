@@ -29,9 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('user/rental-history-center') ? 'active' : '' }}" href="{{ route('user.rental-history-center') }}">Rental History</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">Log-out</a>
-                </li> -->
+                <li class="nav-item">
+                    <a class="btn btn-secondary" href="{{ route('user.become-lessor') }}">Have a Car? Become a Lessor</a>
+                </li>
             </ul>
         </div>
     </div>

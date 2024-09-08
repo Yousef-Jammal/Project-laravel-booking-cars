@@ -80,9 +80,13 @@ Route::prefix('admin')->middleware('checkRole:1')->group(function () {
     Route::get('createCompany', [AdminCompaniesController::class, 'createCompany'])->name('admin_create_company');
     Route::post('createCompany', [AdminCompaniesController::class, 'storeCompany'])->name('admin_store_company');
 
-    
+
     Route::get('/resetPassword/{id}', )->name('showResetPass');
     Route::put('/resetPassword/{id}',)->name('resetPassword');
+
+    // web.php
+    Route::post('/admin_lossers', [LossersController::class, 'updateStatus'])->name('updateRenaterStatus');
+
 });
 
 

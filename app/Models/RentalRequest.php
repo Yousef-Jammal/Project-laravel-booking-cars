@@ -16,4 +16,8 @@ class RentalRequest extends Model
         'user_id_image',
         'request_status',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

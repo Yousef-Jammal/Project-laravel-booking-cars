@@ -13,7 +13,8 @@ class Company extends Model
         'rating',
         'description',
         'location',
-        'num_of_ratings'
+        'num_of_ratings',
+        'status',
     ];
     public $timestamps = false;
 

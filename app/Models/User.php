@@ -75,6 +75,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Notifications::class);
     }
+    public function rentalRequest()
+    {
+        return $this->belongsTo(RentalRequest::class);
+    }
 
 
     public $timestamps = false;

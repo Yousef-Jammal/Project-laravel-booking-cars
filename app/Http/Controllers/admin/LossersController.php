@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Company;
+use App\Models\RentalRequest;
 use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,28 @@ class LossersController extends Controller
      */
     public function index()
     {
-        return view('admin.checkLosser');
+        $renaters_request = RentalRequest::where('request_status', 'pending')
+                                            ->get();
+        // return $renaters_request;
+        return view('admin.checkLosser', ['renaters_request' => $renaters_request]);
     }
+    public function updateStatus(Request $request)
+    {
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        $renaterRequest = RentalRequest::find($request->renater_id);
+
+        // $renaterRequestCom = Company::where('user_id', $request->user_id)
+        // ->get();
+
+        $renaterRequest->request_status = $request->status;
+        $renaterRequest->save();
+
+        // $renaterRequestCom->status = '1';
+
+        // $renaterRequestCom->save();
+
+        return response()->json(['success' => true, 'message' => 'Status updated successfully']);
+    }
     public function create()
     {
         //
