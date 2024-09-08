@@ -56,7 +56,7 @@
                         <a href="{{ route('home_index') }}" class="navbar-brand logo">
                             <img src="{{ asset('img/logo.svg') }}" class="img-fluid" alt="Logo">
                         </a>
-                        <a href="index-2.html" class="navbar-brand logo-small">
+                        <a href="{{ route('home_index') }}" class="navbar-brand logo-small">
                             <img src="{{ asset('img/logo-small.png') }}" class="img-fluid" alt="Logo">
                         </a>
                     </div>
@@ -68,24 +68,18 @@
                             <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                         </div>
                         <ul class="main-nav">
-                            <li class="active"><a href="{{ route('home_index') }}">Home</a></li>
-                            <li class="has-submenu">
-
-
-
-                                {{-- <a href="{{ route('allCars') }}">Listings --}}
-                                {{-- <i class="fas fa-chevron-down"></i> --}}
-                                {{-- </a> --}}
-                                {{-- <ul class="submenu">
-<li><a href="listing-grid.html">Listing Grid</a></li>
-<li><a href="listing-list.html">Listing List</a></li>
-<li><a href="listing-details.html">Listing Details</a></li>
-</ul> --}}
+                            <li class="{{ Route::currentRouteName() === 'home_index' ? 'active' : '' }}">
+                                <a href="{{ route('home_index') }}">Home</a>
+                            </li>
+                            <li class="{{ Request::is('carlist') ? 'active' : '' }}">
+                                <a href="carlist">Cars</a>
                             </li>
                             <li>
                                 <a href="{{ Route::currentRouteName() === 'home_index' ? '#reviewNavbar' : route('home_index') . '#reviewNavbar' }}">Testimonials</a>
                             </li>
-                            <li><a href="{{ route('contact') }}">Contact</a></li>
+                            <li class="{{ Route::currentRouteName() === 'contact' ? 'active' : '' }}">
+                                <a href="{{ route('contact') }}">Contact</a>
+                            </li>
                             <li>
                                 <a href="{{ Route::currentRouteName() === 'home_index' ? '#faqNavbar' : route('home_index') . '#faqNavbar' }}">FAQ</a>
                             </li>
