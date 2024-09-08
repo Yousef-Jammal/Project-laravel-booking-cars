@@ -2,7 +2,6 @@
 @section('pageName', 'Profile')
 @section('admin_style')
 <style>
-    /* CSS Styles */
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
@@ -10,7 +9,7 @@
         padding: 0;
     }
     .profile-container {
-        max-width: 800px;
+        max-width: 700px;
         margin: 20px auto;
         padding: 20px;
         background: #fff;
@@ -20,6 +19,7 @@
     .profile-header {
         display: flex;
         align-items: center;
+        justify-content: center;
         border-bottom: 2px solid #ddd;
         padding-bottom: 20px;
         margin-bottom: 20px;
@@ -29,7 +29,7 @@
         height: 100px;
         border-radius: 50%;
         margin-right: 20px;
-        border: 4px solid #ff660079; /* Orange border */
+        border: 4px solid #ff660079;
     }
     .profile-header h1 {
         margin: 0;
@@ -47,7 +47,7 @@
     }
     .profile-content label {
         font-weight: bold;
-        color: #ff6600; /* Orange text for labels */
+        color: #ff6600;
     }
     .profile-content input, .profile-content select, .profile-content textarea {
         width: 100%;
@@ -59,16 +59,20 @@
     .profile-content textarea {
         resize: vertical;
     }
-    .profile-content button {
-        background-color: #ff6600; /* Orange button */
+    .profile-content
+    button,
+    .my_a {
+        background-color: #ff6600;
         color: #fff;
         border: none;
         padding: 10px 20px;
         border-radius: 4px;
         cursor: pointer;
+        margin-left: 10px;
     }
-    .profile-content button:hover {
-        background-color: #e65c00; /* Darker orange on hover */
+    .profile-content button:hover, .my_a:hover {
+        background-color: #e65c00;
+        color: #fff;
     }
     .profile-content .form-group {
         margin-bottom: 20px;
@@ -78,6 +82,12 @@
     .profile-content .form-group textarea {
         font-size: 16px;
     }
+    .my_perent_a_b{
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        /* background-color: blue; */
+    }
 </style>
 @endsection
 @section('content')
@@ -85,18 +95,29 @@
 <div class="profile-container">
     <div class="profile-header">
         <img src="{{ asset('user_images/'. $user->image) }}">
-        <div>
-            <h1 id="user-name">{{$user->name}}</h1>
-            <p id="user-email">{{ $user->email }}</p>
-            <p id="user-phone">{{ $user->phone }}</p>
-        </div>
     </div>
     <div class="profile-content">
         <div class="form-group">
-            <label for="bio">Bio:</label>
-            <textarea id="bio" rows="4">Lorem ipsum dolor sit amet.</textarea>
+            <form action="">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ $user->email }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="number" id="phone" name="phone" value="{{ $user->phone }}" required>
+                </div>
+
+                <div class="form-group my_perent_a_b">
+                    <button id="update-button">Update Profile</button>
+                    <a class="my_a" href="{{ route('showResetPass', $user->name) }}">Reset Password</a>
+                </div>
+            </form>
         </div>
-        <button id="update-button">Update Profile</button>
     </div>
 </div>
 
