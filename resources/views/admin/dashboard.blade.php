@@ -18,7 +18,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+              <p class="mb-0">Displays a comprehensive list of all registered companies.</p>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+              <p class="mb-0">Displays a complete list of all registered users.</p>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p class="mb-0">Shows a complete list of all available cars.</p>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p class="mb-0">Displays a full list of all active and completed rentals.</p>
             </div>
           </div>
         </div>

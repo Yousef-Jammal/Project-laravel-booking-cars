@@ -90,7 +90,7 @@
                             <input type="radio" name="status{{ $renater_request->id }}" value="reject" class="status-radio" data-id="{{ $renater_request->id }}">
                             Reject
                         </label>
-                        {{-- <input type="hidden" name="user_id" value="{{ $renater_request->id }}" class="my_hidden"> --}}
+                        {{-- <input type="hidden" name="user_id" value="{{ $renater_request->id }}"> --}}
                     </td>
                 </tr>
                 @endforeach
@@ -126,7 +126,6 @@
         $('.status-radio').on('change', function() {
             var renaterId = $(this).data('id');
             var status = $(this).val();
-            // var user_id = $('.my_hidden').val();
 
             $.ajax({
                 url: "{{ route('updateRenaterStatus') }}",
@@ -134,14 +133,13 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                     renater_id: renaterId,
-                    // user_id: user_id,
                     status: status
                 },
                 success: function(response) {
                     alert('Status updated successfully');
                 },
                 error: function(xhr) {
-                    alert('An error occurred while updating the status');
+                    // alert('An error occurred while updating the status');
                 }
             });
         });
