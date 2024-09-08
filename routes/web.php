@@ -86,6 +86,7 @@ Route::prefix('admin')->middleware('checkRole:1')->group(function () {
 
     // web.php
     Route::post('/admin_lossers', [LossersController::class, 'updateStatus'])->name('updateRenaterStatus');
+    Route::post('/update_admin_profile/{id}', [AdminUserController::class, 'update_admin_profile'])->name('update_admin_profile');
 
 });
 

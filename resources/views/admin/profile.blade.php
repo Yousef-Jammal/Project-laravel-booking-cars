@@ -98,7 +98,8 @@
     </div>
     <div class="profile-content">
         <div class="form-group">
-            <form action="">
+            <form action="{{  route('update_admin_profile', $user->id) }}" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" value="{{ $user->name }}" required>
@@ -114,7 +115,7 @@
 
                 <div class="form-group my_perent_a_b">
                     <button id="update-button">Update Profile</button>
-                    <a class="my_a" href="{{ route('showResetPass', $user->name) }}">Reset Password</a>
+                    {{-- <a class="my_a" href="{{ route('showResetPass', $user->name) }}">Reset Password</a> --}}
                 </div>
             </form>
         </div>

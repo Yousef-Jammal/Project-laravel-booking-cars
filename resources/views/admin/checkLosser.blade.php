@@ -126,7 +126,6 @@
         $('.status-radio').on('change', function() {
             var renaterId = $(this).data('id');
             var status = $(this).val();
-            // var user_id = $('.my_hidden').val();
 
             $.ajax({
                 url: "{{ route('updateRenaterStatus') }}",
@@ -134,14 +133,13 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                     renater_id: renaterId,
-                    // user_id: user_id,
                     status: status
                 },
                 success: function(response) {
                     alert('Status updated successfully');
                 },
                 error: function(xhr) {
-                    alert('An error occurred while updating the status');
+                    // alert('An error occurred while updating the status');
                 }
             });
         });

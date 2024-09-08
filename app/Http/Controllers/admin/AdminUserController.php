@@ -37,7 +37,7 @@ class AdminUserController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'phone' => 'required|regex:/^07\d{8}$/',
             ]);
-        
+
             // Handle the image upload if the image is provided
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
@@ -46,7 +46,7 @@ class AdminUserController extends Controller
                 // Use a default image if none is provided
                 $imageName = 'default.png'; // Ensure this image exists in the 'user_images' directory
             }
-        
+
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
@@ -55,7 +55,7 @@ class AdminUserController extends Controller
             $user->password = Hash::make($request->password);
             $user->date_created = date("Y-m-d");
             $user->save();
-        
+
             return redirect()->route('admin_users');
         }
 
@@ -117,7 +117,6 @@ class AdminUserController extends Controller
                     'password' => Hash::make($request->password)
                 ]);
             }
-            // return response()->json(["updated user" => $user]);
             return redirect()->route('admin_users');
         }
 
@@ -133,6 +132,18 @@ class AdminUserController extends Controller
         {
             return view('admin.create.create_user');
         }
+        public function update_admin_profile(Request $request,$id)
+        {
+            $user = User::find($id);
 
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+            ]);
+            // 'password' => Hash::make($request->password)
+
+            return redirect()->route('admin_profile', $id);
+        }
 
 }
